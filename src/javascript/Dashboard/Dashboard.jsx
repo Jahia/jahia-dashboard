@@ -18,8 +18,10 @@ const DashboardGroup = () => {
     );
 };
 
+const DashBoard = () => 'Jahia Dashboard Component';
+
 export const registerDashboard = () => {
-    registerRoute();
+    registerRoute(<DashBoard/>);
     registry.add('dashboardGroupItem', {
         type: 'topNavGroup',
         target: ['nav-root-top:1'],
