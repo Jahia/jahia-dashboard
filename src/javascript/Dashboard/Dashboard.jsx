@@ -2,17 +2,19 @@ import React from 'react';
 import {registry} from '@jahia/registry';
 import {useHistory} from 'react-router-dom';
 import {PrimaryNavItem} from '@jahia/moonstone';
-import Bars from '@jahia/moonstone/dist/icons/Bar';
 import {registerRoute} from './Dashboard.route';
+import {useTranslation} from 'react-i18next';
+import Bars from '@jahia/moonstone/dist/icons/Bar';
 
 const ROUTE = '/dashboard';
 
 const DashboardGroup = () => {
     const history = useHistory();
+    const {t} = useTranslation('jahia-dashboard');
     return (
         <PrimaryNavItem key={ROUTE}
                         isSelected={history.location.pathname.endsWith(ROUTE)}
-                        label="Dashboard"
+                        label={t('jahia-dashboard.label')}
                         icon={<Bars/>}
                         onClick={() => history.push(ROUTE)}/>
     );

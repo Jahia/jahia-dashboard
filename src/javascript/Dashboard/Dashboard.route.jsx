@@ -1,3 +1,4 @@
+import React, {Suspense} from 'react';
 import {registry} from '@jahia/registry';
 
 export const registerRoute = (componentToRender = 'Jahia Dashboard') => {
@@ -6,6 +7,6 @@ export const registerRoute = (componentToRender = 'Jahia Dashboard') => {
         target: ['nav-root-top:1'],
         path: '/dashboard',
         defaultPath: '/dashboard',
-        render: () => componentToRender
+        render: () => <Suspense fallback="loading ...">{componentToRender}</Suspense>
     });
 };
