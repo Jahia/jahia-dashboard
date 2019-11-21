@@ -16,19 +16,18 @@
         ]}],
       "security-file-exists:file-existence": ["error", {"files": ["SECURITY.md"]}],
       "support-file-exists:file-existence": ["error", {"files": ["{docs/,.github/,}SUPPORT*"], "nocase": true}],
-      "readme-references-license:file-contents": ["error", {"files": ["README*"], "content": "license", "flags": "i"}],
       "binaries-not-present:file-type-exclusion": ["error", {"type": ["**/*.exe", "**/*.dll", "!node_modules/**"]}],
       "integrates-with-ci:file-existence": [
         "error",
         {
           "files": [
-            ".gitlab-ci.yml", 
-            ".travis.yml", 
-            "appveyor.yml", 
-            ".appveyor.yml", 
-            "circle.yml", 
-            ".circleci/config.yml", 
-            "Jenkinsfile", 
+            ".gitlab-ci.yml",
+            ".travis.yml",
+            "appveyor.yml",
+            ".appveyor.yml",
+            "circle.yml",
+            ".circleci/config.yml",
+            "Jenkinsfile",
             ".drone.yml",
             ".github/workflows/*",
             "azure-pipelines.yml"
