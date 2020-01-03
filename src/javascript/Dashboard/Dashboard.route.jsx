@@ -10,3 +10,7 @@ export const registerRoute = (componentToRender = 'Jahia Dashboard') => {
         render: () => <Suspense fallback="loading ...">{componentToRender}</Suspense>
     });
 };
+
+window.contextJsParameters.namespaceResolvers['jahia-dashboard'] = lang => require('../../main/resources/javascript/locales/' + lang + '.json');
+
+console.log('%c Jahia Dashboard is activated', 'color: #3c8cba');

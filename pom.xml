@@ -126,9 +126,6 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>javascript/locales/*.*</exclude>
-                </excludes>
             </resource>
         </resources>
         <plugins>
@@ -187,7 +184,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <jahia-depends>dx-commons-webpack</jahia-depends>
+                        <Jahia-Depends>dx-commons-webpack,jahia-ui-root</Jahia-Depends>
                         <Import-Package>${jahia.plugin.projectPackageImport},*</Import-Package>
                         <_dsannotations>*</_dsannotations>
                     </instructions>
