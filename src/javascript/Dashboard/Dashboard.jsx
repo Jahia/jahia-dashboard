@@ -5,8 +5,11 @@ import {PrimaryNavItem} from '@jahia/moonstone';
 import {registerRoute} from './Dashboard.route';
 import {useTranslation} from 'react-i18next';
 import Bars from '@jahia/moonstone/dist/icons/Bar';
+import Iframe from 'react-iframe';
 
-const ROUTE = `/cms/dashboardframe/default/${window.contextJsParameters.locale}${window.contextJsParameters.user.path}.projects.html`;
+let endPath = `/${window.contextJsParameters.locale}${window.contextJsParameters.user.path}.projects.html`;
+const ROUTE = `/cms/dashboard/default${endPath}`;
+const FRAMESRC = `/cms/dashboardframe/default${endPath}`;
 const DashboardGroup = () => {
     const history = useHistory();
     const {t} = useTranslation('jahia-dashboard');
@@ -21,7 +24,9 @@ const DashboardGroup = () => {
     );
 };
 
-const DashBoard = () => 'Jahia Dashboard Component';
+const DashBoard = () => {
+    return <Iframe url={window.contextJsParameters.contextPath + FRAMESRC} width="100%" height="100%"/>;
+};
 
 export const registerDashboard = () => {
     registerRoute(<DashBoard/>);
