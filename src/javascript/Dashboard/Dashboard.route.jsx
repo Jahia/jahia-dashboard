@@ -5,8 +5,8 @@ export const registerRoute = (componentToRender = 'Jahia Dashboard') => {
     registry.add('route-dashboard', {
         type: 'route',
         target: ['nav-root-top:1'],
-        path: '/dashboard',
-        defaultPath: '/dashboard',
+        path: '/cms/dashboard/default/*',
+        defaultPath: '/cms/dashboard/default/*',
         render: () => <Suspense fallback="loading ...">{componentToRender}</Suspense>
     });
 };

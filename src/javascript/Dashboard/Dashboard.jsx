@@ -6,8 +6,7 @@ import {registerRoute} from './Dashboard.route';
 import {useTranslation} from 'react-i18next';
 import Bars from '@jahia/moonstone/dist/icons/Bar';
 
-const ROUTE = '/dashboard';
-
+const ROUTE = `/cms/dashboardframe/default/${window.contextJsParameters.locale}${window.contextJsParameters.user.path}.projects.html`;
 const DashboardGroup = () => {
     const history = useHistory();
     const {t} = useTranslation('jahia-dashboard');
@@ -16,7 +15,9 @@ const DashboardGroup = () => {
                         isSelected={history.location.pathname.endsWith(ROUTE)}
                         label={t('jahia-dashboard.label')}
                         icon={<Bars/>}
-                        onClick={() => history.push(ROUTE)}/>
+                        onClick={() => {
+                            history.push(ROUTE);
+                        }}/>
     );
 };
 
