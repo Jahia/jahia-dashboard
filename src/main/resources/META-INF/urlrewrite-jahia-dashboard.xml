@@ -5,11 +5,11 @@
 <urlrewrite>
 
     <rule>
-        <name>Jahia to V8</name>
+        <name>Jahia dashboard to V8</name>
         <note>Redirects old /cms/dashboard urls</note>
         <condition operator="notequal" type="parameter" name="redirect">false</condition>
-        <from>^/cms/dashboard/(.*).(.*).html$</from>
-        <to type="redirect">%{context-path}/jahia/dashboard/$1/$2</to>
+        <from>^/cms/dashboard/(.*)\.(.*)\.html$</from>
+        <to type="redirect">%{context-path}/jahia/dashboard/$2</to>
     </rule>
 
 </urlrewrite>
