@@ -7,7 +7,7 @@ import {useTranslation} from 'react-i18next';
 import Bars from '@jahia/moonstone/dist/icons/Bar';
 import Iframe from 'react-iframe';
 
-let endPath = `/${window.contextJsParameters.locale}${window.contextJsParameters.user.path}.projects.html`;
+let endPath = `/${window.contextJsParameters.locale}${window.contextJsParameters.user.path}.projects.html?redirect=false`;
 const ROUTE = `/cms/dashboard/default${endPath}`;
 const FRAMESRC = `/cms/dashboardframe/default${endPath}`;
 const DashboardGroup = () => {
