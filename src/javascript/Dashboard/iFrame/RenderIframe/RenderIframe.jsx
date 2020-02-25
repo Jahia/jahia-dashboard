@@ -14,7 +14,7 @@ const RenderIframe = props => {
 
     return (
         <Suspense fallback="loading ...">
-            <DashboardIframe pathChunk={props.pathChunk} user={props.user} locale={props.locale}/>
+            <DashboardIframe contextPath={props.contextPath} pathChunk={props.pathChunk} user={props.user} locale={props.locale}/>
         </Suspense>
     );
 };
@@ -23,6 +23,7 @@ RenderIframe.propTypes = {
     pathChunk: PropTypes.string.isRequired,
     user: PropTypes.string.isRequired,
     locale: PropTypes.string.isRequired,
+    contextPath: PropTypes.string.isRequired,
     render: PropTypes.func
 };
 

@@ -14,8 +14,8 @@ import Task from '@jahia/moonstone/dist/icons/Task';
 import SiteWeb from '@jahia/moonstone/dist/icons/SiteWeb';
 import FileContent from '@jahia/moonstone/dist/icons/FileContent';
 
-let endPath = `/${window.contextJsParameters.locale}${window.contextJsParameters.user.path}.projects`;
-const ROUTE = '/cms/dashboard/default';
+const endPath = '/projects';
+const ROUTE = '/dashboard';
 
 const DashboardGroup = () => {
     const history = useHistory();
@@ -39,7 +39,7 @@ const getRoutes = (contextPath, user, locale) => {
             locale: locale,
             user: user,
             contextPath: contextPath,
-            path: `${ROUTE}/${locale}${user}.files`
+            path: `${ROUTE}/files`
         },
         {
             key: 'projects',
@@ -47,7 +47,7 @@ const getRoutes = (contextPath, user, locale) => {
             locale: locale,
             user: user,
             contextPath: contextPath,
-            path: `${ROUTE}/${locale}${user}.projects`
+            path: `${ROUTE}/projects`
         },
         {
             key: 'tasks',
@@ -55,7 +55,7 @@ const getRoutes = (contextPath, user, locale) => {
             locale: locale,
             user: user,
             contextPath: contextPath,
-            path: `${ROUTE}/${locale}${user}.tasks`
+            path: `${ROUTE}/tasks`
         },
         {
             key: 'pages',
@@ -63,24 +63,24 @@ const getRoutes = (contextPath, user, locale) => {
             locale: locale,
             user: user,
             contextPath: contextPath,
-            path: `${ROUTE}/${locale}${user}.pages`
+            path: `${ROUTE}/pages`
         },
         {
             key: 'welcome',
             path: ROUTE,
-            render: () => 'Welcome to dashboard'
+            render: () => <h2 style={{color: 'white'}}>Welcome to dashboard - missing design</h2>
         }
     ];
 };
 
 const getPageId = (pages, url) => {
-    const split = url.split('.');
+    const split = url.split('/');
 
-    if (split.length !== 2) {
+    if (split.length !== 3) {
         return 'welcome';
     }
 
-    const page = pages.find(p => p.id === split[1]);
+    const page = pages.find(p => p.id === split[2]);
 
     if (page === undefined) {
         return 'welcome';
@@ -93,8 +93,6 @@ const DashBoard = () => {
     const history = useHistory();
     const {t} = useTranslation('jahia-dashboard');
     const itemId = 'myWorkspace';
-
-    const localeAndUser = `${window.contextJsParameters.locale}${window.contextJsParameters.user.path}`;
     const pages = [
         {
             id: 'welcome',
@@ -108,28 +106,28 @@ const DashBoard = () => {
             label: t('jahia-dashboard.workspace.files'),
             iconStart: <File/>,
             hasChildren: false,
-            route: `${ROUTE}/${localeAndUser}.files`
+            route: `${ROUTE}/files`
         },
         {
             id: 'projects',
             label: t('jahia-dashboard.workspace.projects'),
             iconStart: <SiteWeb/>,
             hasChildren: false,
-            route: `${ROUTE}/${localeAndUser}.projects`
+            route: `${ROUTE}/projects`
         },
         {
             id: 'pages',
             label: t('jahia-dashboard.workspace.pages'),
             iconStart: <FileContent/>,
             hasChildren: false,
-            route: `${ROUTE}/${localeAndUser}.pages`
+            route: `${ROUTE}/pages`
         },
         {
             id: 'tasks',
             label: t('jahia-dashboard.workspace.tasks'),
             iconStart: <Task/>,
             hasChildren: false,
-            route: `${ROUTE}/${localeAndUser}.tasks`
+            route: `${ROUTE}/tasks`
         }
     ];
 
