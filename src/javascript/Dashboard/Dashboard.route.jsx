@@ -1,10 +1,9 @@
 import React, {Suspense} from 'react';
-import {registry} from '@jahia/registry';
+import {registry} from '@jahia/ui-extender';
 
 export const registerRoute = (componentToRender = 'Jahia Dashboard') => {
-    registry.add('route-dashboard', {
-        type: 'route',
-        target: ['nav-root-top:1'],
+    registry.add('route', 'route-dashboard', {
+        targets: ['nav-root-top:1'],
         path: '/cms/dashboard/default/*',
         defaultPath: '/cms/dashboard/default/*',
         render: () => <Suspense fallback="loading ...">{componentToRender}</Suspense>
