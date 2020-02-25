@@ -10,13 +10,6 @@ export const DashboardIframe = ({contextPath, pathChunk, user, locale}) => (
     <Iframe url={path(contextPath, pathChunk, user, locale)} width="100%" height="100%"/>
 );
 
-DashboardIframe.defaultProps = {
-    pathChunk: 'project',
-    locale: 'en',
-    user: '/users/root',
-    contextPath: ''
-};
-
 DashboardIframe.propTypes = {
     contextPath: PropTypes.string.isRequired,
     pathChunk: PropTypes.string.isRequired,
