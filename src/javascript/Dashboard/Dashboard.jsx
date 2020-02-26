@@ -6,6 +6,7 @@ import {registerRoute} from './Dashboard.route';
 import {useTranslation} from 'react-i18next';
 import RenderIframe from './iFrame/RenderIframe';
 import {Route, Switch} from 'react-router';
+import Constants from './Dashboard.constants';
 import Bars from '@jahia/moonstone/dist/icons/Bar';
 import Home from '@jahia/moonstone/dist/icons/Home';
 import Work from '@jahia/moonstone/dist/icons/Work';
@@ -14,19 +15,16 @@ import Task from '@jahia/moonstone/dist/icons/Task';
 import SiteWeb from '@jahia/moonstone/dist/icons/SiteWeb';
 import FileContent from '@jahia/moonstone/dist/icons/FileContent';
 
-const endPath = '/projects';
-const ROUTE = '/dashboard';
-
 const DashboardGroup = () => {
     const history = useHistory();
     const {t} = useTranslation('jahia-dashboard');
     return (
-        <PrimaryNavItem key={ROUTE}
-                        isSelected={history.location.pathname.startsWith(ROUTE)}
+        <PrimaryNavItem key={Constants.ROUTE}
+                        isSelected={history.location.pathname.startsWith(Constants.ROUTE)}
                         label={t('jahia-dashboard.label')}
                         icon={<Bars/>}
                         onClick={() => {
-                            history.push(`${ROUTE}${endPath}`);
+                            history.push(`${Constants.ROUTE}${Constants.ROUTE_DEFAULT_PATH}`);
                         }}/>
     );
 };
@@ -39,7 +37,7 @@ const getRoutes = (contextPath, user, locale) => {
             locale: locale,
             user: user,
             contextPath: contextPath,
-            path: `${ROUTE}/files`
+            path: `${Constants.ROUTE}/files`
         },
         {
             key: 'projects',
@@ -47,7 +45,7 @@ const getRoutes = (contextPath, user, locale) => {
             locale: locale,
             user: user,
             contextPath: contextPath,
-            path: `${ROUTE}/projects`
+            path: `${Constants.ROUTE}/projects`
         },
         {
             key: 'tasks',
@@ -55,7 +53,7 @@ const getRoutes = (contextPath, user, locale) => {
             locale: locale,
             user: user,
             contextPath: contextPath,
-            path: `${ROUTE}/tasks`
+            path: `${Constants.ROUTE}/tasks`
         },
         {
             key: 'pages',
@@ -63,11 +61,11 @@ const getRoutes = (contextPath, user, locale) => {
             locale: locale,
             user: user,
             contextPath: contextPath,
-            path: `${ROUTE}/pages`
+            path: `${Constants.ROUTE}/pages`
         },
         {
             key: 'welcome',
-            path: ROUTE,
+            path: Constants.ROUTE,
             render: () => <h2 style={{color: 'white'}}>Welcome to dashboard - missing design</h2>
         }
     ];
@@ -75,14 +73,9 @@ const getRoutes = (contextPath, user, locale) => {
 
 const getPageId = (pages, url) => {
     const split = url.split('/');
+    let page;
 
-    if (split.length !== 3) {
-        return 'welcome';
-    }
-
-    const page = pages.find(p => p.id === split[2]);
-
-    if (page === undefined) {
+    if (split.length !== 3 || (page = pages.find(p => p.id === split[2])) === undefined) {
         return 'welcome';
     }
 
@@ -99,35 +92,35 @@ const DashBoard = () => {
             label: t('jahia-dashboard.workspace.welcome'),
             iconStart: <Home/>,
             hasChildren: false,
-            route: ROUTE
+            route: Constants.ROUTE
         },
         {
             id: 'files',
             label: t('jahia-dashboard.workspace.files'),
             iconStart: <File/>,
             hasChildren: false,
-            route: `${ROUTE}/files`
+            route: `${Constants.ROUTE}/files`
         },
         {
             id: 'projects',
             label: t('jahia-dashboard.workspace.projects'),
             iconStart: <SiteWeb/>,
             hasChildren: false,
-            route: `${ROUTE}/projects`
+            route: `${Constants.ROUTE}/projects`
         },
         {
             id: 'pages',
             label: t('jahia-dashboard.workspace.pages'),
             iconStart: <FileContent/>,
             hasChildren: false,
-            route: `${ROUTE}/pages`
+            route: `${Constants.ROUTE}/pages`
         },
         {
             id: 'tasks',
             label: t('jahia-dashboard.workspace.tasks'),
             iconStart: <Task/>,
             hasChildren: false,
-            route: `${ROUTE}/tasks`
+            route: `${Constants.ROUTE}/tasks`
         }
     ];
 
