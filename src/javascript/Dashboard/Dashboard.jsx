@@ -155,7 +155,7 @@ const DashBoard = () => {
 export const registerDashboard = () => {
     registerRoute(<DashBoard/>);
     registry.add('primary-nav-item', 'dashboardGroupItem', {
-        targets: ['nav-root-top:1'],
+        targets: ['nav-root-tasks:1'],
         render: () => <DashboardGroup/>
     });
 };
