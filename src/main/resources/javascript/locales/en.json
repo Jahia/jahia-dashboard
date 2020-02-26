@@ -1,5 +1,13 @@
 {
   "jahia-dashboard": {
-    "label": "Dashboard"
+    "label": "Dashboard",
+    "workspace": {
+      "label": "My Workspace",
+      "welcome": "Welcome",
+      "files": "My Files",
+      "pages": "My Pages",
+      "projects": "My Web Projects",
+      "tasks": "My Tasks"
+    }
   }
 }

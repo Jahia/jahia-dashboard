@@ -1,5 +1,13 @@
 {
   "jahia-dashboard": {
-    "label": "FR Dashboard"
+    "label": "Tableau de Bord",
+    "workspace": {
+      "label": "Mes Espaces",
+      "welcome": "Bienvenue",
+      "files": "Mes Fichiers",
+      "pages": "Mes Pages",
+      "projects": "Mes Projects Web",
+      "tasks": "Mes Tâches"
+    }
   }
 }
