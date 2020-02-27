@@ -20,6 +20,7 @@ const DashboardGroup = () => {
     const {t} = useTranslation('jahia-dashboard');
     return (
         <PrimaryNavItem key={Constants.ROUTE}
+                        role="dashboard-menu-item"
                         isSelected={history.location.pathname.startsWith(Constants.ROUTE)}
                         label={t('jahia-dashboard.label')}
                         icon={<Bars/>}
