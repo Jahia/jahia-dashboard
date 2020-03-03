@@ -7,7 +7,7 @@ import {useTranslation} from 'react-i18next';
 import RenderIframe from './iFrame/RenderIframe';
 import {Route, Switch} from 'react-router';
 import Constants from './Dashboard.constants';
-import Bars from '@jahia/moonstone/dist/icons/Bar';
+import Bars from '@jahia/moonstone/dist/icons/BarSquare';
 import Home from '@jahia/moonstone/dist/icons/Home';
 import Work from '@jahia/moonstone/dist/icons/Work';
 import File from '@jahia/moonstone/dist/icons/File';
