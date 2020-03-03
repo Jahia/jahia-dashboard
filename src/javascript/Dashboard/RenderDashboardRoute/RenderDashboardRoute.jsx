@@ -1,5 +1,5 @@
 import React, {Suspense} from 'react';
-import {IFrameRenderer} from '@jahia/ui-extender';
+import {IframeRenderer} from '@jahia/ui-extender';
 import PropTypes from 'prop-types';
 
 const RenderDashboardRoute = props => {
@@ -16,7 +16,7 @@ const RenderDashboardRoute = props => {
 
     return (
         <Suspense fallback="loading ...">
-            <IFrameRenderer url={url}/>
+            <IframeRenderer url={url}/>
         </Suspense>
     );
 };
