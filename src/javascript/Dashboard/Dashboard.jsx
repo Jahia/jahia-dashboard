@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import {Accordion, AccordionItem, LayoutModule, PrimaryNavItem, SecondaryNav, TreeView, Typography} from '@jahia/moonstone';
 import {registerRoute} from './Dashboard.route';
 import {useTranslation} from 'react-i18next';
-import RenderIframe from './iFrame/RenderIframe';
+import RenderDashboardRoute from './RenderDashboardRoute';
 import {Route, Switch} from 'react-router';
 import Constants from './Dashboard.constants';
 import Bars from '@jahia/moonstone/dist/icons/BarSquare';
@@ -145,7 +145,7 @@ const DashBoard = () => {
             content={
                 <Switch>
                     {routes.map(r =>
-                        <Route key={r.key} path={r.path} render={() => <RenderIframe {...r}/>}/>
+                        <Route key={r.key} path={r.path} render={() => <RenderDashboardRoute {...r}/>}/>
                     )}
                 </Switch>
             }
