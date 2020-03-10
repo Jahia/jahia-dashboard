@@ -4,6 +4,7 @@ import {useHistory} from 'react-router-dom';
 import {Accordion, AccordionItem, LayoutModule, PrimaryNavItem, SecondaryNav, TreeView, Typography} from '@jahia/moonstone';
 import {registerRoute} from './Dashboard.route';
 import {useTranslation} from 'react-i18next';
+import {useSelector} from 'react-redux';
 import RenderDashboardRoute from './RenderDashboardRoute';
 import {Route, Switch} from 'react-router';
 import Constants from './Dashboard.constants';
@@ -86,6 +87,7 @@ const getPageId = (pages, url) => {
 const DashBoard = () => {
     const history = useHistory();
     const {t} = useTranslation('jahia-dashboard');
+    const locale = useSelector(state => state.uilang)
     const itemId = 'myWorkspace';
     const pages = [
         {
@@ -125,7 +127,7 @@ const DashBoard = () => {
         }
     ];
 
-    const routes = getRoutes(window.contextJsParameters.contextPath, window.contextJsParameters.user.path, window.contextJsParameters.locale);
+    const routes = getRoutes(window.contextJsParameters.contextPath, window.contextJsParameters.user.path, locale);
     const selectedPage = getPageId(pages, history.location.pathname);
 
     return (
