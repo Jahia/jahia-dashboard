@@ -1,7 +1,7 @@
 import React from 'react';
 import {registry} from '@jahia/ui-extender';
 import {useHistory} from 'react-router-dom';
-import {Accordion, AccordionItem, LayoutModule, PrimaryNavItem, SecondaryNav, TreeView, Typography} from '@jahia/moonstone';
+import {Accordion, AccordionItem, LayoutModule, PrimaryNavItem, SecondaryNav, SecondaryNavHeader, TreeView} from '@jahia/moonstone';
 import {registerRoute} from './Dashboard.route';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
@@ -87,7 +87,7 @@ const getPageId = (pages, url) => {
 const DashBoard = () => {
     const history = useHistory();
     const {t} = useTranslation('jahia-dashboard');
-    const locale = useSelector(state => state.uilang)
+    const locale = useSelector(state => state.uilang);
     const itemId = 'myWorkspace';
     const pages = [
         {
@@ -133,7 +133,7 @@ const DashBoard = () => {
     return (
         <LayoutModule
             navigation={
-                <SecondaryNav header={<Typography variant="section">{t('jahia-dashboard.label')}</Typography>}>
+                <SecondaryNav header={<SecondaryNavHeader>{t('jahia-dashboard.label')}</SecondaryNavHeader>}>
                     <Accordion openedItem={itemId}>
                         <AccordionItem id={itemId} label={t('jahia-dashboard.workspace.label')} icon={<Work/>}>
                             <TreeView isReversed
