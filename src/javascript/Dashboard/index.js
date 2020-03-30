@@ -1,3 +1,3 @@
-import {registerDashboard} from './Dashboard';
+import {registerDashboard} from './register';
 
 registerDashboard();

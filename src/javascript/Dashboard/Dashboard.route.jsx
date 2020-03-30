@@ -1,13 +1,14 @@
 import React, {Suspense} from 'react';
 import {registry} from '@jahia/ui-extender';
 import Constants from './Dashboard.constants';
+import {DashBoard} from './Dashboard';
 
-export const registerRoute = (componentToRender = 'Jahia Dashboard') => {
+export const registerRoute = () => {
     registry.add('route', 'routeDashboard', {
         targets: ['nav-root-top:1'],
         path: `${Constants.ROUTE}*`,
-        defaultPath: `${Constants.ROUTE}*`,
-        render: () => <Suspense fallback="loading ...">{componentToRender}</Suspense>
+        defaultPath: Constants.ROUTE,
+        render: v => <Suspense fallback="loading ..."><DashBoard match={v.match}/></Suspense>
     });
 };
 
