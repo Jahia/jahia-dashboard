@@ -25,10 +25,8 @@ const getPageId = match => {
 export const DashBoard = ({match}) => {
     const history = useHistory();
     const {t} = useTranslation('jahia-dashboard');
-    // Const locale = useSelector(state => state.uilang);
     const itemId = 'myWorkspace';
 
-    // Const routes = getRoutes(window.contextJsParameters.contextPath, window.contextJsParameters.user.path, locale);
     const selectedPage = getPageId(match);
     const {tree, routes, defaultOpenedItems} = useAdminRouteTreeStructure('dashboard', selectedPage);
 
