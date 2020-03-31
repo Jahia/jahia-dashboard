@@ -1,134 +1,47 @@
 import React from 'react';
 import {registry} from '@jahia/ui-extender';
 import {useHistory} from 'react-router-dom';
-import {Accordion, AccordionItem, LayoutModule, PrimaryNavItem, SecondaryNav, SecondaryNavHeader, TreeView} from '@jahia/moonstone';
-import {registerRoute} from './Dashboard.route';
+import {Accordion, AccordionItem, LayoutModule, SecondaryNav, SecondaryNavHeader, TreeView} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
-import {useSelector} from 'react-redux';
-import RenderDashboardRoute from './RenderDashboardRoute';
 import {Route, Switch} from 'react-router';
-import Constants from './Dashboard.constants';
-import Bars from '@jahia/moonstone/dist/icons/BarSquare';
-import Home from '@jahia/moonstone/dist/icons/Home';
 import Work from '@jahia/moonstone/dist/icons/Work';
-import File from '@jahia/moonstone/dist/icons/File';
-import Task from '@jahia/moonstone/dist/icons/Task';
-import SiteWeb from '@jahia/moonstone/dist/icons/SiteWeb';
-import FileContent from '@jahia/moonstone/dist/icons/FileContent';
+import {useAdminRouteTreeStructure} from '@jahia/ui-extender';
+import PropTypes from 'prop-types';
 
-const DashboardGroup = () => {
-    const history = useHistory();
-    const {t} = useTranslation('jahia-dashboard');
-    return (
-        <PrimaryNavItem key={Constants.ROUTE}
-                        role="dashboard-menu-item"
-                        isSelected={history.location.pathname.startsWith(Constants.ROUTE)}
-                        label={t('jahia-dashboard.label')}
-                        icon={<Bars/>}
-                        onClick={() => {
-                            history.push(`${Constants.ROUTE}${Constants.ROUTE_DEFAULT_PATH}`);
-                        }}/>
-    );
-};
-
-const getRoutes = (contextPath, user, locale) => {
-    return [
-        {
-            key: 'files',
-            pathChunk: 'files',
-            locale: locale,
-            user: user,
-            contextPath: contextPath,
-            path: `${Constants.ROUTE}/files`
-        },
-        {
-            key: 'projects',
-            pathChunk: 'projects',
-            locale: locale,
-            user: user,
-            contextPath: contextPath,
-            path: `${Constants.ROUTE}/projects`
-        },
-        {
-            key: 'tasks',
-            pathChunk: 'tasks',
-            locale: locale,
-            user: user,
-            contextPath: contextPath,
-            path: `${Constants.ROUTE}/tasks`
-        },
-        {
-            key: 'pages',
-            pathChunk: 'pages',
-            locale: locale,
-            user: user,
-            contextPath: contextPath,
-            path: `${Constants.ROUTE}/pages`
-        },
-        {
-            key: 'welcome',
-            path: Constants.ROUTE,
-            render: () => <h2 style={{color: 'white'}}>Welcome to dashboard - missing design</h2>
-        }
-    ];
-};
-
-const getPageId = (pages, url) => {
-    const split = url.split('/');
-    let page;
-
-    if (split.length !== 3 || (page = pages.find(p => p.id === split[2])) === undefined) {
-        return 'welcome';
+const getPageId = match => {
+    let matchByRoute = registry.find({type: 'adminRoute', route: match.url});
+    if (matchByRoute.length > 0) {
+        return matchByRoute[0].key;
     }
 
-    return page.id;
+    let param = match.params[0];
+
+    let item = param.substr(1);
+    if (registry.get('adminRoute', item)) {
+        return item;
+    }
 };
 
-const DashBoard = () => {
+export const DashBoard = ({match}) => {
     const history = useHistory();
     const {t} = useTranslation('jahia-dashboard');
-    const locale = useSelector(state => state.uilang);
     const itemId = 'myWorkspace';
-    const pages = [
-        {
-            id: 'welcome',
-            label: t('jahia-dashboard.workspace.welcome'),
-            iconStart: <Home/>,
-            hasChildren: false,
-            route: Constants.ROUTE
-        },
-        {
-            id: 'files',
-            label: t('jahia-dashboard.workspace.files'),
-            iconStart: <File/>,
-            hasChildren: false,
-            route: `${Constants.ROUTE}/files`
-        },
-        {
-            id: 'projects',
-            label: t('jahia-dashboard.workspace.projects'),
-            iconStart: <SiteWeb/>,
-            hasChildren: false,
-            route: `${Constants.ROUTE}/projects`
-        },
-        {
-            id: 'pages',
-            label: t('jahia-dashboard.workspace.pages'),
-            iconStart: <FileContent/>,
-            hasChildren: false,
-            route: `${Constants.ROUTE}/pages`
-        },
-        {
-            id: 'tasks',
-            label: t('jahia-dashboard.workspace.tasks'),
-            iconStart: <Task/>,
-            hasChildren: false,
-            route: `${Constants.ROUTE}/tasks`
-        }
-    ];
 
-    const routes = getRoutes(window.contextJsParameters.contextPath, window.contextJsParameters.user.path, locale);
-    const selectedPage = getPageId(pages, history.location.pathname);
+    const selectedPage = getPageId(match);
+    const {tree, routes, defaultOpenedItems} = useAdminRouteTreeStructure('dashboard', selectedPage);
+
+    const data = tree
+        .map(route => ({
+            id: route.key,
+            label: t(route.label),
+            isSelectable: route.isSelectable,
+            iconStart: route.icon,
+            route: route.route
+        }))
+        .getData();
+
+    const filteredRoutes = routes && routes
+        .filter(route => route.isSelectable && route.render);
 
     return (
         <LayoutModule
@@ -137,17 +50,18 @@ const DashBoard = () => {
                     <Accordion openedItem={itemId}>
                         <AccordionItem id={itemId} label={t('jahia-dashboard.workspace.label')} icon={<Work/>}>
                             <TreeView isReversed
-                                      data={pages}
+                                      data={data}
                                       selectedItems={[selectedPage]}
-                                      onClickItem={item => history.push(item.route)}/>
+                                      defaultOpenedItems={defaultOpenedItems}
+                                      onClickItem={app => app.isSelectable ? history.push(app.route || ('/dashboard/' + app.id)) : false}/>
                         </AccordionItem>
                     </Accordion>
                 </SecondaryNav>
             }
             content={
                 <Switch>
-                    {routes.map(r =>
-                        <Route key={r.key} path={r.path} render={() => <RenderDashboardRoute {...r}/>}/>
+                    {filteredRoutes.map(r =>
+                        <Route key={r.key} exact strict path={r.route || '/dashboard/' + r.key} render={props => r.render(props)}/>
                     )}
                 </Switch>
             }
@@ -155,11 +69,7 @@ const DashBoard = () => {
     );
 };
 
-export const registerDashboard = () => {
-    registerRoute(<DashBoard/>);
-    registry.add('primary-nav-item', 'dashboardGroupItem', {
-        targets: ['nav-root-tasks:1'],
-        render: () => <DashboardGroup/>
-    });
+DashBoard.propTypes = {
+    match: PropTypes.object.isRequired
 };
 
