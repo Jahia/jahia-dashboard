@@ -9,6 +9,12 @@
       "projects": "My Web Projects",
       "tasks": "My Tasks"
     },
+    "projects" : {
+      "createNew" : {
+        "title" : "Create new",
+        "description" : "Create new / Go to the administration to create a new project"
+      }
+    },
     "studio" : {
       "title" : "Studio",
       "description" : "Use the studio to build modules from the ground up, from custom components definition to template design."

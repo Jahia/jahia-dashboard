@@ -42,6 +42,12 @@ const ProjectList = props => {
             return 0;
         }) : [];
 
+    siteNodes.push({
+        uuid: 'create-site',
+        displayName: t('jahia-dashboard:jahia-dashboard.projects.createNew.title'),
+        description: t('jahia-dashboard:jahia-dashboard.projects.createNew.description')
+    });
+
     return (
         <Suspense fallback="loading ...">
             <Typography variant="title">My web projects</Typography>
