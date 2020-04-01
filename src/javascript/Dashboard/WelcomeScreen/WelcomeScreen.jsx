@@ -41,7 +41,7 @@ const WelcomeScreen = () => {
 
     return (
         <Suspense fallback="loading ...">
-            <main className={classnames(styles.root, 'flexCol')}>
+            <div className={classnames(styles.root)}>
                 <WelcomeIntro locale={locale}/>
                 <Separator/>
                 <ProjectList locale={locale} t={t}/>
@@ -51,7 +51,7 @@ const WelcomeScreen = () => {
                 <DevResources locale={locale}/>
                 <Separator/>
                 <Documentation locale={locale}/>
-            </main>
+            </div>
         </Suspense>
     );
 };

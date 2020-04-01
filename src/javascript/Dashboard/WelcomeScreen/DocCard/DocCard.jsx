@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'clsx';
-import styles from './Card.scss';
+import styles from './DocCard.scss';
+import {Typography, Chip, Button} from '@jahia/moonstone';
 
-import {Typography} from '@jahia/moonstone';
-
-const Card = ({
+const DocCard = ({
     headerText,
+    estimatedReadingTime,
+    tags,
     infoText,
+    academyUrl,
+    trainingUrl,
     isSelected,
     onDoubleClick,
     onClick
@@ -25,18 +28,35 @@ const Card = ({
                     <Typography variant="heading">
                         {headerText}
                     </Typography>
+                    {estimatedReadingTime &&
+                    <Typography variant="heading">
+                        {estimatedReadingTime}
+                    </Typography>}
+                    {tags ? tags.map(tag => {
+                        return (
+                            <Chip key={tag} label={tag}/>
+                        );
+                    }) : ''}
                     <Typography>
                         {infoText}
                     </Typography>
+                    { academyUrl &&
+                        <Button label="Academy"/>}
+                    { trainingUrl &&
+                    <Button label="Academy"/>}
                 </div>
             </div>
         </article>
     );
 };
 
-Card.defaultProps = {
+DocCard.defaultProps = {
     headerText: '',
+    estimatedReadingTime: null,
+    tags: [],
     infoText: '',
+    academyUrl: null,
+    trainingUrl: null,
     isSelected: false,
     onDoubleClick: () => {
     },
@@ -44,12 +64,16 @@ Card.defaultProps = {
     }
 };
 
-Card.propTypes = {
+DocCard.propTypes = {
     headerText: PropTypes.string,
+    estimatedReadingTime: PropTypes.number,
+    tags: PropTypes.array,
     infoText: PropTypes.string,
+    academyUrl: PropTypes.string,
+    trainingUrl: PropTypes.string,
     isSelected: PropTypes.bool,
     onDoubleClick: PropTypes.func,
     onClick: PropTypes.func
 };
 
-export default Card;
+export default DocCard;

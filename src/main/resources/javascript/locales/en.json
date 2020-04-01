@@ -8,6 +8,26 @@
       "pages": "My Pages",
       "projects": "My Web Projects",
       "tasks": "My Tasks"
+    },
+    "studio" : {
+      "title" : "Studio",
+      "description" : "Use the studio to build modules from the ground up, from custom components definition to template design."
+    },
+    "graphiql" : {
+      "title" : "GraphiQL",
+      "description" : "Use GraphiQL to explore the current GraphQL schema, as well to build and execute GraphQL queries."
+    },
+    "sdlgenerator" : {
+      "title": "SDL Generator",
+      "description" : "Use the SDL Generator to help you create the SDL file corresponding to your needs."
+    },
+    "sdlreport" : {
+      "title" : "SDL Report",
+      "description" : "Use the SDL Report to troubleshoot your SDL issues"
+    },
+    "jwt" : {
+      "title" : "JWT Tokens",
+      "description" : "Use this to create a JWT token you can use in your application"
     }
   }
 }

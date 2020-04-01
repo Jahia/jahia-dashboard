@@ -4,6 +4,8 @@ import {DocumentationNodesQuery} from './Documentation.gql-queries';
 import {ProgressOverlay} from '@jahia/react-material';
 import PropTypes from 'prop-types';
 import {Typography} from '@jahia/moonstone';
+import DocCard from '../DocCard';
+import classnames from 'clsx';
 
 const Documentation = props => {
     const {t} = props;
@@ -32,24 +34,21 @@ const Documentation = props => {
     return (
         <Suspense fallback="loading ...">
             <Typography variant="title">Documentation</Typography>
-            <ul>
+            <div className={classnames('flexRow')}>
                 {docNodes.map(docNode => {
                     return (
-                        <li
+                        <DocCard
                             key={docNode.uuid}
-                        >
-                            {docNode.title.value} : {docNode.description.value}
-                            {docNode.tags ? docNode.tags.values.map(tag => {
-                                return (
-                                    <span key={tag}>{tag}</span>
-                                );
-                            }) : ''}
-                            <a href={docNode.academyUrl ? docNode.academyUrl.value : ''}>Academy</a>
-                            <a href={docNode.trainingUrl ? docNode.trainingUrl.value : ''}>Training</a>
-                        </li>
+                            headerText={docNode.title.value}
+                            estimatedReadingTime={docNode.estimatedReadingTime ? docNode.estimatedReadingTime.longValue : null}
+                            tags={docNode.tags ? docNode.tags.values : []}
+                            infoText={docNode.description ? docNode.description.value : null}
+                            academyUrl={docNode.academyUrl ? docNode.academyUrl.value : null}
+                            trainingUrl={docNode.trainingUrl ? docNode.trainingUrl.value : null}
+                        />
                     );
                 })}
-            </ul>
+            </div>
         </Suspense>
     );
 };
