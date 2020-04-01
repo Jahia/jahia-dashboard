@@ -29,7 +29,7 @@ const ProjectList = props => {
     }
 
     const siteNodes = data && data.jcr && data.jcr.result ? data.jcr.result.siteNodes
-        .filter(node => node.hasPermission)
+        .filter(node => node.hasPermission && node.name !== 'systemsite')
         .sort((elem1, elem2) => {
             if (elem1.displayName < elem2.displayName) {
                 return -1;
