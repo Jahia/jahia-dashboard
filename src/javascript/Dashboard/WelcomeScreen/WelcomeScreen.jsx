@@ -12,6 +12,7 @@ import {WelcomeScreenQuery} from './WelcomeScreen.gql-queries';
 import {ProgressOverlay} from '@jahia/react-material';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
+import Spacing from './Spacing';
 
 const WelcomeScreen = () => {
     const {t} = useTranslation('jahia-dashboard');
@@ -43,12 +44,16 @@ const WelcomeScreen = () => {
         <Suspense fallback="loading ...">
             <div className={classnames(styles.root)}>
                 <WelcomeIntro locale={locale}/>
+                <Spacing height="big"/>
                 <Separator spacing="medium"/>
                 <ProjectList locale={locale} t={t}/>
+                <Spacing height="big"/>
                 <Separator spacing="medium"/>
                 <ModuleList locale={locale} modules={myModules}/>
+                <Spacing height="big"/>
                 <Separator spacing="medium"/>
                 <DevResources locale={locale}/>
+                <Spacing height="big"/>
                 <Separator spacing="medium"/>
                 <Documentation locale={locale}/>
             </div>
