@@ -1,17 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'clsx';
 import styles from './Card.scss';
 import {Typography} from '@jahia/moonstone';
 import ArrowRight from '@jahia/moonstone/dist/icons/ArrowRight';
+import OpenInNew from '@jahia/moonstone/dist/icons/OpenInNew';
 
 const Card = ({
     headerText,
+    icon,
     infoText,
     isSelected,
     onDoubleClick,
     onClick
 }) => {
+    const [isHovering, setIsHovering] = useState(false);
+
     return (
         <article
             data-sel-role-card={headerText}
@@ -19,14 +23,17 @@ const Card = ({
             aria-checked={isSelected}
             onDoubleClick={onDoubleClick}
             onClick={onClick}
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
         >
             <div className={classnames(styles.infoContainer)}>
                 <div className={classnames(styles.textContainer)}>
                     <div className={classnames(styles.cardLinkHeading)}>
-                        <Typography variant="heading">
+                        <Typography variant="heading" component="h3">
+                            {icon && <span className={classnames(styles.icon)}>{icon}</span>}
                             {headerText}
                         </Typography>
-                        <ArrowRight/>
+                        {isHovering ? <OpenInNew/> : <ArrowRight/>}
                     </div>
                     <Typography>
                         {infoText}
@@ -49,6 +56,7 @@ Card.defaultProps = {
 
 Card.propTypes = {
     headerText: PropTypes.string,
+    icon: PropTypes.element,
     infoText: PropTypes.string,
     isSelected: PropTypes.bool,
     onDoubleClick: PropTypes.func,

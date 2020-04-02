@@ -12,6 +12,7 @@ import {DashboardQuery, PermissionsQuery} from './WelcomeScreen.gql-queries';
 import {ProgressOverlay} from '@jahia/react-material';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
+import Spacing from './Spacing';
 
 const WelcomeScreen = () => {
     const {t} = useTranslation('jahia-dashboard');
@@ -67,14 +68,18 @@ const WelcomeScreen = () => {
         <Suspense fallback="loading ...">
             <div className={classnames(styles.root)}>
                 <WelcomeIntro locale={locale} t={t} isDevelopment={developmentMode}/>
+                <Spacing height="big"/>
                 <Separator spacing="medium"/>
                 <ProjectList locale={locale} t={t} isAdmin={hasAdminVirtualSitesPermission}/>
+                <Spacing height="big"/>
                 <Separator spacing="medium"/>
                 { developmentMode &&
                 <>
                     <ModuleList locale={locale} modules={myModules} t={t}/>
+                    <Spacing height="big"/>
                     <Separator spacing="medium"/>
                     <DevResources locale={locale} isTrial={trialInstallMode} t={t}/>
+                    <Spacing height="big"/>
                     <Separator spacing="medium"/>
                 </>}
                 <Documentation locale={locale} t={t}/>
