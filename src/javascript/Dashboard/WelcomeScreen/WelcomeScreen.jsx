@@ -28,7 +28,7 @@ const WelcomeScreen = () => {
 
     if (dashboardData.error) {
         const message = t(
-            'jahia-dashboard:label.jahiaDashBoard.error.queryingContent',
+            'jahia-dashboard:jahia-dashboard.error.queryingContent',
             {details: dashboardData.error.message ? dashboardData.error.message : ''}
         );
         return <>{message}</>;
@@ -40,7 +40,7 @@ const WelcomeScreen = () => {
 
     if (permissionsData.error) {
         const message = t(
-            'jahia-dashboard:label.jahiaDashBoard.error.queryingContent',
+            'jahia-dashboard:jahia-dashboard.error.queryingContent',
             {details: permissionsData.error.message ? permissionsData.error.message : ''}
         );
         return <>{message}</>;
@@ -60,18 +60,24 @@ const WelcomeScreen = () => {
     console.log('operatingMode=' + operatingMode + ' installationMode=' + installationMode);
     console.log('studio mode access=' + hasStudioAccessPermission + ' admin virtual sites=' + hasAdminVirtualSitesPermission);
 
+    const developmentMode = operatingMode === 'development' && hasStudioAccessPermission;
+    const trialInstallMode = installationMode === 'trial';
+
     return (
         <Suspense fallback="loading ...">
             <div className={classnames(styles.root)}>
-                <WelcomeIntro locale={locale} development={operatingMode === 'development' && hasStudioAccessPermission}/>
+                <WelcomeIntro locale={locale} t={t} isDevelopment={developmentMode}/>
                 <Separator spacing="medium"/>
-                <ProjectList locale={locale} t={t}/>
+                <ProjectList locale={locale} t={t} isAdmin={hasAdminVirtualSitesPermission}/>
                 <Separator spacing="medium"/>
-                <ModuleList locale={locale} modules={myModules}/>
-                <Separator spacing="medium"/>
-                <DevResources locale={locale}/>
-                <Separator spacing="medium"/>
-                <Documentation locale={locale}/>
+                { developmentMode &&
+                <>
+                    <ModuleList locale={locale} modules={myModules} t={t}/>
+                    <Separator spacing="medium"/>
+                    <DevResources locale={locale} isTrial={trialInstallMode} t={t}/>
+                    <Separator spacing="medium"/>
+                </>}
+                <Documentation locale={locale} t={t}/>
             </div>
         </Suspense>
     );

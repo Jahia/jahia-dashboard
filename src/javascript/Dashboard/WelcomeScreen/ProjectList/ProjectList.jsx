@@ -8,17 +8,17 @@ import classnames from 'clsx';
 import SectionTitle from '../SectionTitle';
 
 const ProjectList = props => {
-    const {t} = props;
+    const {t, isAdmin, locale} = props;
     const {data, error, loading} = useQuery(SiteNodesQuery, {
         variables: {
             query: 'select * from [jnt:virtualsite] where ischildnode(\'/sites\')',
-            displayLanguage: props.locale
+            displayLanguage: locale
         }
     });
 
     if (error) {
         const message = t(
-            'jahia-dashboard:label.jahiaDashBoard.error.queryingContent',
+            'jahia-dashboard:jahia-dashboard.error.queryingContent',
             {details: error.message ? error.message : ''}
         );
         return <>{message}</>;
@@ -42,22 +42,35 @@ const ProjectList = props => {
             return 0;
         }) : [];
 
-    siteNodes.push({
-        uuid: 'create-site',
-        displayName: t('jahia-dashboard:jahia-dashboard.projects.createNew.title'),
-        description: t('jahia-dashboard:jahia-dashboard.projects.createNew.description')
-    });
+    if (isAdmin) {
+        siteNodes.push({
+            uuid: 'create-site',
+            displayName: t('jahia-dashboard:jahia-dashboard.projects.createNew.title'),
+            description: t('jahia-dashboard:jahia-dashboard.projects.createNew.description')
+        });
+    }
 
     return (
         <Suspense fallback="loading ...">
-            <SectionTitle>My web projects</SectionTitle>
+            <SectionTitle>{t('jahia-dashboard:jahia-dashboard.projects.title')}</SectionTitle>
+            <a href={window.contextJsParameters.contextPath + '/jahia/dashboard/projects'}>{t('jahia-dashboard:jahia-dashboard.seeAll')}</a>
             <div className={classnames('flexRow')}>
                 {siteNodes.map(siteNode => {
+                    const onClick = () => {
+                        let siteUrl = window.contextJsParameters.contextPath + '/jahia/page-composer/default/en/sites/' + siteNode.name + '/home.html';
+                        if (siteNode.uuid === 'create-site') {
+                            siteUrl = window.contextJsParameters.contextPath + '/jahia/administration/webProjectSettings';
+                        }
+
+                        window.location.assign(siteUrl);
+                    };
+
                 return (
                     <Card
                         key={siteNode.uuid}
                         headerText={siteNode.displayName}
-                        infoText={siteNode.description ? siteNode.description : ''}
+                        infoText={siteNode.description ? siteNode.description : t('jahia-dashboard:jahia-dashboard.projects.noDescription')}
+                        onClick={() => onClick()}
                     />
                 );
             })}
@@ -68,7 +81,8 @@ const ProjectList = props => {
 
 ProjectList.propTypes = {
     locale: PropTypes.string.isRequired,
-    t: PropTypes.func.isRequired
+    t: PropTypes.func.isRequired,
+    isAdmin: PropTypes.bool.isRequired
 };
 
 export default ProjectList;

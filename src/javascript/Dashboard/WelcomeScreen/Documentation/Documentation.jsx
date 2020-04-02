@@ -6,19 +6,20 @@ import PropTypes from 'prop-types';
 import DocCard from '../DocCard';
 import classnames from 'clsx';
 import SectionTitle from '../SectionTitle';
+import {Typography} from '@jahia/moonstone';
 
 const Documentation = props => {
-    const {t} = props;
+    const {t, locale} = props;
     const {data, error, loading} = useQuery(DocumentationNodesQuery, {
         variables: {
             query: 'select * from [jnt:dashboardDoc] where isdescendantnode(\'/modules\') order by [lastEditDate]',
-            displayLanguage: props.locale
+            displayLanguage: locale
         }
     });
 
     if (error) {
         const message = t(
-            'jahia-dashboard:label.jahiaDashBoard.error.queryingContent',
+            'jahia-dashboard:jahia-dashboard.error.queryingContent',
             {details: error.message ? error.message : ''}
         );
         return <>{message}</>;
@@ -34,6 +35,8 @@ const Documentation = props => {
     return (
         <Suspense fallback="loading ...">
             <SectionTitle>Documentation</SectionTitle>
+            <Typography>{t('jahia-dashboard:jahia-dashboard.documentation.intro')}</Typography>
+            <a href="https://academy.jahia.com/documentation" target="_blank" rel="noopener noreferrer">{t('jahia-dashboard:jahia-dashboard.documentation.goToAcademy')}</a>
             <div className={classnames('flexRow')}>
                 {docNodes.map(docNode => {
                     return (

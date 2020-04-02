@@ -1,46 +1,46 @@
 import React, {Suspense} from 'react';
-import {useTranslation} from 'react-i18next';
 import Card from '../Card';
 import classnames from 'clsx';
 import SectionTitle from '../SectionTitle';
+import PropTypes from 'prop-types';
 
-const DevResources = () => {
-    const {t} = useTranslation('jahia-dashboard');
+const DevResources = props => {
+    const {t, isTrial} = props;
 
     const devCards = [
         {
             id: 'studio',
-            name: t('jahia-dashboard:jahia-dashboard.studio.title'),
+            name: t('jahia-dashboard:jahia-dashboard.devResources.studio.title'),
             link: '/cms/studio/default/en/settings.manageModules.html',
-            description: t('jahia-dashboard:jahia-dashboard.studio.description')
+            description: t('jahia-dashboard:jahia-dashboard.devResources.studio.description')
         },
         {
             id: 'graphiql',
-            name: t('jahia-dashboard:jahia-dashboard.graphiql.title'),
+            name: t('jahia-dashboard:jahia-dashboard.devResources.graphiql.title'),
             link: '/modules/graphql-dxm-provider/tools/graphiql.jsp',
-            description: t('jahia-dashboard:jahia-dashboard.graphiql.description'),
-            requireInstallationMode: 'production'
+            description: t('jahia-dashboard:jahia-dashboard.devResources.graphiql.description'),
+            hideInTrial: true
         },
         {
             id: 'sdlgenerator',
-            name: t('jahia-dashboard:jahia-dashboard.sdlgenerator.title'),
+            name: t('jahia-dashboard:jahia-dashboard.devResources.sdlgenerator.title'),
             link: '/modules/sdl-generator-tools/tools/sdlGeneratorTools.jsp',
-            description: t('jahia-dashboard:jahia-dashboard.sdlgenerator.description'),
-            requireInstallationMode: 'production'
+            description: t('jahia-dashboard:jahia-dashboard.devResources.sdlgenerator.description'),
+            hideInTrial: true
         },
         {
             id: 'sdlreport',
-            name: t('jahia-dashboard:jahia-dashboard.sdlreport.title'),
+            name: t('jahia-dashboard:jahia-dashboard.devResources.sdlreport.title'),
             link: '/modules/graphql-dxm-provider/tools/sdlreporttool.jsp',
-            description: t('jahia-dashboard:jahia-dashboard.sdlreport.description'),
-            requireInstallationMode: 'production'
+            description: t('jahia-dashboard:jahia-dashboard.devResources.sdlreport.description'),
+            hideInTrial: true
         },
         {
             id: 'jwt',
-            name: t('jahia-dashboard:jahia-dashboard.jwt.title'),
+            name: t('jahia-dashboard:jahia-dashboard.devResources.jwt.title'),
             link: '/modules/security-filter-tools/tools/jwtConfiguration.jsp',
-            description: t('jahia-dashboard:jahia-dashboard.jwt.description'),
-            requireInstallationMode: 'production'
+            description: t('jahia-dashboard:jahia-dashboard.devResources.jwt.description'),
+            hideInTrial: true
         }
     ];
 
@@ -48,7 +48,7 @@ const DevResources = () => {
         <Suspense fallback="loading ...">
             <SectionTitle>Developer resources</SectionTitle>
             <div className={classnames('flexRow')}>
-                {devCards.map(devCard => {
+                {devCards.filter(devCard => devCard.hideInTrial && isTrial).map(devCard => {
                     return (
                         <Card key={devCard.id} headerText={devCard.name} infoText={devCard.description}/>
                     );
@@ -56,6 +56,11 @@ const DevResources = () => {
             </div>
         </Suspense>
     );
+};
+
+DevResources.propTypes = {
+    isTrial: PropTypes.bool.isRequired,
+    t: PropTypes.func.isRequired
 };
 
 export default DevResources;

@@ -1,21 +1,33 @@
 import React, {Suspense} from 'react';
 import {Typography} from '@jahia/moonstone';
 import SectionTitle from '../SectionTitle';
+import PropTypes from 'prop-types';
 
-const WelcomeIntro = () => {
+const WelcomeIntro = props => {
     const user = window.contextJsParameters.user;
+    const {isDevelopment, t} = props;
 
     let displayName = user.username;
     if (user.fullname) {
         displayName = user.fullname;
     }
 
+    let message = t('jahia-dashboard:jahia-dashboard.intro.defaultMessage');
+    if (isDevelopment) {
+        message = t('jahia-dashboard:jahia-dashboard.intro.developmentMessage');
+    }
+
     return (
         <Suspense fallback="loading ...">
-            <SectionTitle>Welcome {displayName} to Jahia 8</SectionTitle>
-            <Typography>Find links and resources we think will be useful for you in this page: quick access to the projects and modules you contribute to, as well as links to developer tools, documentation and tutorials</Typography>
+            <SectionTitle>{t('jahia-dashboard:jahia-dashboard.intro.title', {displayName: displayName})}</SectionTitle>
+            <Typography>{message}</Typography>
         </Suspense>
     );
+};
+
+WelcomeIntro.propTypes = {
+    isDevelopment: PropTypes.bool.isRequired,
+    t: PropTypes.func.isRequired
 };
 
 export default WelcomeIntro;
