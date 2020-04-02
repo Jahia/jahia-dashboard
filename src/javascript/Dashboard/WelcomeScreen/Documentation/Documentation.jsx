@@ -3,9 +3,9 @@ import {useQuery} from '@apollo/react-hooks';
 import {DocumentationNodesQuery} from './Documentation.gql-queries';
 import {ProgressOverlay} from '@jahia/react-material';
 import PropTypes from 'prop-types';
-import {Typography} from '@jahia/moonstone';
 import DocCard from '../DocCard';
 import classnames from 'clsx';
+import SectionTitle from '../SectionTitle';
 
 const Documentation = props => {
     const {t} = props;
@@ -33,7 +33,7 @@ const Documentation = props => {
 
     return (
         <Suspense fallback="loading ...">
-            <Typography variant="title">Documentation</Typography>
+            <SectionTitle>Documentation</SectionTitle>
             <div className={classnames('flexRow')}>
                 {docNodes.map(docNode => {
                     return (

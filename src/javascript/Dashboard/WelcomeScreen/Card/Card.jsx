@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'clsx';
 import styles from './Card.scss';
-
 import {Typography} from '@jahia/moonstone';
+import ArrowRight from '@jahia/moonstone/dist/icons/ArrowRight';
 
 const Card = ({
     headerText,
@@ -22,9 +22,12 @@ const Card = ({
         >
             <div className={classnames(styles.infoContainer)}>
                 <div className={classnames(styles.textContainer)}>
-                    <Typography variant="heading">
-                        {headerText}
-                    </Typography>
+                    <div className={classnames(styles.cardLinkHeading)}>
+                        <Typography variant="heading">
+                            {headerText}
+                        </Typography>
+                        <ArrowRight/>
+                    </div>
                     <Typography>
                         {infoText}
                     </Typography>

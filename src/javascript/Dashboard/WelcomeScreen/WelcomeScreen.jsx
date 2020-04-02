@@ -43,13 +43,13 @@ const WelcomeScreen = () => {
         <Suspense fallback="loading ...">
             <div className={classnames(styles.root)}>
                 <WelcomeIntro locale={locale}/>
-                <Separator/>
+                <Separator spacing="medium"/>
                 <ProjectList locale={locale} t={t}/>
-                <Separator/>
+                <Separator spacing="medium"/>
                 <ModuleList locale={locale} modules={myModules}/>
-                <Separator/>
+                <Separator spacing="medium"/>
                 <DevResources locale={locale}/>
-                <Separator/>
+                <Separator spacing="medium"/>
                 <Documentation locale={locale}/>
             </div>
         </Suspense>

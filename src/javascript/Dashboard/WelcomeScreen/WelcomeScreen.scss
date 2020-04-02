@@ -5,5 +5,10 @@
     padding: 64px 32px;
     overflow: scroll;
 
-    background-color: var(--color-gray_light);
+    background-color: var(--color-gray_light40);
+}
+
+.sectionBody {
+    // this isn't working right now
+    margin-bottom: var(--spacing-huge);
 }

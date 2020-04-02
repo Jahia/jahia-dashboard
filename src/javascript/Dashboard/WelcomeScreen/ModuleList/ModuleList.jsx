@@ -1,14 +1,14 @@
 import React, {Suspense} from 'react';
 import PropTypes from 'prop-types';
-import {Typography} from '@jahia/moonstone';
 import Card from '../Card';
 import classnames from 'clsx';
+import SectionTitle from '../SectionTitle';
 
 const ModuleList = props => {
     const {modules} = props;
     return (
         <Suspense fallback="loading ...">
-            <Typography variant="title">Modules</Typography>
+            <SectionTitle>Modules</SectionTitle>
             <div className={classnames('flexRow')}>
                 {modules.map(module => {
                     return (

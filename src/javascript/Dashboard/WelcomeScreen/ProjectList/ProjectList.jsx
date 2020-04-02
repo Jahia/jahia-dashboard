@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {useQuery} from '@apollo/react-hooks';
 import {SiteNodesQuery} from './ProjectList.gql-queries';
 import {ProgressOverlay} from '@jahia/react-material';
-import {Typography} from '@jahia/moonstone';
 import Card from '../Card';
 import classnames from 'clsx';
+import SectionTitle from '../SectionTitle';
 
 const ProjectList = props => {
     const {t} = props;
@@ -50,7 +50,7 @@ const ProjectList = props => {
 
     return (
         <Suspense fallback="loading ...">
-            <Typography variant="title">My web projects</Typography>
+            <SectionTitle>My web projects</SectionTitle>
             <div className={classnames('flexRow')}>
                 {siteNodes.map(siteNode => {
                 return (

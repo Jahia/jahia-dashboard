@@ -1,8 +1,8 @@
 import React, {Suspense} from 'react';
-import {Typography} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
 import Card from '../Card';
 import classnames from 'clsx';
+import SectionTitle from '../SectionTitle';
 
 const DevResources = () => {
     const {t} = useTranslation('jahia-dashboard');
@@ -46,7 +46,7 @@ const DevResources = () => {
 
     return (
         <Suspense fallback="loading ...">
-            <Typography variant="title">Developer resources</Typography>
+            <SectionTitle>Developer resources</SectionTitle>
             <div className={classnames('flexRow')}>
                 {devCards.map(devCard => {
                     return (

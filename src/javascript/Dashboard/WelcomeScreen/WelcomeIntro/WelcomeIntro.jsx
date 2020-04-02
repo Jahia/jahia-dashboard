@@ -1,5 +1,6 @@
 import React, {Suspense} from 'react';
 import {Typography} from '@jahia/moonstone';
+import SectionTitle from '../SectionTitle';
 
 const WelcomeIntro = () => {
     const user = window.contextJsParameters.user;
@@ -11,7 +12,7 @@ const WelcomeIntro = () => {
 
     return (
         <Suspense fallback="loading ...">
-            <Typography variant="title">Welcome {displayName} to Jahia 8</Typography>
+            <SectionTitle>Welcome {displayName} to Jahia 8</SectionTitle>
             <Typography>Find links and resources we think will be useful for you in this page: quick access to the projects and modules you contribute to, as well as links to developer tools, documentation and tutorials</Typography>
         </Suspense>
     );
