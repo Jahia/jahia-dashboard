@@ -4,6 +4,10 @@ import Card from '../Card';
 import classnames from 'clsx';
 import SectionTitle from '../SectionTitle';
 import Studio from '@jahia/moonstone/dist/icons/Studio';
+import GraphQl from '@jahia/moonstone/dist/icons/GraphQl';
+import SDLGenerator from '@jahia/moonstone/dist/icons/SdLgenerator';
+import SDLReport from '@jahia/moonstone/dist/icons/SdLreport';
+import Jwt from '@jahia/moonstone/dist/icons/Jwt';
 
 const DevResources = () => {
     const {t} = useTranslation('jahia-dashboard');
@@ -12,13 +16,14 @@ const DevResources = () => {
         {
             id: 'studio',
             name: t('jahia-dashboard:jahia-dashboard.studio.title'),
-            link: '/cms/studio/default/en/settings.manageModules.html',
             icon: <Studio/>,
+            link: '/cms/studio/default/en/settings.manageModules.html',
             description: t('jahia-dashboard:jahia-dashboard.studio.description')
         },
         {
             id: 'graphiql',
             name: t('jahia-dashboard:jahia-dashboard.graphiql.title'),
+            icon: <GraphQl/>,
             link: '/modules/graphql-dxm-provider/tools/graphiql.jsp',
             description: t('jahia-dashboard:jahia-dashboard.graphiql.description'),
             requireInstallationMode: 'production'
@@ -26,6 +31,7 @@ const DevResources = () => {
         {
             id: 'sdlgenerator',
             name: t('jahia-dashboard:jahia-dashboard.sdlgenerator.title'),
+            icon: <SDLGenerator/>,
             link: '/modules/sdl-generator-tools/tools/sdlGeneratorTools.jsp',
             description: t('jahia-dashboard:jahia-dashboard.sdlgenerator.description'),
             requireInstallationMode: 'production'
@@ -33,6 +39,7 @@ const DevResources = () => {
         {
             id: 'sdlreport',
             name: t('jahia-dashboard:jahia-dashboard.sdlreport.title'),
+            icon: <SDLReport/>,
             link: '/modules/graphql-dxm-provider/tools/sdlreporttool.jsp',
             description: t('jahia-dashboard:jahia-dashboard.sdlreport.description'),
             requireInstallationMode: 'production'
@@ -40,6 +47,7 @@ const DevResources = () => {
         {
             id: 'jwt',
             name: t('jahia-dashboard:jahia-dashboard.jwt.title'),
+            icon: <Jwt/>,
             link: '/modules/security-filter-tools/tools/jwtConfiguration.jsp',
             description: t('jahia-dashboard:jahia-dashboard.jwt.description'),
             requireInstallationMode: 'production'
