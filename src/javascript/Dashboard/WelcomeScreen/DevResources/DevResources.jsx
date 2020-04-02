@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 import Card from '../Card';
 import classnames from 'clsx';
 import SectionTitle from '../SectionTitle';
+import Studio from '@jahia/moonstone/dist/icons/Studio';
 
 const DevResources = () => {
     const {t} = useTranslation('jahia-dashboard');
@@ -12,6 +13,7 @@ const DevResources = () => {
             id: 'studio',
             name: t('jahia-dashboard:jahia-dashboard.studio.title'),
             link: '/cms/studio/default/en/settings.manageModules.html',
+            icon: <Studio/>,
             description: t('jahia-dashboard:jahia-dashboard.studio.description')
         },
         {
@@ -50,7 +52,7 @@ const DevResources = () => {
             <div className={classnames('flexRow')}>
                 {devCards.map(devCard => {
                     return (
-                        <Card key={devCard.id} headerText={devCard.name} infoText={devCard.description}/>
+                        <Card key={devCard.id} headerText={devCard.name} icon={devCard.icon} infoText={devCard.description}/>
                     );
                 })}
             </div>
