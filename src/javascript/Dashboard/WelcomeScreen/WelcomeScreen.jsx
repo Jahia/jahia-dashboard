@@ -8,7 +8,7 @@ import Documentation from './Documentation';
 import classnames from 'clsx';
 import styles from './WelcomeScreen.scss';
 import {useQuery} from '@apollo/react-hooks';
-import {WelcomeScreenQuery} from './WelcomeScreen.gql-queries';
+import {DashboardQuery, PermissionsQuery} from './WelcomeScreen.gql-queries';
 import {ProgressOverlay} from '@jahia/react-material';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
@@ -16,33 +16,54 @@ import {useSelector} from 'react-redux';
 const WelcomeScreen = () => {
     const {t} = useTranslation('jahia-dashboard');
     const locale = useSelector(state => state.uilang);
-    const {data, error, loading} = useQuery(WelcomeScreenQuery, {
+    const dashboardData = useQuery(DashboardQuery, {
         variables: {
         }
     });
 
-    if (error) {
+    const permissionsData = useQuery(PermissionsQuery, {
+        variables: {
+        }
+    });
+
+    if (dashboardData.error) {
         const message = t(
             'jahia-dashboard:label.jahiaDashBoard.error.queryingContent',
-            {details: error.message ? error.message : ''}
+            {details: dashboardData.error.message ? dashboardData.error.message : ''}
         );
         return <>{message}</>;
     }
 
-    if (loading) {
+    if (dashboardData.loading) {
         return <ProgressOverlay/>;
     }
 
-    const myModules = data.dashboard.myModules;
-    const operatingMode = data.dashboard.operatingMode;
-    const installationMode = data.dashboard.installationMode;
+    if (permissionsData.error) {
+        const message = t(
+            'jahia-dashboard:label.jahiaDashBoard.error.queryingContent',
+            {details: permissionsData.error.message ? permissionsData.error.message : ''}
+        );
+        return <>{message}</>;
+    }
+
+    if (permissionsData.loading) {
+        return <ProgressOverlay/>;
+    }
+
+    const myModules = dashboardData.data.dashboard.myModules;
+    const operatingMode = dashboardData.data.dashboard.operatingMode;
+    const installationMode = dashboardData.data.dashboard.installationMode;
+
+    const hasStudioAccessPermission = permissionsData.data.jcr.rootNode.studioModeAccess;
+    const hasAdminVirtualSitesPermission = permissionsData.data.jcr.rootNode.adminVirtualSites;
 
     console.log('operatingMode=' + operatingMode + ' installationMode=' + installationMode);
+    console.log('studio mode access=' + hasStudioAccessPermission + ' admin virtual sites=' + hasAdminVirtualSitesPermission);
 
     return (
         <Suspense fallback="loading ...">
             <div className={classnames(styles.root)}>
-                <WelcomeIntro locale={locale}/>
+                <WelcomeIntro locale={locale} development={operatingMode === 'development' && hasStudioAccessPermission}/>
                 <Separator spacing="medium"/>
                 <ProjectList locale={locale} t={t}/>
                 <Separator spacing="medium"/>

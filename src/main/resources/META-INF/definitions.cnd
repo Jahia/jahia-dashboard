@@ -11,6 +11,5 @@
  - installationModes (string) multiple
  - operatingModes (string) multiple
  - requiredPermissions (string) multiple
- - requiredRoles (string) multiple
  - requiredModules (string) multiple
  - j:tagList (string,tag[autocomplete=10,separator=',']) facetable nofulltext multiple

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const WelcomeScreenQuery = gql`
+const DashboardQuery = gql`
     query WelcomeScreen {
         dashboard {
             installationMode
@@ -15,4 +15,15 @@ const WelcomeScreenQuery = gql`
     }
 `;
 
-export {WelcomeScreenQuery};
+const PermissionsQuery = gql`
+    query WelcomeScreenPermissions {
+        jcr {
+            rootNode: nodeByPath(path: "/") {
+                studioModeAccess: hasPermission(permissionName: "studioModeAccess")
+                adminVirtualSites: hasPermission(permissionName: "adminVirtualSites")
+            }
+        }
+    }
+`;
+
+export {DashboardQuery, PermissionsQuery};
