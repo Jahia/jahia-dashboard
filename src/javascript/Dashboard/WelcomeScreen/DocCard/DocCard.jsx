@@ -10,7 +10,9 @@ const DocCard = ({
     tags,
     infoText,
     academyUrl,
+    academyLabel,
     trainingUrl,
+    trainingLabel,
     isSelected,
     onDoubleClick,
     onClick
@@ -41,9 +43,9 @@ const DocCard = ({
                         {infoText}
                     </Typography>
                     { academyUrl &&
-                        <Button label="Academy"/>}
+                        <Button label={academyLabel}/>}
                     { trainingUrl &&
-                    <Button label="Academy"/>}
+                    <Button label={trainingLabel}/>}
                 </div>
             </div>
         </article>
@@ -56,7 +58,9 @@ DocCard.defaultProps = {
     tags: [],
     infoText: '',
     academyUrl: null,
+    academyLabel: 'Academy',
     trainingUrl: null,
+    trainingLabel: 'Training',
     isSelected: false,
     onDoubleClick: () => {
     },
@@ -70,7 +74,9 @@ DocCard.propTypes = {
     tags: PropTypes.array,
     infoText: PropTypes.string,
     academyUrl: PropTypes.string,
+    academyLabel: PropTypes.string,
     trainingUrl: PropTypes.string,
+    trainingLabel: PropTypes.string,
     isSelected: PropTypes.bool,
     onDoubleClick: PropTypes.func,
     onClick: PropTypes.func

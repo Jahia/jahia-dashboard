@@ -53,16 +53,16 @@ const WelcomeScreen = () => {
 
     const myModules = dashboardData.data.dashboard.myModules;
     const operatingMode = dashboardData.data.dashboard.operatingMode;
-    const installationMode = dashboardData.data.dashboard.installationMode;
+    const hasToolsAccess = dashboardData.data.dashboard.toolsAccess;
+    const isTrainingSiteAvailable = dashboardData.data.dashboard.trainingSiteAvailable;
 
     const hasStudioAccessPermission = permissionsData.data.jcr.rootNode.studioModeAccess;
     const hasAdminVirtualSitesPermission = permissionsData.data.jcr.rootNode.adminVirtualSites;
 
-    console.log('operatingMode=' + operatingMode + ' installationMode=' + installationMode);
+    console.log('operatingMode=' + operatingMode + ' hasToolsAccess=' + hasToolsAccess);
     console.log('studio mode access=' + hasStudioAccessPermission + ' admin virtual sites=' + hasAdminVirtualSitesPermission);
 
     const developmentMode = operatingMode === 'development' && hasStudioAccessPermission;
-    const trialInstallMode = installationMode === 'trial';
 
     return (
         <Suspense fallback="loading ...">
@@ -78,11 +78,11 @@ const WelcomeScreen = () => {
                     <ModuleList locale={locale} modules={myModules} t={t}/>
                     <Spacing height="big"/>
                     <Separator spacing="medium"/>
-                    <DevResources locale={locale} isTrial={trialInstallMode} t={t}/>
+                    <DevResources locale={locale} hasToolsAccess={hasToolsAccess} t={t}/>
                     <Spacing height="big"/>
                     <Separator spacing="medium"/>
                 </>}
-                <Documentation locale={locale} t={t}/>
+                <Documentation locale={locale} t={t} isTrainingSiteAvailable={isTrainingSiteAvailable}/>
             </div>
         </Suspense>
     );

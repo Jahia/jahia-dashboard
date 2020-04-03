@@ -10,7 +10,7 @@ import SDLReport from '@jahia/moonstone/dist/icons/SdLreport';
 import Jwt from '@jahia/moonstone/dist/icons/Jwt';
 
 const DevResources = props => {
-    const {t, isTrial} = props;
+    const {t, hasToolsAccess} = props;
 
     const devCards = [
         {
@@ -26,7 +26,7 @@ const DevResources = props => {
             icon: <GraphQl/>,
             link: '/modules/graphql-dxm-provider/tools/graphiql.jsp',
             description: t('jahia-dashboard:jahia-dashboard.devResources.graphiql.description'),
-            hideInTrial: true
+            requiresToolsAccess: true
         },
         {
             id: 'sdlgenerator',
@@ -34,7 +34,7 @@ const DevResources = props => {
             icon: <SDLGenerator/>,
             link: '/modules/sdl-generator-tools/tools/sdlGeneratorTools.jsp',
             description: t('jahia-dashboard:jahia-dashboard.devResources.sdlgenerator.description'),
-            hideInTrial: true
+            requiresToolsAccess: true
         },
         {
             id: 'sdlreport',
@@ -42,7 +42,7 @@ const DevResources = props => {
             icon: <SDLReport/>,
             link: '/modules/graphql-dxm-provider/tools/sdlreporttool.jsp',
             description: t('jahia-dashboard:jahia-dashboard.devResources.sdlreport.description'),
-            hideInTrial: true
+            requiresToolsAccess: true
         },
         {
             id: 'jwt',
@@ -50,7 +50,7 @@ const DevResources = props => {
             icon: <Jwt/>,
             link: '/modules/security-filter-tools/tools/jwtConfiguration.jsp',
             description: t('jahia-dashboard:jahia-dashboard.devResources.jwt.description'),
-            hideInTrial: true
+            requiresToolsAccess: true
         }
     ];
 
@@ -58,9 +58,15 @@ const DevResources = props => {
         <Suspense fallback="loading ...">
             <SectionTitle>Developer resources</SectionTitle>
             <div className={classnames('flexRow')}>
-                {devCards.filter(devCard => devCard.hideInTrial && isTrial).map(devCard => {
+                {devCards.filter(devCard => devCard.requiresToolsAccess ? hasToolsAccess : true).map(devCard => {
+                    const devCardUrl = window.contextJsParameters.contextPath + devCard.link;
+
+                    const onClick = () => {
+                        window.open(devCardUrl, '_blank');
+                    };
+
                     return (
-                        <Card key={devCard.id} headerText={devCard.name} icon={devCard.icon} infoText={devCard.description}/>
+                        <Card key={devCard.id} headerText={devCard.name} icon={devCard.icon} infoText={devCard.description} onClick={() => onClick()}/>
                     );
                 })}
             </div>
@@ -69,7 +75,7 @@ const DevResources = props => {
 };
 
 DevResources.propTypes = {
-    isTrial: PropTypes.bool.isRequired,
+    hasToolsAccess: PropTypes.bool.isRequired,
     t: PropTypes.func.isRequired
 };
 

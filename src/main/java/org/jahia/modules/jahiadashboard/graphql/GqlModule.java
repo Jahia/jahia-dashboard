@@ -9,15 +9,17 @@ public class GqlModule {
     private String name;
     private String description;
     private String version;
+    private long lastModified;
 
     public GqlModule() {
     }
 
-    public GqlModule(String id, String name, String description, String version) {
+    public GqlModule(String id, String name, String description, String version, long lastModified) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.version = version;
+        this.lastModified = lastModified;
     }
 
     @GraphQLField
@@ -58,5 +60,15 @@ public class GqlModule {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    @GraphQLField
+    @GraphQLDescription("Bundle last modification date")
+    public long getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(long lastModified) {
+        this.lastModified = lastModified;
     }
 }

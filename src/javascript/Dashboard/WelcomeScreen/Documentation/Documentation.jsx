@@ -11,7 +11,7 @@ import styles from '../WelcomeScreen.scss';
 import ArrowRight from '@jahia/moonstone/dist/icons/ArrowRight';
 
 const Documentation = props => {
-    const {t, locale} = props;
+    const {t, locale, isTrainingSiteAvailable} = props;
     const {data, error, loading} = useQuery(DocumentationNodesQuery, {
         variables: {
             query: 'select * from [jnt:dashboardDoc] where isdescendantnode(\'/modules\') order by [lastEditDate]',
@@ -56,7 +56,9 @@ const Documentation = props => {
                             tags={docNode.tags ? docNode.tags.values : []}
                             infoText={docNode.description ? docNode.description.value : null}
                             academyUrl={docNode.academyUrl ? docNode.academyUrl.value : null}
-                            trainingUrl={docNode.trainingUrl ? docNode.trainingUrl.value : null}
+                            academyLabel={t('jahia-dashboard:jahia-dashboard.documentation.academy')}
+                            trainingUrl={docNode.trainingUrl && isTrainingSiteAvailable ? docNode.trainingUrl.value : null}
+                            trainingLabel={t('jahia-dashboard:jahia-dashboard.documentation.training')}
                         />
                     );
                 })}
@@ -67,7 +69,8 @@ const Documentation = props => {
 
 Documentation.propTypes = {
     locale: PropTypes.string.isRequired,
-    t: PropTypes.func.isRequired
+    t: PropTypes.func.isRequired,
+    isTrainingSiteAvailable: PropTypes.bool.isRequired
 };
 
 export default Documentation;

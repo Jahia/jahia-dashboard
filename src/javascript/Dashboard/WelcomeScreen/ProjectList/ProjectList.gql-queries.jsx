@@ -11,13 +11,20 @@ const SiteNodesQuery = gql`
                     displayName(language: $displayLanguage)
                     site {
                         description
-                        defaultLanguage
-                        languages {
-                            displayName
-                            language
-                            activeInEdit
-                        }
                         ...NodeCacheRequiredFields
+                    }
+                    children(typesFilter: {multi: ALL, types: ["jnt:page"]}) {
+                        nodes {
+                            name
+                            path
+                            isHomePage: property(name: "j:isHomePage") {
+                                value
+                            }
+                            ...NodeCacheRequiredFields
+                        }
+                    }
+                    lastModified: property(name: "jcr:lastModified") {
+                        longValue
                     }
                     ...NodeCacheRequiredFields
                 }

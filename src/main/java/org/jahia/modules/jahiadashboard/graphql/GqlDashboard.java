@@ -6,7 +6,6 @@ import org.jahia.data.templates.JahiaTemplatesPackage;
 import org.jahia.data.templates.ModuleState;
 import org.jahia.osgi.BundleUtils;
 import org.jahia.services.templates.JahiaTemplateManagerService;
-import org.jahia.services.templates.ModuleVersion;
 import org.jahia.settings.SettingsBean;
 import org.osgi.framework.Bundle;
 import org.slf4j.Logger;
@@ -15,8 +14,6 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 public class GqlDashboard {
-
-    private static final String DEFAULT_INSTALLATION_MODE = "trial";
 
     private static Logger logger = LoggerFactory.getLogger(GqlDashboard.class);
 
@@ -29,13 +26,13 @@ public class GqlDashboard {
     }
 
     @GraphQLField
-    @GraphQLDescription("The Jahia custom installation mode (production/trial,...)")
-    public String getInstallationMode() {
-        String installationMode = SettingsBean.getInstance().getPropertiesFile().getProperty("installationMode");
-        if (installationMode == null) {
-            installationMode = DEFAULT_INSTALLATION_MODE;
+    @GraphQLDescription("Whether the tools are accessible on the installation")
+    public boolean getToolsAccess() {
+        String hasToolsAccessStr = SettingsBean.getInstance().getPropertiesFile().getProperty("toolsAccess");
+        if (hasToolsAccessStr == null) {
+            return true;
         }
-        return installationMode;
+        return Boolean.getBoolean(hasToolsAccessStr);
     }
 
     @GraphQLField
@@ -46,10 +43,32 @@ public class GqlDashboard {
         for (Bundle bundle : moduleStatesByBundle.keySet()) {
             JahiaTemplatesPackage jahiaModule = BundleUtils.getModule(bundle);
             if (jahiaModule.getSourcesFolder() != null) {
-                myModules.add(new GqlModule(jahiaModule.getId(), jahiaModule.getName(), jahiaModule.getDescription(), jahiaModule.getVersion().toString()));
+                myModules.add(new GqlModule(jahiaModule.getId(), jahiaModule.getName(), jahiaModule.getDescription(), jahiaModule.getVersion().toString(), jahiaModule.getBundle().getLastModified()));
             }
         }
+        myModules.sort(new Comparator<GqlModule>() {
+            @Override
+            public int compare(GqlModule o1, GqlModule o2) {
+                if (o1.getLastModified() < o2.getLastModified()) {
+                    return 1;
+                }
+                if (o1.getLastModified() > o2.getLastModified()) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
         return myModules;
+    }
+
+    @GraphQLField
+    @GraphQLDescription("Whether the training site is deployed and available")
+    public boolean isTrainingSiteAvailable() {
+        String trainingSiteAvailableStr = SettingsBean.getInstance().getPropertiesFile().getProperty("trainingSiteAvailable");
+        if (trainingSiteAvailableStr == null) {
+            return true;
+        }
+        return Boolean.getBoolean(trainingSiteAvailableStr);
     }
 
 }

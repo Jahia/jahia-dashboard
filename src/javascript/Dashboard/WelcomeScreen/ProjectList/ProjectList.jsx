@@ -33,6 +33,16 @@ const ProjectList = props => {
     const siteNodes = data && data.jcr && data.jcr.result ? data.jcr.result.siteNodes
         .filter(node => node.hasPermission && node.name !== 'systemsite')
         .sort((elem1, elem2) => {
+            if (elem1.lastModified && elem1.lastModified.longValue && elem2.lastModified && elem2.lastModified.longValue) {
+                if (elem1.lastModified.longValue < elem2.lastModified.longValue) {
+                    return 1;
+                }
+
+                if (elem1.lastModified.longValue > elem2.lastModified.longValue) {
+                    return -1;
+                }
+            }
+
             if (elem1.displayName < elem2.displayName) {
                 return -1;
             }
@@ -42,14 +52,25 @@ const ProjectList = props => {
             }
 
             return 0;
+        }).map(siteNode => {
+            const homePageNode = siteNode.children.nodes.find(childPage => {
+                console.log(childPage);
+                return childPage.isHomePage && childPage.isHomePage.value && childPage.isHomePage.value === 'true';
+            });
+            siteNode.homePageName = homePageNode.name;
+            siteNode.homePagePath = homePageNode.path;
+            return siteNode;
         }) : [];
 
     if (isAdmin) {
+        siteNodes.length = Math.min(siteNodes.length, 7);
         siteNodes.push({
             uuid: 'create-site',
             displayName: t('jahia-dashboard:jahia-dashboard.projects.createNew.title'),
             description: t('jahia-dashboard:jahia-dashboard.projects.createNew.description')
         });
+    } else {
+        siteNodes.length = Math.min(siteNodes.length, 8);
     }
 
     return (
@@ -66,7 +87,7 @@ const ProjectList = props => {
             <div className={classnames('flexRow')}>
                 {siteNodes.map(siteNode => {
                     const onClick = () => {
-                        let siteUrl = window.contextJsParameters.contextPath + '/jahia/page-composer/default/en/sites/' + siteNode.name + '/home.html';
+                        let siteUrl = window.contextJsParameters.contextPath + '/jahia/page-composer/default/en/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
                         if (siteNode.uuid === 'create-site') {
                             siteUrl = window.contextJsParameters.contextPath + '/jahia/administration/webProjectSettings';
                         }
