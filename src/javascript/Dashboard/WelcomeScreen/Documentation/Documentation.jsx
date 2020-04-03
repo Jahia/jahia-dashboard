@@ -7,7 +7,7 @@ import DocCard from '../DocCard';
 import classnames from 'clsx';
 import {Typography} from '@jahia/moonstone';
 import Spacing from '../Spacing';
-import SectionHeader from "../SectionHeader";
+import SectionHeader from '../SectionHeader';
 
 const Documentation = props => {
     const {t, locale, isTrainingSiteAvailable} = props;

@@ -4,7 +4,7 @@ import Card from '../Card';
 import classnames from 'clsx';
 import styles from './ModuleList.scss';
 import {Typography} from '@jahia/moonstone';
-import SectionHeader from "../SectionHeader";
+import SectionHeader from '../SectionHeader';
 
 const ModuleList = props => {
     const {t, modules} = props;

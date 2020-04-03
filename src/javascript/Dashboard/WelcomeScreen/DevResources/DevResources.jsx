@@ -7,7 +7,7 @@ import GraphQlIcon from '@jahia/moonstone/dist/icons/GraphQl';
 import SDLGeneratorIcon from '@jahia/moonstone/dist/icons/SdLgenerator';
 import SDLReportIcon from '@jahia/moonstone/dist/icons/SdLreport';
 import JwtIcon from '@jahia/moonstone/dist/icons/Jwt';
-import SectionHeader from "../SectionHeader";
+import SectionHeader from '../SectionHeader';
 
 const DevResources = props => {
     const {t, hasToolsAccess} = props;

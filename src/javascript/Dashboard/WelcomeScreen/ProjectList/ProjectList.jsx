@@ -5,7 +5,7 @@ import {useQuery} from '@apollo/react-hooks';
 import {SiteNodesQuery} from './ProjectList.gql-queries';
 import {ProgressOverlay} from '@jahia/react-material';
 import Card from '../Card';
-import SectionHeader from "../SectionHeader";
+import SectionHeader from '../SectionHeader';
 
 const ProjectList = props => {
     const {t, isAdmin, locale} = props;
