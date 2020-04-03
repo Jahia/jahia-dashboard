@@ -6,7 +6,6 @@ export const {dashSetPath} = createActions('DASH_SET_PATH');
 
 const extractParamsFromUrl = pathname => {
     if (pathname.startsWith('/dashboard')) {
-
         let path = decodeURIComponent(pathname);
         return {path};
     }
