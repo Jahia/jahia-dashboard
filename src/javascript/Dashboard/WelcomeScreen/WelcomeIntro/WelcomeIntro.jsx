@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import {Typography} from '@jahia/moonstone';
-import SectionTitle from '../SectionTitle';
 import PropTypes from 'prop-types';
+import SectionHeader from '../SectionHeader';
 
 const WelcomeIntro = props => {
     const user = window.contextJsParameters.user;
@@ -19,7 +19,7 @@ const WelcomeIntro = props => {
 
     return (
         <Suspense fallback="loading ...">
-            <SectionTitle>{t('jahia-dashboard:jahia-dashboard.intro.title', {displayName: displayName})}</SectionTitle>
+            <SectionHeader title={t('jahia-dashboard:jahia-dashboard.intro.title', {displayName: displayName})}/>
             <Typography>{message}</Typography>
         </Suspense>
     );

@@ -5,11 +5,9 @@ import {ProgressOverlay} from '@jahia/react-material';
 import PropTypes from 'prop-types';
 import DocCard from '../DocCard';
 import classnames from 'clsx';
-import SectionTitle from '../SectionTitle';
 import {Typography} from '@jahia/moonstone';
-import styles from '../WelcomeScreen.scss';
-import ArrowRight from '@jahia/moonstone/dist/icons/ArrowRight';
 import Spacing from '../Spacing';
+import SectionHeader from "../SectionHeader";
 
 const Documentation = props => {
     const {t, locale, isTrainingSiteAvailable} = props;
@@ -37,15 +35,11 @@ const Documentation = props => {
 
     return (
         <Suspense fallback="loading ...">
-            <div className={classnames(styles.sectionHeading)}>
-                <SectionTitle>Documentation</SectionTitle>
-                <a href="https://academy.jahia.com/documentation" className={classnames(styles.seeAllLink)} target="_blank" rel="noopener noreferrer">
-                    <div className={classnames('flexRow')}>
-                        <span className={classnames(styles.seeAllLinkText)}>{t('jahia-dashboard:jahia-dashboard.documentation.goToAcademy')}</span>
-                        <ArrowRight/>
-                    </div>
-                </a>
-            </div>
+            <SectionHeader
+                title="Documentation"
+                moreUrl="https://academy.jahia.com/documentation"
+                moreLabel={t('jahia-dashboard:jahia-dashboard.documentation.goToAcademy')}
+            />
             <Typography>{t('jahia-dashboard:jahia-dashboard.documentation.intro')}</Typography>
             <Spacing height="small"/>
             <div className={classnames('flexRow')}>

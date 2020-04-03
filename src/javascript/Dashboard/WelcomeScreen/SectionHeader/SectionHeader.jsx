@@ -5,11 +5,11 @@ import styles from './SectionHeader.scss';
 import SectionTitle from '../SectionTitle';
 import ArrowRightIcon from '@jahia/moonstone/dist/icons/ArrowRight';
 
-const SectionHeader = ({title, moreLink, moreLinkText}) => {
-    const moreLinkElement = (
-        <a href={moreLink} className={classnames(styles.seeAllLink)} target="_blank" rel="noopener noreferrer">
+const SectionHeader = ({title, moreUrl, moreLabel}) => {
+    const moreElement = (
+        <a href={moreUrl} className={classnames(styles.moreLink)} target="_blank" rel="noopener noreferrer">
             <div className={classnames('flexRow')}>
-                <span className={classnames(styles.seeAllLinkText)}>{moreLinkText}</span>
+                <span className={classnames(styles.moreLabel)}>{moreLabel}</span>
                 <ArrowRightIcon/>
             </div>
         </a>
@@ -18,15 +18,15 @@ const SectionHeader = ({title, moreLink, moreLinkText}) => {
     return (
         <div className={classnames(styles.sectionHeading)}>
             <SectionTitle>{title}</SectionTitle>
-            {moreLink && moreLinkElement}
+            {moreUrl && moreElement}
         </div>
     );
 };
 
 SectionHeader.propTypes = {
     title: PropTypes.string.isRequired,
-    moreLink: PropTypes.string,
-    moreLinkText: PropTypes.string
+    moreUrl: PropTypes.string,
+    moreLabel: PropTypes.string
 };
 
 export default SectionHeader;

@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items: center;
 
-    .seeAllLink {
+    .moreLink {
         color: var(--color-accent);
         text-decoration: none;
 
@@ -13,8 +13,9 @@
             text-decoration: underline;
         }
 
-        .seeAllLinkText {
+        .moreLabel {
             margin-right: var(--spacing-nano);
+            text-transform: lowercase;
         }
     }
 }

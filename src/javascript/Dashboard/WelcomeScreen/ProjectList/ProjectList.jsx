@@ -1,13 +1,11 @@
 import React, {Suspense} from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'clsx';
 import {useQuery} from '@apollo/react-hooks';
 import {SiteNodesQuery} from './ProjectList.gql-queries';
 import {ProgressOverlay} from '@jahia/react-material';
 import Card from '../Card';
-import classnames from 'clsx';
-import SectionTitle from '../SectionTitle';
-import styles from '../WelcomeScreen.scss';
-import ArrowRight from '@jahia/moonstone/dist/icons/ArrowRight';
+import SectionHeader from "../SectionHeader";
 
 const ProjectList = props => {
     const {t, isAdmin, locale} = props;
@@ -75,15 +73,11 @@ const ProjectList = props => {
 
     return (
         <Suspense fallback="loading ...">
-            <div className={classnames(styles.sectionHeading)}>
-                <SectionTitle>{t('jahia-dashboard:jahia-dashboard.projects.title')}</SectionTitle>
-                <a href={window.contextJsParameters.contextPath + '/jahia/dashboard/projects'} className={classnames(styles.seeAllLink)}>
-                    <div className={classnames('flexRow')}>
-                        <span className={classnames(styles.seeAllLinkText)}>{t('jahia-dashboard:jahia-dashboard.seeAll')}</span>
-                        <ArrowRight/>
-                    </div>
-                </a>
-            </div>
+            <SectionHeader
+                title={t('jahia-dashboard:jahia-dashboard.projects.title')}
+                moreUrl={window.contextJsParameters.contextPath + '/jahia/dashboard/projects'}
+                moreLabel={t('jahia-dashboard:jahia-dashboard.seeAll')}
+            />
             <div className={classnames('flexRow')}>
                 {siteNodes.map(siteNode => {
                     const onClick = () => {
