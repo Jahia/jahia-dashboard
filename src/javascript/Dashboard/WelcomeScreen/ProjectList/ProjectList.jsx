@@ -6,6 +6,8 @@ import {ProgressOverlay} from '@jahia/react-material';
 import Card from '../Card';
 import classnames from 'clsx';
 import SectionTitle from '../SectionTitle';
+import styles from '../WelcomeScreen.scss';
+import ArrowRight from '@jahia/moonstone/dist/icons/ArrowRight';
 
 const ProjectList = props => {
     const {t, isAdmin, locale} = props;
@@ -52,8 +54,15 @@ const ProjectList = props => {
 
     return (
         <Suspense fallback="loading ...">
-            <SectionTitle>{t('jahia-dashboard:jahia-dashboard.projects.title')}</SectionTitle>
-            <a href={window.contextJsParameters.contextPath + '/jahia/dashboard/projects'}>{t('jahia-dashboard:jahia-dashboard.seeAll')}</a>
+            <div className={classnames(styles.sectionHeading)}>
+                <SectionTitle>{t('jahia-dashboard:jahia-dashboard.projects.title')}</SectionTitle>
+                <a href={window.contextJsParameters.contextPath + '/jahia/dashboard/projects'} className={classnames(styles.seeAllLink)}>
+                    <div className={classnames('flexRow')}>
+                        <span className={classnames(styles.seeAllLinkText)}>{t('jahia-dashboard:jahia-dashboard.seeAll')}</span>
+                        <ArrowRight/>
+                    </div>
+                </a>
+            </div>
             <div className={classnames('flexRow')}>
                 {siteNodes.map(siteNode => {
                     const onClick = () => {

@@ -7,6 +7,8 @@ import DocCard from '../DocCard';
 import classnames from 'clsx';
 import SectionTitle from '../SectionTitle';
 import {Typography} from '@jahia/moonstone';
+import styles from '../WelcomeScreen.scss';
+import ArrowRight from '@jahia/moonstone/dist/icons/ArrowRight';
 
 const Documentation = props => {
     const {t, locale} = props;
@@ -34,9 +36,16 @@ const Documentation = props => {
 
     return (
         <Suspense fallback="loading ...">
-            <SectionTitle>Documentation</SectionTitle>
+            <div className={classnames(styles.sectionHeading)}>
+                <SectionTitle>Documentation</SectionTitle>
+                <a href="https://academy.jahia.com/documentation" className={classnames(styles.seeAllLink)} target="_blank" rel="noopener noreferrer">
+                    <div className={classnames('flexRow')}>
+                        <span className={classnames(styles.seeAllLinkText)}>{t('jahia-dashboard:jahia-dashboard.documentation.goToAcademy')}</span>
+                        <ArrowRight/>
+                    </div>
+                </a>
+            </div>
             <Typography>{t('jahia-dashboard:jahia-dashboard.documentation.intro')}</Typography>
-            <a href="https://academy.jahia.com/documentation" target="_blank" rel="noopener noreferrer">{t('jahia-dashboard:jahia-dashboard.documentation.goToAcademy')}</a>
             <div className={classnames('flexRow')}>
                 {docNodes.map(docNode => {
                     return (
