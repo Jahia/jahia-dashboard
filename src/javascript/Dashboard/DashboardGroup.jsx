@@ -11,7 +11,7 @@ export const DashboardGroup = () => {
     const {t} = useTranslation('jahia-dashboard');
     const current = useSelector(state => ({lastVisitedPath: state.dashboard.path}));
     let route = `${Constants.ROUTE}${Constants.ROUTE_DEFAULT_PATH}`;
-    if (current.lastVisitedPath !== undefined) {
+    if (current.lastVisitedPath !== '') {
         route = current.lastVisitedPath;
     }
 
