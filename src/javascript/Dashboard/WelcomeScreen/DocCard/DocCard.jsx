@@ -14,7 +14,6 @@ const DocCard = ({
     trainingUrl,
     trainingLabel
 }) => {
-
     const onClickAcademy = () => {
         window.open(academyUrl, '_blank');
     };
@@ -46,10 +45,10 @@ const DocCard = ({
                         {infoText}
                     </Typography>
                     <div className={classnames(styles.buttonContainer)}>
-                    { academyUrl &&
+                        { academyUrl &&
                         <Button className={classnames(styles.button)} size="big" color={trainingUrl ? 'default' : 'accent'} label={academyLabel} onClick={() => onClickAcademy()}/>}
-                    { trainingUrl &&
-                    <Button className={classnames(styles.button)} size="big" label={trainingLabel} color="accent" onClick={() => onClickTraining()}/>}
+                        { trainingUrl &&
+                        <Button className={classnames(styles.button)} size="big" label={trainingLabel} color="accent" onClick={() => onClickTraining()}/>}
                     </div>
                 </div>
             </div>

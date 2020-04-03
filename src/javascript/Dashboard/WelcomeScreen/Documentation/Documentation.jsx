@@ -52,7 +52,7 @@ const Documentation = props => {
                         <DocCard
                             key={docNode.uuid}
                             headerText={docNode.title.value}
-                            estimatedReadingTime={docNode.estimatedReadingTime ? t('jahia-dashboard:jahia-dashboard.documentation.estimatedReadingTime', {estimatedReadingTime:docNode.estimatedReadingTime.longValue}) : null}
+                            estimatedReadingTime={docNode.estimatedReadingTime ? t('jahia-dashboard:jahia-dashboard.documentation.estimatedReadingTime', {estimatedReadingTime: docNode.estimatedReadingTime.longValue}) : null}
                             tags={docNode.tags ? docNode.tags.values : []}
                             infoText={docNode.description ? docNode.description.value : null}
                             academyUrl={docNode.academyUrl ? docNode.academyUrl.value : null}
