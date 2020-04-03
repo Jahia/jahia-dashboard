@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'clsx';
 import styles from './DocCard.scss';
-import {Typography, Chip, Button} from '@jahia/moonstone';
+import {Typography, Chip, Button, ButtonGroup} from '@jahia/moonstone';
 
 const DocCard = ({
     headerText,
@@ -12,18 +12,21 @@ const DocCard = ({
     academyUrl,
     academyLabel,
     trainingUrl,
-    trainingLabel,
-    isSelected,
-    onDoubleClick,
-    onClick
+    trainingLabel
 }) => {
+
+    const onClickAcademy = () => {
+        window.open(academyUrl, '_blank');
+    };
+
+    const onClickTraining = () => {
+        window.location.assign(window.contextJsParameters + trainingUrl);
+    };
+
     return (
         <article
             data-sel-role-card={headerText}
-            className={classnames(styles.container, isSelected ? 'selected' : '')}
-            aria-checked={isSelected}
-            onDoubleClick={onDoubleClick}
-            onClick={onClick}
+            className={classnames(styles.container)}
         >
             <div className={classnames(styles.infoContainer)}>
                 <div className={classnames(styles.textContainer)}>
@@ -31,7 +34,7 @@ const DocCard = ({
                         {headerText}
                     </Typography>
                     {estimatedReadingTime &&
-                    <Typography variant="heading">
+                    <Typography variant="subheading" weight="light">
                         {estimatedReadingTime}
                     </Typography>}
                     {tags ? tags.map(tag => {
@@ -42,10 +45,12 @@ const DocCard = ({
                     <Typography>
                         {infoText}
                     </Typography>
+                    <div className={classnames(styles.buttonContainer)}>
                     { academyUrl &&
-                        <Button label={academyLabel}/>}
+                        <Button className={classnames(styles.button)} size="big" color={trainingUrl ? 'default' : 'accent'} label={academyLabel} onClick={() => onClickAcademy()}/>}
                     { trainingUrl &&
-                    <Button label={trainingLabel}/>}
+                    <Button className={classnames(styles.button)} size="big" label={trainingLabel} color="accent" onClick={() => onClickTraining()}/>}
+                    </div>
                 </div>
             </div>
         </article>
@@ -60,12 +65,7 @@ DocCard.defaultProps = {
     academyUrl: null,
     academyLabel: 'Academy',
     trainingUrl: null,
-    trainingLabel: 'Training',
-    isSelected: false,
-    onDoubleClick: () => {
-    },
-    onClick: () => {
-    }
+    trainingLabel: 'Training'
 };
 
 DocCard.propTypes = {
@@ -76,10 +76,7 @@ DocCard.propTypes = {
     academyUrl: PropTypes.string,
     academyLabel: PropTypes.string,
     trainingUrl: PropTypes.string,
-    trainingLabel: PropTypes.string,
-    isSelected: PropTypes.bool,
-    onDoubleClick: PropTypes.func,
-    onClick: PropTypes.func
+    trainingLabel: PropTypes.string
 };
 
 export default DocCard;

@@ -32,3 +32,13 @@
         text-overflow: ellipsis;
     }
 }
+
+.buttonContainer {
+    float: right;
+    display: flex;
+
+}
+
+.button {
+    margin: 5px;
+}

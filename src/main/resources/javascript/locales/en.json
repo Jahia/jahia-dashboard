@@ -53,7 +53,8 @@
       "intro": "All resources are in English",
       "goToAcademy" : "Go to academy",
       "academy" : "Academy",
-      "training" : "Training"
+      "training" : "Training",
+      "estimatedReadingTime" : "Estimated reading time : {{estimatedReadingTime}} min."
     },
     "error" : {
       "queryingContent" : "Error querying content from Jahia: {{details}}"
