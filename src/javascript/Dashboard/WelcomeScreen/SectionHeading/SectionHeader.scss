@@ -1,0 +1,20 @@
+.sectionHeading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .seeAllLink {
+        color: var(--color-accent);
+        text-decoration: none;
+
+        &:hover {
+            color: var(--color-accent_dark);
+            text-decoration: underline;
+        }
+
+        .seeAllLinkText {
+            margin-right: var(--spacing-nano);
+        }
+    }
+}
