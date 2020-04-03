@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'clsx';
 import styles from './DocCard.scss';
-import {Typography, Chip, Button, ButtonGroup} from '@jahia/moonstone';
+import {Typography, Chip, Button} from '@jahia/moonstone';
 
 const DocCard = ({
     headerText,
