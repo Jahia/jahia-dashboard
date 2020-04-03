@@ -9,6 +9,7 @@ import SectionTitle from '../SectionTitle';
 import {Typography} from '@jahia/moonstone';
 import styles from '../WelcomeScreen.scss';
 import ArrowRight from '@jahia/moonstone/dist/icons/ArrowRight';
+import Spacing from '../Spacing';
 
 const Documentation = props => {
     const {t, locale, isTrainingSiteAvailable} = props;
@@ -46,6 +47,7 @@ const Documentation = props => {
                 </a>
             </div>
             <Typography>{t('jahia-dashboard:jahia-dashboard.documentation.intro')}</Typography>
+            <Spacing height="small"/>
             <div className={classnames('flexRow')}>
                 {docNodes.map(docNode => {
                     return (

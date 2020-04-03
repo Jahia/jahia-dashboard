@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classnames from 'clsx';
 import styles from './Card.scss';
 import {Typography} from '@jahia/moonstone';
-import ArrowRight from '@jahia/moonstone/dist/icons/ArrowRight';
-import OpenInNew from '@jahia/moonstone/dist/icons/OpenInNew';
+import ArrowRightIcon from '@jahia/moonstone/dist/icons/ArrowRight';
+import OpenInNewIcon from '@jahia/moonstone/dist/icons/OpenInNew';
 
 const Card = ({
     headerText,
@@ -33,7 +33,7 @@ const Card = ({
                             {icon && <span className={classnames(styles.icon)}>{icon}</span>}
                             {headerText}
                         </Typography>
-                        {isHovering ? <OpenInNew/> : <ArrowRight/>}
+                        {isHovering ? <OpenInNewIcon/> : <ArrowRightIcon/>}
                     </div>
                     <Typography>
                         {infoText}

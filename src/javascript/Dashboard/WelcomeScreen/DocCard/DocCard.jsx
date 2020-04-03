@@ -29,21 +29,21 @@ const DocCard = ({
         >
             <div className={classnames(styles.infoContainer)}>
                 <div className={classnames(styles.textContainer)}>
-                    <Typography variant="heading">
+                    <Typography variant="heading" component="h3" className={classnames(styles.cardHeading)}>
                         {headerText}
                     </Typography>
                     {estimatedReadingTime &&
-                    <Typography variant="subheading" weight="light">
+                    <Typography variant="subheading" weight="light" className={classnames(styles.readingTime)}>
                         {estimatedReadingTime}
                     </Typography>}
                     {tags ? tags.map(tag => {
                         return (
-                            <Chip key={tag} label={tag}/>
+                            <Chip key={tag} label={tag} className={classnames(styles.tagChip)}/>
                         );
                     }) : ''}
-                    <Typography>
-                        {infoText}
-                    </Typography>
+                    <div className={classnames(styles.infoText)}>
+                        <Typography>{infoText}</Typography>
+                    </div>
                     <div className={classnames(styles.buttonContainer)}>
                         { academyUrl &&
                         <Button className={classnames(styles.button)} size="big" color={trainingUrl ? 'default' : 'accent'} label={academyLabel} onClick={() => onClickAcademy()}/>}
