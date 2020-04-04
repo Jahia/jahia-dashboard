@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classnames from 'clsx';
 import styles from './DocCard.scss';
 import {Typography, Chip, Button} from '@jahia/moonstone';
+// Import Tag from '../Tag';
+// Import BookIcon from '@jahia/moonstone/dist/icons/Book';
 
 const DocCard = ({
     headerText,
@@ -25,31 +27,41 @@ const DocCard = ({
     return (
         <article
             data-sel-role-card={headerText}
-            className={classnames(styles.container)}
+            className={classnames(styles.infoContainer)}
         >
-            <div className={classnames(styles.infoContainer)}>
-                <div className={classnames(styles.textContainer)}>
-                    <Typography variant="heading" component="h3" className={classnames(styles.cardHeading)}>
-                        {headerText}
-                    </Typography>
-                    {estimatedReadingTime &&
-                    <Typography variant="subheading" weight="light" className={classnames(styles.readingTime)}>
+            <div className={classnames(styles.textContainer)}>
+                <Typography variant="heading" component="h3">
+                    {headerText}
+                </Typography>
+                {estimatedReadingTime &&
+                    <Typography variant="caption">
                         {estimatedReadingTime}
                     </Typography>}
-                    {tags ? tags.map(tag => {
-                        return (
-                            <Chip key={tag} label={tag} className={classnames(styles.tagChip)}/>
-                        );
-                    }) : ''}
-                    <div className={classnames(styles.infoText)}>
-                        <Typography>{infoText}</Typography>
-                    </div>
-                    <div className={classnames(styles.buttonContainer)}>
-                        { academyUrl &&
-                        <Button className={classnames(styles.button)} size="big" color={trainingUrl ? 'default' : 'accent'} label={academyLabel} onClick={() => onClickAcademy()}/>}
-                        { trainingUrl &&
-                        <Button className={classnames(styles.button)} size="big" label={trainingLabel} color="accent" onClick={() => onClickTraining()}/>}
-                    </div>
+                <div>
+                    {/* {tags ? tags.map(tag => <Tag key={tag} name={tag}/>) : ''} */}
+                    {tags ? tags.map(tag => <Chip key={tag} name={tag}/>) : ''}
+                </div>
+                <div className={classnames(styles.infoText)}>
+                    <Typography>{infoText}</Typography>
+                </div>
+                <div className={classnames(styles.buttonContainer)}>
+                    { academyUrl &&
+                        <Button
+                            className={classnames(styles.button)}
+                            // Icon={<BookIcon/>}
+                            size="big"
+                            color={trainingUrl ? 'default' : 'accent'}
+                            label={academyLabel}
+                            onClick={() => onClickAcademy()}
+                        />}
+                    { trainingUrl &&
+                        <Button
+                            className={classnames(styles.button)}
+                            size="big"
+                            label={trainingLabel}
+                            color="accent"
+                            onClick={() => onClickTraining()}
+                        />}
                 </div>
             </div>
         </article>
