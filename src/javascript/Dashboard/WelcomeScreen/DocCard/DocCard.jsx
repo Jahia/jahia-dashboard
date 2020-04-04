@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'clsx';
 import styles from './DocCard.scss';
-import {Typography, Chip, Button} from '@jahia/moonstone';
-// Import Tag from '../Tag';
+import {Typography, Button} from '@jahia/moonstone';
+import Tag from '../Tag';
 // Import BookIcon from '@jahia/moonstone/dist/icons/Book';
 
 const DocCard = ({
@@ -38,8 +38,7 @@ const DocCard = ({
                         {estimatedReadingTime}
                     </Typography>}
                 <div>
-                    {/* {tags ? tags.map(tag => <Tag key={tag} name={tag}/>) : ''} */}
-                    {tags ? tags.map(tag => <Chip key={tag} name={tag}/>) : ''}
+                    {tags ? tags.map(tag => <Tag key={tag} name={tag}/>) : ''}
                 </div>
                 <div className={classnames(styles.infoText)}>
                     <Typography>{infoText}</Typography>
