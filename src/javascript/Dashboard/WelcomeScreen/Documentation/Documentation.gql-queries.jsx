@@ -29,16 +29,13 @@ const DocumentationNodesQuery = gql`
                     trainingUrl: property(name: "trainingUrl") {
                         value
                     }
-                    installationModes: property(name: "installationModes") {
-                        values
-                    }
                     operatingModes: property(name: "operatingModes") {
                         values
                     }
                     requiredPermissions: property(name: "requiredPermissions") {
                         values
                     }
-                    requiredRoles: property(name: "requiredRoles") {
+                    requiredModules: property(name: "requiredModules") {
                         values
                     }
                     tags: property(name: "j:tagList") {

@@ -8,7 +8,6 @@
  - estimatedReadingTime (long)
  - academyUrl (string)
  - trainingUrl (string)
- - installationModes (string) multiple
  - operatingModes (string) multiple
  - requiredPermissions (string) multiple
  - requiredModules (string) multiple

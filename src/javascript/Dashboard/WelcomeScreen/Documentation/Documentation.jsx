@@ -10,7 +10,7 @@ import Spacing from '../Spacing';
 import SectionHeader from '../SectionHeader';
 
 const Documentation = props => {
-    const {t, locale, isTrainingSiteAvailable} = props;
+    const {t, locale, isTrainingSiteAvailable, operatingMode} = props;
     const {data, error, loading} = useQuery(DocumentationNodesQuery, {
         variables: {
             query: 'select * from [jnt:dashboardDoc] where isdescendantnode(\'/modules\') order by [lastEditDate]',
@@ -43,7 +43,14 @@ const Documentation = props => {
             <Typography>{t('jahia-dashboard:jahia-dashboard.documentation.intro')}</Typography>
             <Spacing height="small"/>
             <div className={classnames('flexRow')}>
-                {docNodes.map(docNode => {
+                {docNodes.filter(docNode => {
+                    if (docNode.operatingModes !== null && docNode.operatingModes.values !== null) {
+                        return docNode.operatingModes.values.includes(operatingMode);
+                    }
+
+                    return true;
+                })
+                    .map(docNode => {
                     return (
                         <DocCard
                             key={docNode.uuid}
@@ -66,7 +73,8 @@ const Documentation = props => {
 Documentation.propTypes = {
     locale: PropTypes.string.isRequired,
     t: PropTypes.func.isRequired,
-    isTrainingSiteAvailable: PropTypes.bool.isRequired
+    isTrainingSiteAvailable: PropTypes.bool.isRequired,
+    operatingMode: PropTypes.bool.isRequired
 };
 
 export default Documentation;
