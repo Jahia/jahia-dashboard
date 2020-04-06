@@ -31,7 +31,6 @@ const Documentation = props => {
     }
 
     const docNodes = data && data.jcr && data.jcr.result ? data.jcr.result.docNodes : [];
-    console.log(docNodes);
 
     return (
         <Suspense fallback="loading ...">
