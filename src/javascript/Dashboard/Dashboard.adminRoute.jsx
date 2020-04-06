@@ -5,6 +5,7 @@ import File from '@jahia/moonstone/dist/icons/File';
 import SiteWeb from '@jahia/moonstone/dist/icons/SiteWeb';
 import FileContent from '@jahia/moonstone/dist/icons/FileContent';
 import Task from '@jahia/moonstone/dist/icons/Task';
+import WelcomeScreen from './WelcomeScreen';
 
 export const registerAdminRoute = () => {
     registry.add('adminRoute', 'welcome', {
@@ -13,7 +14,7 @@ export const registerAdminRoute = () => {
         label: 'jahia-dashboard:jahia-dashboard.workspace.welcome',
         isSelectable: true,
         route: '/dashboard',
-        render: () => <h2 style={{color: 'white'}}>Welcome to dashboard - missing design</h2>
+        render: () => <WelcomeScreen/>
     });
     registry.add('adminRoute', 'files', {
         targets: ['dashboard:20'],

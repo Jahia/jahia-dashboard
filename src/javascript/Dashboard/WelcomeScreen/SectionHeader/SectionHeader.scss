@@ -1,0 +1,22 @@
+.sectionHeading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .moreLink {
+        color: var(--color-accent);
+        text-decoration: none;
+
+        &:hover {
+            color: var(--color-accent_dark);
+            text-decoration: underline;
+        }
+
+        .moreLabel {
+            margin-right: var(--spacing-nano);
+
+            text-transform: lowercase;
+        }
+    }
+}

@@ -1,6 +1,7 @@
 {
   "jahia-dashboard": {
     "label": "Dashboard",
+    "seeAll" : "See all",
     "workspace": {
       "label": "My Workspace",
       "welcome": "Welcome",
@@ -8,6 +9,55 @@
       "pages": "My Pages",
       "projects": "My Web Projects",
       "tasks": "My Tasks"
+    },
+    "intro" : {
+      "title" : "Welcome {{displayName}} to Jahia 8",
+      "defaultMessage" : "Find links and resources we think will be useful for you in this page: quick access to the projects you can contribute to and links to documentation and tutorials",
+      "developmentMessage" : "Find links and resources we think will be useful for you in this page: quick access to the projects and modules you contribute to, as well as links to developer tools, documentation and tutorials"
+    },
+    "projects" : {
+      "title" : "My web projects",
+      "noDescription" : "No description",
+      "createNew" : {
+        "title" : "Create new",
+        "description" : "Create new / Go to the administration to create a new project"
+      }
+    },
+    "modules" : {
+      "title" : "Modules",
+      "noModules" : "You have no modules at the moment. You can create them in studio."
+    },
+    "devResources" : {
+      "studio": {
+        "title": "Studio",
+        "description": "Use the studio to build modules from the ground up, from custom components definition to template design."
+      },
+      "graphiql": {
+        "title": "GraphiQL",
+        "description": "Use GraphiQL to explore the current GraphQL schema, as well to build and execute GraphQL queries."
+      },
+      "sdlgenerator": {
+        "title": "SDL Generator",
+        "description": "Use the SDL Generator to help you create the SDL file corresponding to your needs."
+      },
+      "sdlreport": {
+        "title": "SDL Report",
+        "description": "Use the SDL Report to troubleshoot your SDL issues"
+      },
+      "jwt": {
+        "title": "JWT Tokens",
+        "description": "Use this to create a JWT token you can use in your application"
+      }
+    },
+    "documentation" : {
+      "intro": "All resources are in English",
+      "goToAcademy" : "Go to academy",
+      "academy" : "Academy",
+      "training" : "Training",
+      "estimatedReadingTime" : "Estimated reading time : {{estimatedReadingTime}} min."
+    },
+    "error" : {
+      "queryingContent" : "Error querying content from Jahia: {{details}}"
     }
   }
 }
