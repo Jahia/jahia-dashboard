@@ -13,7 +13,7 @@ const Documentation = props => {
     const {t, locale, isTrainingSiteAvailable, operatingMode} = props;
     const {data, error, loading} = useQuery(DocumentationNodesQuery, {
         variables: {
-            query: 'select * from [jnt:dashboardDoc] where isdescendantnode(\'/modules\') order by [lastEditDate]',
+            query: 'select * from [jnt:dashboardDoc] where isdescendantnode(\'/modules\') or isdescendantnode(\'/sites\') order by [lastEditDate]',
             displayLanguage: locale
         }
     });
@@ -74,7 +74,7 @@ Documentation.propTypes = {
     locale: PropTypes.string.isRequired,
     t: PropTypes.func.isRequired,
     isTrainingSiteAvailable: PropTypes.bool.isRequired,
-    operatingMode: PropTypes.bool.isRequired
+    operatingMode: PropTypes.string.isRequired
 };
 
 export default Documentation;
