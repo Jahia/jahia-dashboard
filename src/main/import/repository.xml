@@ -11,70 +11,7 @@
          <contents jcr:primaryType="jnt:contentFolder"/>
          <templates jcr:primaryType="jnt:templatesFolder">
             <files jcr:primaryType="jnt:folder"/>
-            <contents jcr:primaryType="jnt:contentFolder">
-               <dashboard jcr:primaryType="jnt:contentFolder">
-                  <j:translation_en jcr:language="en"
-                                    jcr:mixinTypes="mix:title"
-                                    jcr:primaryType="jnt:translation"
-                                    jcr:title="dashboard"/>
-                  <adding-a-new-page academyUrl="http://academy.jahia.com"
-                                     estimatedReadingTime="10"
-                                     featured="false"
-                                     j:tagList="jcontent"
-                                     jcr:primaryType="jnt:dashboardDoc"
-                                     lastEditDate="2020-04-01T17:10:00.000+02:00"
-                                     trainingUrl="/sites/training/home.html">
-                     <j:translation_en description="Learn to create, edit, maintain and publish web pages for your website"
-                                       jcr:language="en"
-                                       jcr:mixinTypes="mix:title"
-                                       jcr:primaryType="jnt:translation"
-                                       jcr:title="Adding a new page"/>
-                  </adding-a-new-page>
-                  <advanced-content academyUrl="http://academy.jahia.com"
-                                    estimatedReadingTime="15"
-                                    featured="false"
-                                    j:tagList="jcontent"
-                                    jcr:primaryType="jnt:dashboardDoc"
-                                    lastEditDate="2020-04-01T17:10:00.000+02:00"
-                                    trainingUrl="/sites/training/home.html">
-                     <j:translation_en description="Learn how to re-use content, use aliases for SEO, manage documents &amp; media"
-                                       jcr:language="en"
-                                       jcr:mixinTypes="mix:title"
-                                       jcr:primaryType="jnt:translation"
-                                       jcr:title="Advanced content"/>
-                  </advanced-content>
-                  <adding-personalization academyUrl="http://academy.jahia.com"
-                                          estimatedReadingTime="20"
-                                          featured="false"
-                                          j:tagList="jcontent jexperience"
-                                          jcr:primaryType="jnt:dashboardDoc"
-                                          lastEditDate="2020-04-01T17:10:00.000+02:00"
-                                          requiredModules="jexperience"
-                                          requiredPermissions="jexperience"
-                                          trainingUrl="/sites/training/home.html">
-                     <j:translation_en description="Learn to create personalized content and pages in the Page Composer using jExperience"
-                                       jcr:language="en"
-                                       jcr:mixinTypes="mix:title"
-                                       jcr:primaryType="jnt:translation"
-                                       jcr:title="Adding Personalization"/>
-                  </adding-personalization>
-                  <module-management academyUrl="http://academy.jahia.com"
-                                     estimatedReadingTime="15"
-                                     featured="false"
-                                     j:tagList=""
-                                     jcr:primaryType="jnt:dashboardDoc"
-                                     lastEditDate="2020-04-06T14:36:00.000+02:00"
-                                     operatingModes="production"
-                                     requiredModules=""
-                                     requiredPermissions="studioAccess"
-                                     trainingUrl="/sites/training/test">
-                     <j:translation_en description="Get started with modules: create a new module, deploy it  and activate it on your site"
-                                       jcr:language="en"
-                                       jcr:primaryType="jnt:translation"
-                                       jcr:title="Module management"/>
-                  </module-management>
-               </dashboard>
-            </contents>
+            <contents jcr:primaryType="jnt:contentFolder"/>
          </templates>
       </jahia-dashboard>
    </modules>

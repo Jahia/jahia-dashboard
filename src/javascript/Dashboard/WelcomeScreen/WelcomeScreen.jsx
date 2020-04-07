@@ -51,10 +51,14 @@ const WelcomeScreen = () => {
         return <ProgressOverlay/>;
     }
 
-    const myModules = dashboardData.data.dashboard.myModules;
-    const operatingMode = dashboardData.data.dashboard.operatingMode;
+    const modules = dashboardData.data.dashboard.modules;
+    const myModules = modules.filter(module => module.inDevelopment === true);
+
+    console.log('modules', modules);
+    console.log('myModules', myModules);
+    const availableModules = modules.map(module => module.id);
+    const operatingMode = window.contextJsParameters.config.operatingMode;
     const hasToolsAccess = dashboardData.data.dashboard.toolsAccess;
-    const isTrainingSiteAvailable = dashboardData.data.dashboard.trainingSiteAvailable;
 
     const hasStudioAccessPermission = permissionsData.data.jcr.rootNode.studioModeAccess;
     const hasAdminVirtualSitesPermission = permissionsData.data.jcr.rootNode.adminVirtualSites;
@@ -79,7 +83,7 @@ const WelcomeScreen = () => {
                     <Spacing height="big"/>
                     <Separator spacing="medium"/>
                 </>}
-                <Documentation locale={locale} t={t} isTrainingSiteAvailable={isTrainingSiteAvailable} operatingMode={operatingMode}/>
+                <Documentation locale={locale} t={t} operatingMode={operatingMode} availableModules={availableModules}/>
             </div>
         </Suspense>
     );

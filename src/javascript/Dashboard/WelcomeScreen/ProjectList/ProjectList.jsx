@@ -6,9 +6,11 @@ import {SiteNodesQuery} from './ProjectList.gql-queries';
 import {ProgressOverlay} from '@jahia/react-material';
 import Card from '../Card';
 import SectionHeader from '../SectionHeader';
+import {useHistory} from 'react-router-dom';
 
 const ProjectList = props => {
     const {t, isAdmin, locale} = props;
+    const history = useHistory();
     const {data, error, loading} = useQuery(SiteNodesQuery, {
         variables: {
             query: 'select * from [jnt:virtualsite] where ischildnode(\'/sites\')',
@@ -81,12 +83,13 @@ const ProjectList = props => {
             <div className={classnames('flexRow')}>
                 {siteNodes.map(siteNode => {
                     const onClick = () => {
-                        let siteUrl = window.contextJsParameters.contextPath + '/jahia/page-composer/default/en/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
+                        let siteUrl = '/page-composer/default/en/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
                         if (siteNode.uuid === 'create-site') {
-                            siteUrl = window.contextJsParameters.contextPath + '/jahia/administration/webProjectSettings';
+                            siteUrl = '/administration/webProjectSettings';
                         }
 
-                        window.location.assign(siteUrl);
+                        // Window.location.assign(siteUrl);
+                        history.push(siteUrl);
                     };
 
                 return (

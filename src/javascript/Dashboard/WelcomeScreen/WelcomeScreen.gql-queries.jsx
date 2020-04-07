@@ -5,13 +5,12 @@ const DashboardQuery = gql`
     query WelcomeScreen {
         dashboard {
             toolsAccess
-            trainingSiteAvailable
-            operatingMode
-            myModules {
+            modules {
                 id
                 name
                 description
                 version
+                inDevelopment
             }
         }
     }

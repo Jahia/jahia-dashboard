@@ -10,16 +10,18 @@ public class GqlModule {
     private String description;
     private String version;
     private long lastModified;
+    private boolean inDevelopment;
 
     public GqlModule() {
     }
 
-    public GqlModule(String id, String name, String description, String version, long lastModified) {
+    public GqlModule(String id, String name, String description, String version, long lastModified, boolean inDevelopment) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.version = version;
         this.lastModified = lastModified;
+        this.inDevelopment = inDevelopment;
     }
 
     @GraphQLField
@@ -70,5 +72,15 @@ public class GqlModule {
 
     public void setLastModified(long lastModified) {
         this.lastModified = lastModified;
+    }
+
+    @GraphQLField
+    @GraphQLDescription("If the module is in development, mostly because the sources have been downloaded.")
+    public boolean isInDevelopment() {
+        return inDevelopment;
+    }
+
+    public void setInDevelopment(boolean inDevelopment) {
+        this.inDevelopment = inDevelopment;
     }
 }

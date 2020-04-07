@@ -10,7 +10,7 @@ import Spacing from '../Spacing';
 import SectionHeader from '../SectionHeader';
 
 const Documentation = props => {
-    const {t, locale, isTrainingSiteAvailable, operatingMode} = props;
+    const {t, locale, operatingMode, availableModules} = props;
     const {data, error, loading} = useQuery(DocumentationNodesQuery, {
         variables: {
             query: 'select * from [jnt:dashboardDoc] where isdescendantnode(\'/modules\') or isdescendantnode(\'/sites\') order by [lastEditDate]',
@@ -43,6 +43,16 @@ const Documentation = props => {
             <Spacing height="small"/>
             <div className={classnames('flexRow')}>
                 {docNodes.filter(docNode => {
+                    if (docNode.requiredModules !== null && docNode.requiredModules.values !== null) {
+                        for (const requiredModule of docNode.requiredModules.values) {
+                            if (!availableModules.includes(requiredModule)) {
+                                return false;
+                            }
+                        }
+
+                        return true;
+                    }
+
                     if (docNode.operatingModes !== null && docNode.operatingModes.values !== null) {
                         return docNode.operatingModes.values.includes(operatingMode);
                     }
@@ -59,7 +69,7 @@ const Documentation = props => {
                             infoText={docNode.description ? docNode.description.value : null}
                             academyUrl={docNode.academyUrl ? docNode.academyUrl.value : null}
                             academyLabel={t('jahia-dashboard:jahia-dashboard.documentation.academy')}
-                            trainingUrl={docNode.trainingUrl && isTrainingSiteAvailable ? docNode.trainingUrl.value : null}
+                            trainingUrl={docNode.trainingUrl ? docNode.trainingUrl.value : null}
                             trainingLabel={t('jahia-dashboard:jahia-dashboard.documentation.training')}
                         />
                     );
@@ -72,8 +82,8 @@ const Documentation = props => {
 Documentation.propTypes = {
     locale: PropTypes.string.isRequired,
     t: PropTypes.func.isRequired,
-    isTrainingSiteAvailable: PropTypes.bool.isRequired,
-    operatingMode: PropTypes.string.isRequired
+    operatingMode: PropTypes.string.isRequired,
+    availableModules: PropTypes.array.isRequired
 };
 
 export default Documentation;
