@@ -9,6 +9,5 @@
  - academyUrl (string)
  - trainingUrl (string)
  - operatingModes (string) multiple
- - requiredPermissions (string) multiple
  - requiredModules (string) multiple
  - j:tagList (string,tag[autocomplete=10,separator=',']) facetable nofulltext multiple

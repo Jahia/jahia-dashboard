@@ -32,6 +32,15 @@ const Documentation = props => {
 
     const docNodes = data && data.jcr && data.jcr.result ? data.jcr.result.docNodes : [];
 
+    let allRequiredPermissions = [];
+    for (const docNode of docNodes) {
+        if (docNode.requiredPermissions && docNode.requiredPermissions.values) {
+            allRequiredPermissions = allRequiredPermissions.concat(docNode.requiredPermissions.values);
+        }
+    }
+
+    console.log('allRequiredPermissions', allRequiredPermissions);
+
     return (
         <Suspense fallback="loading ...">
             <SectionHeader

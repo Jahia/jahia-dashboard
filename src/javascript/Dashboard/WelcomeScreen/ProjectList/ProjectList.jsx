@@ -56,7 +56,6 @@ const ProjectList = props => {
             return 0;
         }).map(siteNode => {
             const homePageNode = siteNode.children.nodes.find(childPage => {
-                console.log(childPage);
                 return childPage.isHomePage && childPage.isHomePage.value && childPage.isHomePage.value === 'true';
             });
             siteNode.homePageName = homePageNode.name;

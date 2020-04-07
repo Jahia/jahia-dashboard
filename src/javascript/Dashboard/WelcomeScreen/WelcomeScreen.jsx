@@ -54,8 +54,6 @@ const WelcomeScreen = () => {
     const modules = dashboardData.data.dashboard.modules;
     const myModules = modules.filter(module => module.inDevelopment === true);
 
-    console.log('modules', modules);
-    console.log('myModules', myModules);
     const availableModules = modules.map(module => module.id);
     const operatingMode = window.contextJsParameters.config.operatingMode;
     const hasToolsAccess = dashboardData.data.dashboard.toolsAccess;

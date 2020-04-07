@@ -32,7 +32,7 @@ const DocumentationNodesQuery = gql`
                     operatingModes: property(name: "operatingModes") {
                         values
                     }
-                    requiredPermissions: property(name: "requiredPermissions") {
+                    requiredPermissions: property(name: "j:requiredPermissionNames") {
                         values
                     }
                     requiredModules: property(name: "requiredModules") {
