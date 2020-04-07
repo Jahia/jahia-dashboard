@@ -59,7 +59,6 @@ const WelcomeScreen = () => {
     const hasStudioAccessPermission = permissionsData.data.jcr.rootNode.studioModeAccess;
     const hasAdminVirtualSitesPermission = permissionsData.data.jcr.rootNode.adminVirtualSites;
 
-
     const developmentMode = operatingMode === 'development' && hasStudioAccessPermission;
 
     return (

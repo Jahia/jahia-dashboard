@@ -8,8 +8,8 @@ const WelcomeIntro = props => {
     const {isDevelopment, t} = props;
 
     let displayName = user.username;
-    if (user.fullname) {
-        displayName = user.fullname;
+    if (user.firstName && user.firstName.length > 0) {
+        displayName = user.firstName;
     }
 
     let message = t('jahia-dashboard:jahia-dashboard.intro.defaultMessage');
