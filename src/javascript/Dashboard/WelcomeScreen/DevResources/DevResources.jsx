@@ -8,6 +8,7 @@ import SDLGeneratorIcon from '@jahia/moonstone/dist/icons/SdLgenerator';
 import SDLReportIcon from '@jahia/moonstone/dist/icons/SdLreport';
 import JwtIcon from '@jahia/moonstone/dist/icons/Jwt';
 import SectionHeader from '../SectionHeader';
+import OpenInNewIcon from '@jahia/moonstone/dist/icons/OpenInNew';
 
 const DevResources = props => {
     const {t, hasToolsAccess} = props;
@@ -66,7 +67,7 @@ const DevResources = props => {
                     };
 
                     return (
-                        <Card key={devCard.id} headerText={devCard.name} icon={devCard.icon} infoText={devCard.description} onClick={() => onClick()}/>
+                        <Card key={devCard.id} headerText={devCard.name} icon={devCard.icon} infoText={devCard.description} linkComponent={<OpenInNewIcon/>} onClick={() => onClick()}/>
                     );
                 })}
             </div>

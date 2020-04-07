@@ -5,6 +5,7 @@ import classnames from 'clsx';
 import styles from './ModuleList.scss';
 import {Typography} from '@jahia/moonstone';
 import SectionHeader from '../SectionHeader';
+import OpenInNewIcon from '@jahia/moonstone/dist/icons/OpenInNew';
 
 const ModuleList = props => {
     const {t, modules} = props;
@@ -25,7 +26,7 @@ const ModuleList = props => {
                     };
 
                     return (
-                        <Card key={module.id} headerText={module.name} infoText={module.description} onClick={() => onClick()}/>
+                        <Card key={module.id} headerText={module.name} infoText={module.description} linkComponent={<OpenInNewIcon/>} onClick={() => onClick()}/>
                     );
                 })}
             </div>

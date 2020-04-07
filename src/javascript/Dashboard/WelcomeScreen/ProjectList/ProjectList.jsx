@@ -7,6 +7,8 @@ import {ProgressOverlay} from '@jahia/react-material';
 import Card from '../Card';
 import SectionHeader from '../SectionHeader';
 import {useHistory} from 'react-router-dom';
+import ArrowRightIcon from '@jahia/moonstone/dist/icons/ArrowRight';
+import AddIcon from '@jahia/moonstone/dist/icons/Add';
 
 const ProjectList = props => {
     const {t, isAdmin, locale} = props;
@@ -76,19 +78,24 @@ const ProjectList = props => {
     return (
         <Suspense fallback="loading ...">
             <SectionHeader
+                isRouterLink
                 title={t('jahia-dashboard:jahia-dashboard.projects.title')}
-                moreUrl={window.contextJsParameters.contextPath + '/jahia/dashboard/projects'}
+                moreUrl="/dashboard/projects"
                 moreLabel={t('jahia-dashboard:jahia-dashboard.seeAll')}
             />
             <div className={classnames('flexRow')}>
                 {siteNodes.map(siteNode => {
+                    let linkComponent = <ArrowRightIcon/>;
+                    if (siteNode.uuid === 'create-site') {
+                        linkComponent = <AddIcon/>;
+                    }
+
                     const onClick = () => {
                         let siteUrl = '/page-composer/default/en/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
                         if (siteNode.uuid === 'create-site') {
                             siteUrl = '/administration/webProjectSettings';
                         }
 
-                        // Window.location.assign(siteUrl);
                         history.push(siteUrl);
                     };
 
@@ -97,6 +104,7 @@ const ProjectList = props => {
                         key={siteNode.uuid}
                         headerText={siteNode.displayName}
                         infoText={siteNode.description ? siteNode.description : t('jahia-dashboard:jahia-dashboard.projects.noDescription')}
+                        linkComponent={linkComponent}
                         onClick={() => onClick()}
                     />
                 );

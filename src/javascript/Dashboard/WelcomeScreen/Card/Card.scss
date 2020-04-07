@@ -17,6 +17,10 @@
         flex-direction: row;
         justify-content: space-between;
         margin-bottom: var(--spacing-nano);
+
+        .linkIcon {
+            display: none;
+        }
     }
 
     &:hover {
@@ -26,6 +30,10 @@
 
         .cardLinkHeading {
             color: var(--color-accent);
+
+            .linkIcon {
+                display: inline;
+            }
         }
     }
 
