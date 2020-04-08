@@ -36,7 +36,10 @@ export const DashBoard = ({match}) => {
             label: t(route.label),
             isSelectable: route.isSelectable,
             iconStart: route.icon,
-            route: route.route
+            route: route.route,
+            treeItemProps: {
+                'data-sel-role': route.key
+            }
         }))
         .getData();
 

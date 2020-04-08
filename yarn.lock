@@ -1068,10 +1068,10 @@
     eslint-plugin-react "^7.16.0"
     eslint-plugin-react-hooks "^2.2.0"
 
-"@jahia/moonstone@^0.15.5":
-  version "0.15.5"
-  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.15.5.tgz#f1d6fedab59134eca7f91873fd2e7c825ffd7576"
-  integrity sha512-0e1wC0VYbSlB3JDQoqmzeiaBfW47LbNAHSBhbFiDwjIC2o/8PK7dlfboZLhEJh7r5bkmSnnI97Zo4Iz2prZfyQ==
+"@jahia/moonstone@^0.15.8":
+  version "0.15.8"
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.15.8.tgz#4dfe83e22961d067ba6084ccf1111c8fd397c040"
+  integrity sha512-0sDWY5MxrcW1ThAVPG9Ch5If2GVPa5j1dROk69xR3n3uzBkMl6vSwb5EZWQtvoucZpx8zDff5h3vMYm06NSiLQ==
   dependencies:
     "@svgr/webpack" "^4.3.3"
     clsx "^1.0.4"
