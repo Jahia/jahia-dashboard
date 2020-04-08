@@ -5,7 +5,7 @@ import {DashBoard} from './Dashboard';
 
 export const registerRoute = () => {
     registry.add('route', 'routeDashboard', {
-        targets: ['nav-root-top:1'],
+        targets: ['main:1'],
         path: `${Constants.ROUTE}*`,
         defaultPath: Constants.ROUTE,
         render: v => <Suspense fallback="loading ..."><DashBoard match={v.match}/></Suspense>
