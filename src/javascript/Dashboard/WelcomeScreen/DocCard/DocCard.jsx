@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'clsx';
+import {useHistory} from 'react-router-dom';
 import styles from './DocCard.scss';
 import {Typography, Button} from '@jahia/moonstone';
 import Tag from '../Tag';
-import {useHistory} from 'react-router-dom';
-// Import BookIcon from '@jahia/moonstone/dist/icons/Book';
+import BookIcon from '@jahia/moonstone/dist/icons/Book';
+import SchoolIcon from '@jahia/moonstone/dist/icons/School';
+
 
 const DocCard = ({
     headerText,
@@ -29,7 +31,7 @@ const DocCard = ({
     return (
         <article
             data-sel-role-card={headerText}
-            className={classnames(styles.infoContainer)}
+            className={classnames(styles.docCardContainer)}
         >
             <div className={classnames(styles.textContainer)}>
                 <Typography variant="heading" component="h3">
@@ -49,7 +51,7 @@ const DocCard = ({
                     { academyUrl &&
                         <Button
                             className={classnames(styles.button)}
-                            // Icon={<BookIcon/>}
+                            icon={<BookIcon/>}
                             size="big"
                             color={trainingUrl ? 'default' : 'accent'}
                             label={academyLabel}
@@ -58,6 +60,7 @@ const DocCard = ({
                     { trainingUrl &&
                         <Button
                             className={classnames(styles.button)}
+                            icon={<SchoolIcon/>}
                             size="big"
                             label={trainingLabel}
                             color="accent"

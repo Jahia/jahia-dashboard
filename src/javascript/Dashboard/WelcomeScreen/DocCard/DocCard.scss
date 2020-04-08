@@ -1,4 +1,4 @@
-.infoContainer {
+.docCardContainer {
     width: 530px;
     height: 222px;
     margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;
@@ -36,11 +36,11 @@
 }
 
 .buttonContainer {
+    display: flex;
     align-self: flex-end;
 }
 
 .button {
-    display: inline-block;
-    max-width: 150px;
+    max-width: 120px;
     margin-left: var(--spacing-small);
 }

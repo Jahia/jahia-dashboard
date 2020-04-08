@@ -3,14 +3,14 @@ import classnames from 'clsx';
 import PropTypes from 'prop-types';
 import styles from './Tag.scss';
 import {Chip} from '@jahia/moonstone';
-import FeatherIcon from '@jahia/moonstone/dist/icons/Feather';
-import ExploreIcon from '@jahia/moonstone/dist/icons/Explore';
+import JContentIcon from '@jahia/moonstone/dist/icons/JContent';
+import BarSquareIcon from '@jahia/moonstone/dist/icons/BarSquare';
 
 const tags = {
-    jcontent: {icon: <FeatherIcon/>, color: 'accent'},
-    jexperience: {icon: <ExploreIcon/>, color: 'success'},
-    developer: {icon: null, color: ''},
-    administrator: {icon: null, color: ''}
+    jcontent: {icon: <JContentIcon/>, color: 'accent'},
+    jexperience: {icon: <BarSquareIcon/>, color: 'reassuring'},
+    developer: {icon: null, color: 'warning'},
+    administrator: {icon: null, color: 'danger'}
 };
 
 const Tag = ({name}) => (

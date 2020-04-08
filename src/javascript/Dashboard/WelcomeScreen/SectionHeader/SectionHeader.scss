@@ -6,11 +6,10 @@
 
     .moreLink {
         color: var(--color-accent);
-        text-decoration: none;
+        text-decoration: underline;
 
         &:hover {
             color: var(--color-accent_dark);
-            text-decoration: underline;
         }
 
         .moreLabel {
