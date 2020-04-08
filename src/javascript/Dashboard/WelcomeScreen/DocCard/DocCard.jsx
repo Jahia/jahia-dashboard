@@ -5,6 +5,7 @@ import {useHistory} from 'react-router-dom';
 import styles from './DocCard.scss';
 import {Typography, Button} from '@jahia/moonstone';
 import Tag from '../Tag';
+import ClockIcon from '@jahia/moonstone/dist/icons/Clock';
 import BookIcon from '@jahia/moonstone/dist/icons/Book';
 import SchoolIcon from '@jahia/moonstone/dist/icons/School';
 
@@ -34,12 +35,15 @@ const DocCard = ({
             className={classnames(styles.docCardContainer)}
         >
             <div className={classnames(styles.textContainer)}>
-                <Typography variant="heading" component="h3">
+                <Typography variant="subheading" weight="bold" component="h3" className={classnames(styles.cardHeading)}>
                     {headerText}
                 </Typography>
                 {estimatedReadingTime &&
                     <Typography variant="caption">
-                        {estimatedReadingTime}
+                        <div className={classnames(styles.readingTime)}>
+                            <ClockIcon size="small" className={classnames(styles.clockIcon)}/>
+                            <span>{estimatedReadingTime}</span>
+                        </div>
                     </Typography>}
                 <div>
                     {tags ? tags.map(tag => <Tag key={tag} name={tag}/>) : ''}

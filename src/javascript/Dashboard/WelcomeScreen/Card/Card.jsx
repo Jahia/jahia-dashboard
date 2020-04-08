@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import classnames from 'clsx';
 import styles from './Card.scss';
 import {Typography} from '@jahia/moonstone';
-import ArrowRightIcon from '@jahia/moonstone/dist/icons/ArrowRight';
-import OpenInNewIcon from '@jahia/moonstone/dist/icons/OpenInNew';
 
 const Card = ({
+    isCreateNewCard,
     headerText,
     icon,
+    hoverIcon,
     infoText,
     isSelected,
     onDoubleClick,
@@ -19,7 +19,7 @@ const Card = ({
     return (
         <article
             data-sel-role-card={headerText}
-            className={classnames(styles.cardContainer, isSelected ? 'selected' : '')}
+            className={classnames(styles.cardContainer, isSelected ? styles.selected : '', isCreateNewCard ? styles.createNew : '')}
             aria-checked={isSelected}
             onDoubleClick={onDoubleClick}
             onClick={onClick}
@@ -27,12 +27,17 @@ const Card = ({
             onMouseLeave={() => setIsHovering(false)}
         >
             <div className={classnames(styles.textContainer)}>
-                <div className={classnames(styles.cardLinkHeading)}>
-                    <Typography variant="heading" component="h3">
+                <div className={classnames(styles.cardHeader)}>
+                    <Typography
+                        variant="subheading"
+                        weight="bold"
+                        component="h3"
+                        className={classnames(styles.cardHeading)}
+                    >
                         {icon && <span className={classnames(styles.icon)}>{icon}</span>}
                         {headerText}
                     </Typography>
-                    {isHovering ? <OpenInNewIcon/> : <ArrowRightIcon/>}
+                    {isHovering && hoverIcon}
                 </div>
                 <Typography>
                     {infoText}
@@ -43,6 +48,7 @@ const Card = ({
 };
 
 Card.defaultProps = {
+    isCreateNewCard: false,
     headerText: '',
     infoText: '',
     isSelected: false,
@@ -53,8 +59,10 @@ Card.defaultProps = {
 };
 
 Card.propTypes = {
+    isCreateNewCard: PropTypes.bool,
     headerText: PropTypes.string,
     icon: PropTypes.element,
+    hoverIcon: PropTypes.element,
     infoText: PropTypes.string,
     isSelected: PropTypes.bool,
     onDoubleClick: PropTypes.func,

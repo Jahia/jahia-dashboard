@@ -82,6 +82,7 @@ const WelcomeScreen = () => {
                     <Separator spacing="medium"/>
                 </>}
                 <Documentation locale={locale} t={t} operatingMode={operatingMode} availableModules={availableModules}/>
+                <Spacing height="big"/>
             </div>
         </Suspense>
     );

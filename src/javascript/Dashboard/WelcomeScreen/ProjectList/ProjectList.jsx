@@ -84,11 +84,6 @@ const ProjectList = props => {
             />
             <div className={classnames('flexRow')}>
                 {siteNodes.map(siteNode => {
-                    let linkComponent = <ArrowRightIcon/>;
-                    if (siteNode.uuid === 'create-site') {
-                        linkComponent = <AddIcon/>;
-                    }
-
                     const onClick = () => {
                         let siteUrl = '/page-composer/default/' + locale + '/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
                         if (siteNode.uuid === 'create-site') {
@@ -101,9 +96,10 @@ const ProjectList = props => {
                 return (
                     <Card
                         key={siteNode.uuid}
+                        isCreateNewCard={siteNode.uuid === 'create-site'}
                         headerText={siteNode.displayName}
+                        hoverIcon={siteNode.uuid === 'create-site' ? <AddIcon/> : <ArrowRightIcon/>}
                         infoText={siteNode.description ? siteNode.description : t('jahia-dashboard:jahia-dashboard.projects.noDescription')}
-                        linkComponent={linkComponent}
                         onClick={() => onClick()}
                     />
                 );
