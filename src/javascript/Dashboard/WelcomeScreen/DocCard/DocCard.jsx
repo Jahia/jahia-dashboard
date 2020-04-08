@@ -4,6 +4,7 @@ import classnames from 'clsx';
 import styles from './DocCard.scss';
 import {Typography, Button} from '@jahia/moonstone';
 import Tag from '../Tag';
+import {useHistory} from 'react-router-dom';
 // Import BookIcon from '@jahia/moonstone/dist/icons/Book';
 
 const DocCard = ({
@@ -16,12 +17,13 @@ const DocCard = ({
     trainingUrl,
     trainingLabel
 }) => {
+    const history = useHistory();
     const onClickAcademy = () => {
         window.open(academyUrl, '_blank');
     };
 
     const onClickTraining = () => {
-        window.location.assign(window.contextJsParameters.contextPath + trainingUrl);
+        history.push(trainingUrl);
     };
 
     return (

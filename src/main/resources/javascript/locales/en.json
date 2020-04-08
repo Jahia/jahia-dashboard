@@ -20,7 +20,7 @@
       "noDescription" : "No description",
       "createNew" : {
         "title" : "Create new",
-        "description" : "Create new / Go to the administration to create a new project"
+        "description" : "Go to the administration to create a new project"
       }
     },
     "modules" : {
@@ -28,6 +28,7 @@
       "noModules" : "You have no modules at the moment. You can create them in studio."
     },
     "devResources" : {
+      "title" : "Developer resources",
       "studio": {
         "title": "Studio",
         "description": "Use the studio to build modules from the ground up, from custom components definition to template design."

@@ -111,16 +111,19 @@ const Documentation = props => {
             <Spacing height="small"/>
             <div className={classnames('flexRow')}>
                 {docNodes.map(docNode => {
+                    const trainingUrl = docNode.trainingPage && docNode.trainingPage.refNode && docNode.trainingPage.refNode.path ?
+                        '/page-composer/default/' + locale + docNode.trainingPage.refNode.path + '.html' :
+                        null;
                     return (
                         <DocCard
                             key={docNode.uuid}
-                            headerText={docNode.title.value}
+                            headerText={docNode.title ? docNode.title.value : null}
                             estimatedReadingTime={docNode.estimatedReadingTime ? t('jahia-dashboard:jahia-dashboard.documentation.estimatedReadingTime', {estimatedReadingTime: docNode.estimatedReadingTime.longValue}) : null}
                             tags={docNode.tags ? docNode.tags.values : []}
                             infoText={docNode.description ? docNode.description.value : null}
                             academyUrl={docNode.academyUrl ? docNode.academyUrl.value : null}
                             academyLabel={t('jahia-dashboard:jahia-dashboard.documentation.academy')}
-                            trainingUrl={docNode.trainingPage && docNode.trainingPage.refNode && docNode.trainingPage.refNode.ajaxRenderUrl && docNode.trainingPage.refNode.ajaxRenderUrl.endsWith('.ajax') ? docNode.trainingPage.refNode.ajaxRenderUrl.substring(0, docNode.trainingPage.refNode.ajaxRenderUrl.length - 5) : null}
+                            trainingUrl={trainingUrl}
                             trainingLabel={t('jahia-dashboard:jahia-dashboard.documentation.training')}
                         />
                     );

@@ -90,7 +90,7 @@ const ProjectList = props => {
                     }
 
                     const onClick = () => {
-                        let siteUrl = '/page-composer/default/en/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
+                        let siteUrl = '/page-composer/default/' + locale + '/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
                         if (siteNode.uuid === 'create-site') {
                             siteUrl = '/administration/webProjectSettings';
                         }

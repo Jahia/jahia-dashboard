@@ -57,7 +57,7 @@ const DevResources = props => {
 
     return (
         <Suspense fallback="loading ...">
-            <SectionHeader title="Developer resources"/>
+            <SectionHeader title={t('jahia-dashboard:jahia-dashboard.devResources.title')}/>
             <div className={classnames('flexRow')}>
                 {devCards.filter(devCard => devCard.requiresToolsAccess ? hasToolsAccess : true).map(devCard => {
                     const devCardUrl = window.contextJsParameters.contextPath + devCard.link;

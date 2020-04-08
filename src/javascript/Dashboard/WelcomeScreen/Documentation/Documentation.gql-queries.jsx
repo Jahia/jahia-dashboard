@@ -29,7 +29,7 @@ const DocumentationNodesQuery = gql`
                     }
                     trainingPage: property(name: "trainingPage") {
                         refNode {
-                            ajaxRenderUrl
+                            path
                         }
                     }
                     operatingModes: property(name: "operatingModes") {

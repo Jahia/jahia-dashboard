@@ -1,6 +1,7 @@
 {
   "jahia-dashboard": {
     "label": "Tableau de Bord",
+    "seeAll" : "Tout voir",
     "workspace": {
       "label": "Mes Espaces",
       "welcome": "Bienvenue",
@@ -8,6 +9,56 @@
       "pages": "Mes Pages",
       "projects": "Mes Projects Web",
       "tasks": "Mes Tâches"
+    },
+    "intro" : {
+      "title" : "Bienvenue {{displayName}} dans Jahia 8",
+      "defaultMessage" : "Vous trouverez dans cette page des liens et ressources que nous pensons utiles pour vous : accès rapide à vos projets, ainsi que des liens vers de la documentation et des tutoriels.",
+      "developmentMessage" : "Vous trouverez dans cette page des liens et ressources que nous pensons utiles pour vous : accès rapide à vos projets et modules, ainsi que des liens vers des outils de développement, documentation et tutoriels."
+    },
+    "projects" : {
+      "title" : "Mes projets",
+      "noDescription" : "Pas de description",
+      "createNew" : {
+        "title" : "Créer un nouveau projet",
+        "description" : "Créer un nouveau projet depuis l'administration"
+      }
+    },
+    "modules" : {
+      "title" : "Modules",
+      "noModules" : "Vous n'avez pas encore de modules. Vous pouvez en créer dans le studio."
+    },
+    "devResources" : {
+      "title" : "Ressources pour le développement",
+      "studio": {
+        "title": "Studio",
+        "description": "Utilisez le studio pour créer de nouveaux modules, depuis la définitions de composants jusqu'à la conception de templates."
+      },
+      "graphiql": {
+        "title": "GraphiQL",
+        "description": "Utilisez GraphiQL pour parcourir le schéma GraphQL, ainsi que pour construire et exécuter des requêtes GraphQL."
+      },
+      "sdlgenerator": {
+        "title": "SDL Generator",
+        "description": "Utilisez le SDL Generator pour vous aidez à créer les fichiers SDL correspondants à vos besoins."
+      },
+      "sdlreport": {
+        "title": "SDL Report",
+        "description": "Utilisez le SDL Report pour résoudre vos problèmes de SDL"
+      },
+      "jwt": {
+        "title": "JWT Tokens",
+        "description": "Utilisez cet outil pour générer un token JWT que vous pouvez utiliser dans votre application"
+      }
+    },
+    "documentation" : {
+      "intro": "Toutes les ressources sont en anglais",
+      "goToAcademy" : "Allez sur l'academy",
+      "academy" : "Academy",
+      "training" : "Training",
+      "estimatedReadingTime" : "Temps de lecture estimé : {{estimatedReadingTime}} min."
+    },
+    "error" : {
+      "queryingContent" : "Error lors de la requête vers Jahia: {{details}}"
     }
   }
 }
