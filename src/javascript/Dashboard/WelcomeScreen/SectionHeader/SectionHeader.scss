@@ -8,6 +8,8 @@
         color: var(--color-accent);
         text-decoration: underline;
 
+        cursor: pointer;
+
         &:hover {
             color: var(--color-accent_dark);
         }
