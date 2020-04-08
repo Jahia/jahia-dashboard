@@ -7,7 +7,7 @@
  - featured (boolean)
  - estimatedReadingTime (long)
  - academyUrl (string)
- - trainingUrl (string)
+ - trainingPage (weakreference, picker[type='page']) < 'jnt:page'
  - operatingModes (string) multiple
  - requiredModules (string) multiple
  - j:tagList (string,tag[autocomplete=10,separator=',']) facetable nofulltext multiple

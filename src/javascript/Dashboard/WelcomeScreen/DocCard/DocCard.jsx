@@ -21,7 +21,7 @@ const DocCard = ({
     };
 
     const onClickTraining = () => {
-        window.location.assign(window.contextJsParameters + trainingUrl);
+        window.location.assign(window.contextJsParameters.contextPath + trainingUrl);
     };
 
     return (

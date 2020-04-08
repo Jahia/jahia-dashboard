@@ -120,7 +120,7 @@ const Documentation = props => {
                             infoText={docNode.description ? docNode.description.value : null}
                             academyUrl={docNode.academyUrl ? docNode.academyUrl.value : null}
                             academyLabel={t('jahia-dashboard:jahia-dashboard.documentation.academy')}
-                            trainingUrl={docNode.trainingUrl ? docNode.trainingUrl.value : null}
+                            trainingUrl={docNode.trainingPage && docNode.trainingPage.refNode && docNode.trainingPage.refNode.ajaxRenderUrl && docNode.trainingPage.refNode.ajaxRenderUrl.endsWith('.ajax') ? docNode.trainingPage.refNode.ajaxRenderUrl.substring(0, docNode.trainingPage.refNode.ajaxRenderUrl.length - 5) : null}
                             trainingLabel={t('jahia-dashboard:jahia-dashboard.documentation.training')}
                         />
                     );

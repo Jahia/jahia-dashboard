@@ -4,7 +4,7 @@ import {PredefinedFragments} from '@jahia/data-helper';
 const DocumentationNodesQuery = gql`
     query DocumentationNodes($query: String!, $displayLanguage:String!) {
         jcr(workspace: LIVE) {
-            result:nodesByQuery(query: $query) {
+            result:nodesByQuery(query: $query, language: $displayLanguage) {
                 docNodes:nodes {
                     name
                     path
@@ -27,8 +27,10 @@ const DocumentationNodesQuery = gql`
                     academyUrl: property(name: "academyUrl") {
                         value
                     }
-                    trainingUrl: property(name: "trainingUrl") {
-                        value
+                    trainingPage: property(name: "trainingPage") {
+                        refNode {
+                            ajaxRenderUrl
+                        }
                     }
                     operatingModes: property(name: "operatingModes") {
                         values
