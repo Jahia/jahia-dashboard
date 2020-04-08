@@ -8,30 +8,35 @@ import classnames from 'clsx';
 import {Typography} from '@jahia/moonstone';
 import Spacing from '../Spacing';
 import SectionHeader from '../SectionHeader';
+import {useNodeInfo} from '@jahia/data-helper';
 
 const Documentation = props => {
     const {t, locale, operatingMode, availableModules} = props;
-    const {data, error, loading} = useQuery(DocumentationNodesQuery, {
+    const docNodesResult = useQuery(DocumentationNodesQuery, {
         variables: {
             query: 'select * from [jnt:dashboardDoc] where isdescendantnode(\'/modules\') or isdescendantnode(\'/sites\') order by [lastEditDate]',
             displayLanguage: locale
         }
     });
 
-    if (error) {
-        const message = t(
-            'jahia-dashboard:jahia-dashboard.error.queryingContent',
-            {details: error.message ? error.message : ''}
-        );
-        return <>{message}</>;
-    }
+    let docNodes = docNodesResult.data && docNodesResult.data.jcr && docNodesResult.data.jcr.result ? docNodesResult.data.jcr.result.docNodes : [];
 
-    if (loading) {
-        return <ProgressOverlay/>;
-    }
+    // We now filter the nodes to only allow the ones that are in a specific path.
+    docNodes = docNodes.filter(docNode => {
+        const moduleRegex = /\/modules\/.*\/.*\/templates\/contents\/jahia-dashboard\/.*/g;
+        if (docNode.path.match(moduleRegex)) {
+            return true;
+        }
 
-    const docNodes = data && data.jcr && data.jcr.result ? data.jcr.result.docNodes : [];
+        const siteRegex = /\/sites\/.*\/contents\/jahia-dashboard\/.*/g;
+        if (docNode.path.match(siteRegex)) {
+            return true;
+        }
 
+        return false;
+    });
+
+    // Now let's check which permissions we need to validate
     let allRequiredPermissions = [];
     for (const docNode of docNodes) {
         if (docNode.requiredPermissions && docNode.requiredPermissions.values) {
@@ -39,7 +44,61 @@ const Documentation = props => {
         }
     }
 
-    console.log('allRequiredPermissions', allRequiredPermissions);
+    // Let's ask the server to check the permissions for the current user
+    const nodeChecksResult = useNodeInfo({path: '/', language: locale}, {getPermissions: allRequiredPermissions}, {skip: allRequiredPermissions.length === 0});
+
+    if (docNodesResult.error) {
+        const message = t(
+            'jahia-dashboard:jahia-dashboard.error.queryingContent',
+            {details: docNodesResult.error.message ? docNodesResult.error.message : ''}
+        );
+        return <>{message}</>;
+    }
+
+    if (nodeChecksResult.error) {
+        const message = t(
+            'jahia-dashboard:jahia-dashboard.error.queryingContent',
+            {details: nodeChecksResult.error.message ? nodeChecksResult.error.message : ''}
+        );
+        return <>{message}</>;
+    }
+
+    if (docNodesResult.loading || nodeChecksResult.loading) {
+        return <ProgressOverlay/>;
+    }
+
+    const userPermissions = {};
+    for (const requiredPermissionName of allRequiredPermissions) {
+        userPermissions[requiredPermissionName] = nodeChecksResult.node[requiredPermissionName];
+    }
+
+    // Now let's filter the nodes that don't match the users permissions, required modules and operating mode
+    docNodes = docNodes.filter(docNode => {
+        if (docNode.requiredPermissions !== null && docNode.requiredPermissions.values !== null) {
+            for (const requiredPermission of docNode.requiredPermissions.values) {
+                if (!userPermissions[requiredPermission]) {
+                    console.log('User does not have permission ' + requiredPermission + ' for card');
+                    return false;
+                }
+            }
+        }
+
+        if (docNode.requiredModules !== null && docNode.requiredModules.values !== null) {
+            for (const requiredModule of docNode.requiredModules.values) {
+                if (!availableModules.includes(requiredModule)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        if (docNode.operatingModes !== null && docNode.operatingModes.values !== null) {
+            return docNode.operatingModes.values.includes(operatingMode);
+        }
+
+        return true;
+    });
 
     return (
         <Suspense fallback="loading ...">
@@ -51,24 +110,7 @@ const Documentation = props => {
             <Typography>{t('jahia-dashboard:jahia-dashboard.documentation.intro')}</Typography>
             <Spacing height="small"/>
             <div className={classnames('flexRow')}>
-                {docNodes.filter(docNode => {
-                    if (docNode.requiredModules !== null && docNode.requiredModules.values !== null) {
-                        for (const requiredModule of docNode.requiredModules.values) {
-                            if (!availableModules.includes(requiredModule)) {
-                                return false;
-                            }
-                        }
-
-                        return true;
-                    }
-
-                    if (docNode.operatingModes !== null && docNode.operatingModes.values !== null) {
-                        return docNode.operatingModes.values.includes(operatingMode);
-                    }
-
-                    return true;
-                })
-                    .map(docNode => {
+                {docNodes.map(docNode => {
                     return (
                         <DocCard
                             key={docNode.uuid}

@@ -3,10 +3,11 @@ import {PredefinedFragments} from '@jahia/data-helper';
 
 const DocumentationNodesQuery = gql`
     query DocumentationNodes($query: String!, $displayLanguage:String!) {
-        jcr {
+        jcr(workspace: LIVE) {
             result:nodesByQuery(query: $query) {
                 docNodes:nodes {
                     name
+                    path
                     displayName(language: $displayLanguage)
                     title: property(name: "jcr:title", language: $displayLanguage) {
                         value
