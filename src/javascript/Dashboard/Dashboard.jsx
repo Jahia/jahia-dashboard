@@ -47,7 +47,7 @@ export const DashBoard = ({match}) => {
         <LayoutModule
             navigation={
                 <SecondaryNav header={<SecondaryNavHeader>{t('jahia-dashboard.label')}</SecondaryNavHeader>}>
-                    <Accordion openedItem={itemId}>
+                    <Accordion isReversed openedItem={itemId}>
                         <AccordionItem id={itemId} label={t('jahia-dashboard.workspace.label')} icon={<Work/>}>
                             <TreeView isReversed
                                       data={data}
