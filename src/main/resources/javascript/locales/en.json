@@ -16,7 +16,7 @@
       "developmentMessage" : "Find links and resources we think will be useful for you in this page: quick access to the projects and modules you contribute to, as well as links to developer tools, documentation and tutorials"
     },
     "projects" : {
-      "title" : "My web projects",
+      "title" : "My projects",
       "noDescription" : "No description",
       "createNew" : {
         "title" : "Create new",

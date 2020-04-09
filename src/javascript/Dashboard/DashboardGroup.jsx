@@ -3,7 +3,7 @@ import {useHistory} from 'react-router';
 import {useTranslation} from 'react-i18next';
 import {PrimaryNavItem} from '@jahia/moonstone';
 import Constants from './Dashboard.constants';
-import Bars from '@jahia/moonstone/dist/icons/BarSquare';
+import Home from '@jahia/moonstone/dist/icons/Home';
 import {useSelector} from 'react-redux';
 
 export const DashboardGroup = () => {
@@ -20,7 +20,7 @@ export const DashboardGroup = () => {
                         role="dashboard-menu-item"
                         isSelected={history.location.pathname.startsWith(Constants.ROUTE)}
                         label={t('jahia-dashboard.label')}
-                        icon={<Bars/>}
+                        icon={<Home/>}
                         onClick={() => {
                             history.push(route);
                         }}/>
