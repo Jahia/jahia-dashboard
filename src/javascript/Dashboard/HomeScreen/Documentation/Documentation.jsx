@@ -40,7 +40,11 @@ const Documentation = props => {
     let allRequiredPermissions = [];
     for (const docNode of docNodes) {
         if (docNode.requiredPermissions && docNode.requiredPermissions.values) {
-            allRequiredPermissions = allRequiredPermissions.concat(docNode.requiredPermissions.values);
+            for (const requiredPermission of docNode.requiredPermissions.values) {
+                if (!allRequiredPermissions.includes(requiredPermission)) {
+                    allRequiredPermissions.push(requiredPermission);
+                }
+            }
         }
     }
 
