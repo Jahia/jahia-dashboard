@@ -17,8 +17,8 @@ const Tag = ({name}) => (
     <Chip
         label={name}
         className={classnames(styles.tag)}
-        icon={tags[name.toLowerCase()].icon}
-        color={tags[name.toLowerCase()].color}
+        icon={tags[name.toLowerCase()] ? tags[name.toLowerCase()].icon : null}
+        color={tags[name.toLowerCase()] ? tags[name.toLowerCase()].color : 'default'}
     />
 );
 

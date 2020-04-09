@@ -41,7 +41,7 @@ const DocumentationNodesQuery = gql`
                     requiredModules: property(name: "requiredModules") {
                         values
                     }
-                    tags: property(name: "j:tagList") {
+                    tags: property(name: "docTags") {
                         values
                     }
                     ...NodeCacheRequiredFields
