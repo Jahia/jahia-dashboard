@@ -67,7 +67,14 @@ const DevResources = props => {
                     };
 
                     return (
-                        <Card key={devCard.id} headerText={devCard.name} icon={devCard.icon} infoText={devCard.description} linkComponent={<OpenInNewIcon/>} onClick={() => onClick()}/>
+                        <Card
+                            key={devCard.id}
+                            headerText={devCard.name}
+                            icon={devCard.icon}
+                            hoverIcon={<OpenInNewIcon/>}
+                            infoText={devCard.description}
+                            onClick={() => onClick()}
+                        />
                     );
                 })}
             </div>

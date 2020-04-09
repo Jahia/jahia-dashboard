@@ -26,7 +26,13 @@ const ModuleList = props => {
                     };
 
                     return (
-                        <Card key={module.id} headerText={module.name} infoText={module.description} linkComponent={<OpenInNewIcon/>} onClick={() => onClick()}/>
+                        <Card
+                            key={module.id}
+                            headerText={module.name}
+                            hoverIcon={<OpenInNewIcon/>}
+                            infoText={module.description}
+                            onClick={() => onClick()}
+                        />
                     );
                 })}
             </div>

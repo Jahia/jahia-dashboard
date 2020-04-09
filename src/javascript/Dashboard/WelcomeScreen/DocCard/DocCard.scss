@@ -1,4 +1,4 @@
-.infoContainer {
+.docCardContainer {
     width: 530px;
     height: 222px;
     margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;
@@ -29,18 +29,32 @@
     }
 }
 
+.cardHeading {
+    margin-bottom: var(--spacing-nano);
+}
+
 .infoText {
     flex-grow: 1;
     width: 100%;
     margin-top: var(--spacing-medium);
 }
 
+.readingTime {
+    display: flex;
+    align-items: center;
+}
+
+.clockIcon {
+    margin-top: -1px;
+    margin-right: var(--spacing-nano);
+}
+
 .buttonContainer {
+    display: flex;
     align-self: flex-end;
 }
 
 .button {
-    display: inline-block;
-    max-width: 150px;
+    max-width: 120px;
     margin-left: var(--spacing-small);
 }
