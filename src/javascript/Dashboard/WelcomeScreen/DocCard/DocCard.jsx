@@ -9,7 +9,6 @@ import ClockIcon from '@jahia/moonstone/dist/icons/Clock';
 import BookIcon from '@jahia/moonstone/dist/icons/Book';
 import SchoolIcon from '@jahia/moonstone/dist/icons/School';
 
-
 const DocCard = ({
     headerText,
     estimatedReadingTime,

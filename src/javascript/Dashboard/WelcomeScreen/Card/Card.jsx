@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'clsx';
 import styles from './Card.scss';
@@ -14,8 +14,6 @@ const Card = ({
     onDoubleClick,
     onClick
 }) => {
-    const [isHovering, setIsHovering] = useState(false);
-
     return (
         <article
             data-sel-role-card={headerText}
@@ -23,8 +21,6 @@ const Card = ({
             aria-checked={isSelected}
             onDoubleClick={onDoubleClick}
             onClick={onClick}
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
         >
             <div className={classnames(styles.textContainer)}>
                 <div className={classnames(styles.cardHeader)}>
@@ -32,12 +28,11 @@ const Card = ({
                         variant="subheading"
                         weight="bold"
                         component="h3"
-                        className={classnames(styles.cardHeading)}
                     >
                         {icon && <span className={classnames(styles.icon)}>{icon}</span>}
                         {headerText}
                     </Typography>
-                    {isHovering && hoverIcon}
+                    <span className={classnames(styles.hoverIcon)}>{hoverIcon}</span>
                 </div>
                 <Typography>
                     {infoText}
