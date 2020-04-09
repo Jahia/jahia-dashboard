@@ -3,12 +3,12 @@
     "label": "Dashboard",
     "seeAll" : "See all",
     "workspace": {
-      "label": "My Workspace",
-      "welcome": "Welcome",
-      "files": "My Files",
-      "pages": "My Pages",
-      "projects": "My Web Projects",
-      "tasks": "My Tasks"
+      "label": "My workspace",
+      "home": "Home",
+      "files": "My files",
+      "pages": "My pages",
+      "projects": "My projects",
+      "tasks": "My tasks"
     },
     "intro" : {
       "title" : "Welcome {{displayName}} to Jahia 8",

@@ -4,17 +4,17 @@ import Home from '@jahia/moonstone/dist/icons/Home';
 import File from '@jahia/moonstone/dist/icons/File';
 import SiteWeb from '@jahia/moonstone/dist/icons/SiteWeb';
 import FileContent from '@jahia/moonstone/dist/icons/FileContent';
-import Task from '@jahia/moonstone/dist/icons/Task';
-import WelcomeScreen from './WelcomeScreen';
+import Workflow from '@jahia/moonstone/dist/icons/Workflow';
+import HomeScreen from './HomeScreen';
 
 export const registerAdminRoute = () => {
-    registry.add('adminRoute', 'welcome', {
+    registry.add('adminRoute', 'home', {
         targets: ['dashboard:10'],
         icon: <Home/>,
-        label: 'jahia-dashboard:jahia-dashboard.workspace.welcome',
+        label: 'jahia-dashboard:jahia-dashboard.workspace.home',
         isSelectable: true,
         route: '/dashboard',
-        render: () => <WelcomeScreen/>
+        render: () => <HomeScreen/>
     });
     registry.add('adminRoute', 'files', {
         targets: ['dashboard:20'],
@@ -39,7 +39,7 @@ export const registerAdminRoute = () => {
     });
     registry.add('adminRoute', 'tasks', {
         targets: ['dashboard:50'],
-        icon: <Task/>,
+        icon: <Workflow/>,
         label: 'jahia-dashboard:jahia-dashboard.workspace.tasks',
         isSelectable: true,
         iframeUrl: `${window.contextJsParameters.contextPath}/cms/dashboardframe/default/$ui-lang/${window.contextJsParameters.user.path}.tasks.html`

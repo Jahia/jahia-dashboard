@@ -3,7 +3,7 @@ import {Typography} from '@jahia/moonstone';
 import PropTypes from 'prop-types';
 import SectionHeader from '../SectionHeader';
 
-const WelcomeIntro = props => {
+const HomeIntro = props => {
     const user = window.contextJsParameters.user;
     const {isDevelopment, t} = props;
 
@@ -25,9 +25,9 @@ const WelcomeIntro = props => {
     );
 };
 
-WelcomeIntro.propTypes = {
+HomeIntro.propTypes = {
     isDevelopment: PropTypes.bool.isRequired,
     t: PropTypes.func.isRequired
 };
 
-export default WelcomeIntro;
+export default HomeIntro;

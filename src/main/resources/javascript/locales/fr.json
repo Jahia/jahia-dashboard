@@ -3,12 +3,12 @@
     "label": "Tableau de Bord",
     "seeAll" : "Tout voir",
     "workspace": {
-      "label": "Mes Espaces",
-      "welcome": "Bienvenue",
-      "files": "Mes Fichiers",
-      "pages": "Mes Pages",
-      "projects": "Mes Projects Web",
-      "tasks": "Mes Tâches"
+      "label": "Mes espaces",
+      "home": "Accueil",
+      "files": "Mes fichiers",
+      "pages": "Mes pages",
+      "projects": "Mes projects",
+      "tasks": "Mes tâches"
     },
     "intro" : {
       "title" : "Bienvenue {{displayName}} dans Jahia 8",

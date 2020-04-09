@@ -1,20 +1,20 @@
 import React, {Suspense} from 'react';
 import {Separator} from '@jahia/moonstone';
-import WelcomeIntro from './WelcomeIntro';
+import HomeIntro from './HomeIntro';
 import ProjectList from './ProjectList';
 import ModuleList from './ModuleList';
 import DevResources from './DevResources';
 import Documentation from './Documentation';
 import classnames from 'clsx';
-import styles from './WelcomeScreen.scss';
+import styles from './HomeScreen.scss';
 import {useQuery} from '@apollo/react-hooks';
-import {DashboardQuery, PermissionsQuery} from './WelcomeScreen.gql-queries';
+import {DashboardQuery, PermissionsQuery} from './HomeScreen.gql-queries';
 import {ProgressOverlay} from '@jahia/react-material';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
 import Spacing from './Spacing';
 
-const WelcomeScreen = () => {
+const HomeScreen = () => {
     const {t} = useTranslation('jahia-dashboard');
     const locale = useSelector(state => state.uilang);
     const dashboardData = useQuery(DashboardQuery, {
@@ -66,7 +66,7 @@ const WelcomeScreen = () => {
     return (
         <Suspense fallback="loading ...">
             <div className={classnames(styles.root)}>
-                <WelcomeIntro locale={locale} t={t} isDevelopment={developmentMode}/>
+                <HomeIntro locale={locale} t={t} isDevelopment={developmentMode}/>
                 <Spacing height="big"/>
                 <Separator spacing="medium"/>
                 <ProjectList locale={locale} t={t} isAdmin={hasAdminVirtualSitesPermission}/>
@@ -88,4 +88,4 @@ const WelcomeScreen = () => {
     );
 };
 
-export default WelcomeScreen;
+export default HomeScreen;

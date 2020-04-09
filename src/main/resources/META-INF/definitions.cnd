@@ -8,6 +8,6 @@
  - estimatedReadingTime (long)
  - academyUrl (string)
  - trainingPage (weakreference, picker[type='page']) < 'jnt:page'
- - operatingModes (string) multiple
+ - operatingModes (string,choicelist[resourceBundle]) nofulltext multiple < 'development','production','distantPublicationServer'
  - requiredModules (string) multiple
  - docTags (string,tag[autocomplete=10,separator=',']) facetable nofulltext multiple
