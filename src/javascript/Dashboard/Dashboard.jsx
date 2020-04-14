@@ -62,7 +62,7 @@ export const DashBoard = ({match}) => {
                                                   history.push(app.route || ('/dashboard/' + app.id)) :
                                                   toggleNode(event)
                                           )
-}/>
+                                      }/>
                         </AccordionItem>
                     </Accordion>
                 </SecondaryNav>
