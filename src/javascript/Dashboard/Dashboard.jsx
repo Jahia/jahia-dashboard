@@ -56,7 +56,13 @@ export const DashBoard = ({match}) => {
                                       data={data}
                                       selectedItems={[selectedPage]}
                                       defaultOpenedItems={defaultOpenedItems}
-                                      onClickItem={app => app.isSelectable ? history.push(app.route || ('/dashboard/' + app.id)) : false}/>
+                                      onClickItem={
+                                          (app, event, toggleNode) => (
+                                              app.isSelectable ?
+                                                  history.push(app.route || ('/dashboard/' + app.id)) :
+                                                  toggleNode(event)
+                                          )
+}/>
                         </AccordionItem>
                     </Accordion>
                 </SecondaryNav>
