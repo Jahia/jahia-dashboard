@@ -14,7 +14,7 @@ jobs:
       - name: Install ruby and gem
         run: sudo apt-get install -y ruby bundler cmake pkg-config git libssl-dev       
       - name: Install repolinter
-        run: npm install repolinter
+        run: npm install repolinter is-windows
       - name: Install licensee
         run: sudo gem install licensee
       - name: Run repolinter
