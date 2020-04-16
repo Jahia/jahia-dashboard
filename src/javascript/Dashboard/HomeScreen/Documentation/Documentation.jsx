@@ -16,7 +16,8 @@ const Documentation = props => {
         variables: {
             query: 'select * from [jnt:dashboardDoc] where isdescendantnode(\'/modules\') or isdescendantnode(\'/sites\') order by [lastEditDate] desc',
             displayLanguage: locale
-        }
+        },
+        fetchPolicy: 'network-only'
     });
 
     let docNodes = docNodesResult.data && docNodesResult.data.jcr && docNodesResult.data.jcr.result ? docNodesResult.data.jcr.result.docNodes : [];

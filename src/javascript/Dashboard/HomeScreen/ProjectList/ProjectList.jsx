@@ -17,7 +17,8 @@ const ProjectList = props => {
         variables: {
             query: 'select * from [jnt:virtualsite] where ischildnode(\'/sites\')',
             displayLanguage: locale
-        }
+        },
+        fetchPolicy: 'network-only'
     });
 
     if (error) {

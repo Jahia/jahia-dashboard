@@ -19,12 +19,14 @@ const HomeScreen = () => {
     const locale = useSelector(state => state.uilang);
     const dashboardData = useQuery(DashboardQuery, {
         variables: {
-        }
+        },
+        fetchPolicy: 'network-only'
     });
 
     const permissionsData = useQuery(PermissionsQuery, {
         variables: {
-        }
+        },
+        fetchPolicy: 'network-only'
     });
 
     if (dashboardData.error) {
