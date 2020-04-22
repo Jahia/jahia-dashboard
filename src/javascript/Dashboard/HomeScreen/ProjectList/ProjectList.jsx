@@ -100,7 +100,7 @@ const ProjectList = props => {
                         isCreateNewCard={siteNode.uuid === 'create-site'}
                         headerText={siteNode.displayName}
                         hoverIcon={siteNode.uuid === 'create-site' ? <AddIcon/> : <ArrowRightIcon/>}
-                        infoText={siteNode.description ? siteNode.description : t('jahia-dashboard:jahia-dashboard.projects.noDescription')}
+                        infoText={siteNode.site && siteNode.site.description ? siteNode.site.description : t('jahia-dashboard:jahia-dashboard.projects.noDescription')}
                         onClick={() => onClick()}
                     />
                 );
