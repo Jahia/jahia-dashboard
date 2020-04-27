@@ -26,6 +26,12 @@ const SiteNodesQuery = gql`
                     lastModified: property(name: "jcr:lastModified") {
                         longValue
                     }
+                    defaultLanguage:property(name:"j:defaultLanguage"){
+                        value
+                    }
+                    languages:property(name:"j:languages") {
+                        values
+                    }
                     ...NodeCacheRequiredFields
                 }
             }
