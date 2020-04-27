@@ -86,7 +86,8 @@ const ProjectList = props => {
             <div className={classnames('flexRow')}>
                 {siteNodes.map(siteNode => {
                     const onClick = () => {
-                        let siteUrl = '/page-composer/default/' + locale + '/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
+                        let siteLanguage = siteNode.languages.values.indexOf(locale) >= 0 ? locale : siteNode.defaultLanguage.value;
+                        let siteUrl = '/page-composer/default/' + siteLanguage + '/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
                         if (siteNode.uuid === 'create-site') {
                             siteUrl = '/administration/webProjectSettings';
                         }
