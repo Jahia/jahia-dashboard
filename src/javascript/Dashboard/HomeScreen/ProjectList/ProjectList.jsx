@@ -86,13 +86,14 @@ const ProjectList = props => {
             <div className={classnames('flexRow')}>
                 {siteNodes.map(siteNode => {
                     const onClick = () => {
-                        let siteLanguage = siteNode.languages && siteNode.languages.values.indexOf(locale) >= 0 ? locale : siteNode.defaultLanguage && siteNode.defaultLanguage.value;
-                        let siteUrl = '/page-composer/default/' + siteLanguage + '/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
                         if (siteNode.uuid === 'create-site') {
-                            siteUrl = '/administration/webProjectSettings';
+                            let siteUrl = '/administration/webProjectSettings';
+                            history.push(siteUrl);
+                        } else {
+                            let siteLanguage = siteNode.languages.values.indexOf(locale) >= 0 ? locale : siteNode.defaultLanguage.value;
+                            let siteUrl = '/page-composer/default/' + siteLanguage + '/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
+                            history.push(siteUrl);
                         }
-
-                        history.push(siteUrl);
                     };
 
                 return (
