@@ -3,7 +3,6 @@ import {Separator} from '@jahia/moonstone';
 import HomeIntro from './HomeIntro';
 import ProjectList from './ProjectList';
 import ModuleList from './ModuleList';
-import DevResources from './DevResources';
 import Documentation from './Documentation';
 import classnames from 'clsx';
 import styles from './HomeScreen.scss';
@@ -77,9 +76,6 @@ const HomeScreen = () => {
                 { developmentMode &&
                 <>
                     <ModuleList locale={locale} modules={myModules} t={t}/>
-                    <Spacing height="big"/>
-                    <Separator spacing="medium"/>
-                    <DevResources locale={locale} hasToolsAccess={hasToolsAccess} t={t}/>
                     <Spacing height="big"/>
                     <Separator spacing="medium"/>
                 </>}
