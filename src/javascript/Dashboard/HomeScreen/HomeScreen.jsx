@@ -57,7 +57,6 @@ const HomeScreen = () => {
 
     const availableModules = modules.map(module => module.id);
     const operatingMode = window.contextJsParameters.config.operatingMode;
-    const hasToolsAccess = dashboardData.data.dashboard.toolsAccess;
 
     const hasStudioAccessPermission = permissionsData.data.jcr.rootNode.studioModeAccess;
     const hasAdminVirtualSitesPermission = permissionsData.data.jcr.rootNode.adminVirtualSites;
