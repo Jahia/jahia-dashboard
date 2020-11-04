@@ -9,7 +9,7 @@
   "scripts": {
     "test": "env-cmd --no-override jest",
     "testcli": "jest",
-    "build": "yarn lint:fix && yarn webpack",
+    "build": "yarn webpack",
     "build:nolint": "yarn webpack",
     "dev": "yarn webpack --watch",
     "watch": "yarn webpack --watch",
@@ -38,6 +38,9 @@
     "@jahia/moonstone": "^0.15.8",
     "@jahia/react-material": "^2.1.1",
     "@jahia/ui-extender": "^0.4.0",
+    "@material-ui/core": "^3.6.2",
+    "@material-ui/icons": "^3.0.2",
+    "@material-ui/lab": "^3.0.0-alpha.16 ",
     "graphql-tag": "^2.10.3",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",

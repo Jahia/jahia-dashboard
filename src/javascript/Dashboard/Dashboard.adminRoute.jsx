@@ -6,6 +6,7 @@ import SiteWeb from '@jahia/moonstone/dist/icons/SiteWeb';
 import FileContent from '@jahia/moonstone/dist/icons/FileContent';
 import Workflow from '@jahia/moonstone/dist/icons/Workflow';
 import HomeScreen from './HomeScreen';
+import AccessKeys from './AccessKeys';
 
 export const registerAdminRoute = () => {
     registry.add('adminRoute', 'home', {
@@ -43,6 +44,14 @@ export const registerAdminRoute = () => {
         label: 'jahia-dashboard:jahia-dashboard.workspace.tasks',
         isSelectable: true,
         iframeUrl: `${window.contextJsParameters.contextPath}/cms/dashboardframe/default/$ui-lang/${window.contextJsParameters.user.path}.tasks.html`
+    });
+    registry.add('adminRoute', 'accessKeys', {
+        targets: ['dashboard:60'],
+        icon: null,
+        label: 'jahia-dashboard:jahia-dashboard.accessKey.label',
+        isSelectable: true,
+        route: '/dashboard/access-keys',
+        render: () => <AccessKeys/>
     });
 };
 

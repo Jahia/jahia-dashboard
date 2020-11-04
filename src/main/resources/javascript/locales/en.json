@@ -57,6 +57,9 @@
       "training" : "Training",
       "estimatedReadingTime" : "Estimated reading time : {{estimatedReadingTime}} min."
     },
+    "accessKey": {
+      "label": "My keys"
+    },
     "error" : {
       "queryingContent" : "Error querying content from Jahia: {{details}}"
     }
