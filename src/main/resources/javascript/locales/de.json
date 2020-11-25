@@ -1,0 +1,64 @@
+{
+  "jahia-dashboard": {
+    "label": "Dashboard",
+    "seeAll" : "Alles ansehen",
+    "workspace": {
+      "label": "Mein Workspace",
+      "home": "Home",
+      "files": "Meine Dateien",
+      "pages": "Meine Seiten",
+      "projects": "Meine Projekte",
+      "tasks": "Meine Aufgaben"
+    },
+    "intro" : {
+      "title" : "Willkommen bei Jahia 8, {{displayName}}",
+      "defaultMessage" : "Finden Sie auf dieser Seite Links und Ressourcen, die für Sie nützlich sein können: Schnellzugang zu Ihren Projekten, Links zur Dokumentation und Tutorials.",
+      "developmentMessage" : "Finden Sie auf dieser Seite Links und Ressourcen, die für Sie nützlich sein können: Schnellzugang zu Ihren Projekten und Modulen, als auch Links zu Entwickler-Tools, Dokumentation und Tutorials."
+    },
+    "projects" : {
+      "title" : "Meine Webprojekte",
+      "noDescription" : "Keine Beschreibung",
+      "createNew" : {
+        "title" : "Neu erstellen",
+        "description" : "Gehen Sie in die Administration, um ein neues Projekt zu erstellen."
+      }
+    },
+    "modules" : {
+      "title" : "Module",
+      "noModules" : "Sie haben im Moment keine Module erstellt. Wechseln Sie zu Studio, um Module zu erstellen."
+    },
+    "devResources" : {
+      "title" : "Entwickler-Ressourcen",
+      "studio": {
+        "title": "Studio",
+        "description": "Verwenden Sie Studio, um Module von Grund auf zu erstellen - von kundenspezifischen Definitionen zu Template Design."
+      },
+      "graphiql": {
+        "title": "GraphiQL",
+        "description": "Verwenden Sie GraphiQL, um das aktuelle GraphQL Schema zu entdecken und neue Queries zu erstellen und auszuführen."
+      },
+      "sdlgenerator": {
+        "title": "SDL Generator",
+        "description": "Verwenden Sie den SDL Generator um SDL Files zu erstellen, die Ihren Anforderungen entsprechen."
+      },
+      "sdlreport": {
+        "title": "SDL Report",
+        "description": "Verwenden Sie den SDL Report, um Ihre SDL Probleme zu beheben."
+      },
+      "jwt": {
+        "title": "JWT Tokens",
+        "description": "Hier klicken, um einen JWT Token zu erstellen und in Ihrer Applikation zu verwenden."
+      }
+    },
+    "documentation" : {
+      "intro": "Alle Ressourcen sind in englischer Sprache verfasst.",
+      "goToAcademy" : "Weiter zur Academy",
+      "academy" : "Academy",
+      "training" : "Training",
+      "estimatedReadingTime" : "Geschätzte Lese-Zeit : {{estimatedReadingTime}} Min."
+    },
+    "error" : {
+      "queryingContent" : "Es ist ein Fehler bei der Content-Abfrage von Jahia aufgetreten: {{details}}"
+    }
+  }
+}
