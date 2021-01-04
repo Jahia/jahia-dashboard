@@ -13,7 +13,7 @@
     "intro" : {
       "title" : "Welcome {{displayName}} to Jahia 8",
       "defaultMessage" : "Find links and resources we think will be useful for you in this page: quick access to the projects you can contribute to and links to documentation and tutorials",
-      "developmentMessage" : "Find links and resources we think will be useful for you in this page: quick access to the projects and modules you contribute to, as well as links to developer tools, documentation and tutorials"
+      "developmentMessage" : "Find useful links and resources here including quick access to the projects and modules you contribute to, and links to documentation and tutorials"
     },
     "projects" : {
       "title" : "My projects",
