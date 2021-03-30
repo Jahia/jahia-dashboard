@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 import {PredefinedFragments} from '@jahia/data-helper';
 
-const DashboardQuery = gql`
-    query WelcomeScreen {
+const WelcomeScreenWithPermissions = gql`
+    query WelcomeScreenWithPermissions {
         dashboard {
             toolsAccess
             modules {
@@ -13,11 +13,6 @@ const DashboardQuery = gql`
                 inDevelopment
             }
         }
-    }
-`;
-
-const PermissionsQuery = gql`
-    query WelcomeScreenPermissions {
         jcr {
             rootNode: nodeByPath(path: "/") {
                 studioModeAccess: hasPermission(permissionName: "studioModeAccess")
@@ -29,4 +24,4 @@ const PermissionsQuery = gql`
     ${PredefinedFragments.nodeCacheRequiredFields.gql}
 `;
 
-export {DashboardQuery, PermissionsQuery};
+export {WelcomeScreenWithPermissions};

@@ -7,7 +7,7 @@ import Documentation from './Documentation';
 import classnames from 'clsx';
 import styles from './HomeScreen.scss';
 import {useQuery} from '@apollo/react-hooks';
-import {DashboardQuery, PermissionsQuery} from './HomeScreen.gql-queries';
+import {WelcomeScreenWithPermissions} from './HomeScreen.gql-queries';
 import {ProgressOverlay} from '@jahia/react-material';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
@@ -16,50 +16,28 @@ import Spacing from './Spacing';
 const HomeScreen = () => {
     const {t} = useTranslation('jahia-dashboard');
     const locale = useSelector(state => state.uilang);
-    const dashboardData = useQuery(DashboardQuery, {
-        variables: {
-        },
-        fetchPolicy: 'network-only'
-    });
+    const {error, data, loading} = useQuery(WelcomeScreenWithPermissions, {fetchPolicy: 'network-only'});
 
-    const permissionsData = useQuery(PermissionsQuery, {
-        variables: {
-        },
-        fetchPolicy: 'network-only'
-    });
-
-    if (dashboardData.error) {
+    if (error) {
         const message = t(
             'jahia-dashboard:jahia-dashboard.error.queryingContent',
-            {details: dashboardData.error.message ? dashboardData.error.message : ''}
+            {details: error.message ? error.message : ''}
         );
-        return <>{message}</>;
+        return <p>{message}</p>;
     }
 
-    if (dashboardData.loading) {
+    if (loading) {
         return <ProgressOverlay/>;
     }
 
-    if (permissionsData.error) {
-        const message = t(
-            'jahia-dashboard:jahia-dashboard.error.queryingContent',
-            {details: permissionsData.error.message ? permissionsData.error.message : ''}
-        );
-        return <>{message}</>;
-    }
-
-    if (permissionsData.loading) {
-        return <ProgressOverlay/>;
-    }
-
-    const modules = dashboardData.data.dashboard.modules;
+    const modules = data.dashboard.modules;
     const myModules = modules.filter(module => module.inDevelopment === true);
 
     const availableModules = modules.map(module => module.id);
     const operatingMode = window.contextJsParameters.config.operatingMode;
 
-    const hasStudioAccessPermission = permissionsData.data.jcr.rootNode.studioModeAccess;
-    const hasAdminVirtualSitesPermission = permissionsData.data.jcr.rootNode.adminVirtualSites;
+    const hasStudioAccessPermission = data.jcr.rootNode.studioModeAccess;
+    const hasAdminVirtualSitesPermission = data.jcr.rootNode.adminVirtualSites;
 
     const developmentMode = operatingMode === 'development' && hasStudioAccessPermission;
 
