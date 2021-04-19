@@ -28,7 +28,7 @@ public class GqlDashboard {
     @GraphQLOsgiService
     private JCRTemplate jcrTemplate;
 
-    private static Logger logger = LoggerFactory.getLogger(GqlDashboard.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GqlDashboard.class);
 
     JahiaTemplateManagerService jahiaTemplateManagerService = BundleUtils.getOsgiService(JahiaTemplateManagerService.class, null);
 
@@ -51,7 +51,7 @@ public class GqlDashboard {
                 return Collections.emptyList();
             }
         } catch (RepositoryException e) {
-            logger.error("Encountered Repository Exception:", e);
+            LOGGER.error("Encountered Repository Exception:", e);
         }
         Map<Bundle, ModuleState> moduleStatesByBundle = jahiaTemplateManagerService.getModuleStates();
         List<GqlModule> modules = new ArrayList<>();
