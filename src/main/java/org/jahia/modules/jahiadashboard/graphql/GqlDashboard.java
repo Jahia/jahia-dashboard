@@ -4,16 +4,29 @@ import graphql.annotations.annotationTypes.GraphQLDescription;
 import graphql.annotations.annotationTypes.GraphQLField;
 import org.jahia.data.templates.JahiaTemplatesPackage;
 import org.jahia.data.templates.ModuleState;
+import org.jahia.modules.graphql.provider.dxm.osgi.annotations.GraphQLOsgiService;
 import org.jahia.osgi.BundleUtils;
+import org.jahia.services.content.JCRSessionWrapper;
+import org.jahia.services.content.JCRTemplate;
 import org.jahia.services.templates.JahiaTemplateManagerService;
+import org.jahia.services.usermanager.JahiaUserManagerService;
 import org.jahia.settings.SettingsBean;
 import org.osgi.framework.Bundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import javax.inject.Inject;
+import javax.jcr.RepositoryException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class GqlDashboard {
+
+    @Inject
+    @GraphQLOsgiService
+    private JCRTemplate jcrTemplate;
 
     private static Logger logger = LoggerFactory.getLogger(GqlDashboard.class);
 
@@ -32,6 +45,14 @@ public class GqlDashboard {
     @GraphQLField
     @GraphQLDescription("Retrieves the list of modules currently available on the platform")
     public List<GqlModule> getModules() {
+        try {
+            JCRSessionWrapper session = jcrTemplate.getSessionFactory().getCurrentUserSession();
+            if (session == null || JahiaUserManagerService.isGuest(session.getUser())) {
+                return Collections.emptyList();
+            }
+        } catch (RepositoryException e) {
+            logger.error("Encountered Repository Exception:", e);
+        }
         Map<Bundle, ModuleState> moduleStatesByBundle = jahiaTemplateManagerService.getModuleStates();
         List<GqlModule> modules = new ArrayList<>();
         for (Map.Entry<Bundle, ModuleState> moduleState : moduleStatesByBundle.entrySet()) {
@@ -45,19 +66,8 @@ public class GqlDashboard {
             }
             modules.add(new GqlModule(jahiaModule.getId(), jahiaModule.getName(), jahiaModule.getDescription(), jahiaModule.getVersion().toString(), jahiaModule.getBundle().getLastModified(), inDevelopment));
         }
-        modules.sort(new Comparator<GqlModule>() {
-            @Override
-            public int compare(GqlModule o1, GqlModule o2) {
-                if (o1.getLastModified() < o2.getLastModified()) {
-                    return 1;
-                }
-                if (o1.getLastModified() > o2.getLastModified()) {
-                    return -1;
-                }
-                return 0;
-            }
-        });
+        modules.sort((o1, o2) -> Long.compare(o2.getLastModified(), o1.getLastModified()));
         return modules;
     }
-
 }
+
