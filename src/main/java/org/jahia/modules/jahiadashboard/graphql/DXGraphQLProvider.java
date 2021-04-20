@@ -5,6 +5,7 @@ import org.osgi.service.component.annotations.Component;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Main GraphQL extension provider for the Jahia Dashboard
@@ -14,6 +15,6 @@ public class DXGraphQLProvider implements DXGraphQLExtensionsProvider {
 
     @Override
     public Collection<Class<?>> getExtensions() {
-        return Arrays.<Class<?>>asList(QueryExtensions.class);
+        return Collections.singletonList(QueryExtensions.class);
     }
 }
