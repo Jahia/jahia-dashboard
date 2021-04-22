@@ -2,24 +2,39 @@ import React, {Suspense} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'clsx';
 import {useQuery} from '@apollo/react-hooks';
-import {SiteNodesQuery} from './ProjectList.gql-queries';
+import {getSiteNodesQuery} from './ProjectList.gql-queries';
 import {ProgressOverlay} from '@jahia/react-material';
 import Card from '../Card';
 import SectionHeader from '../SectionHeader';
 import {useHistory} from 'react-router-dom';
 import ArrowRightIcon from '@jahia/moonstone/dist/icons/ArrowRight';
 import AddIcon from '@jahia/moonstone/dist/icons/Add';
+import Constants from '../../Dashboard.constants';
+import {async} from "rxjs/internal/scheduler/async";
 
-const ProjectList = props => {
-    const {t, isAdmin, locale} = props;
-    const history = useHistory();
-    const {data, error, loading} = useQuery(SiteNodesQuery, {
+const hasData = data => data && data.jcr && data.jcr.result &&
+    data.jcr.result.siteNodes.filter(node => node.hasPermission && node.name !== 'systemsite').length > 0;
+
+const getQuery = async (permission) => {
+    return useQuery(getSiteNodesQuery(permission), {
         variables: {
             query: 'select * from [jnt:virtualsite] where ischildnode(\'/sites\')',
             displayLanguage: locale
         },
         fetchPolicy: 'network-only'
     });
+}
+
+const ProjectList = props => {
+    const {t, isAdmin, locale} = props;
+    const history = useHistory();
+    const {data: pageComposerData, error: pageComposerError, loading: pageComposerLoading} = getQuery('pageComposerAccess');
+    const {data: jContentData, error: jContentError, loading: jContentLoading} = getQuery('jContentAccess');
+
+    let data = hasData(pageComposerData) ? pageComposerData : jContentData;
+    let error = hasData(pageComposerData) ? pageComposerError : jContentError;
+    let loading = hasData(pageComposerData) ? pageComposerLoading : jContentLoading;
+    let siteType = hasData(pageComposerData) ? Constants.SITE_TYPE.PAGE_COMPOSER : Constants.SITE_TYPE.JCONTENT;
 
     if (error) {
         const message = t(
@@ -91,7 +106,18 @@ const ProjectList = props => {
                             history.push(siteUrl);
                         } else {
                             let siteLanguage = siteNode.languages.values.indexOf(locale) >= 0 ? locale : siteNode.defaultLanguage.value;
-                            let siteUrl = '/page-composer/default/' + siteLanguage + '/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
+                            let siteUrl = '';
+                            switch (siteType) {
+                                case Constants.SITE_TYPE.PAGE_COMPOSER:
+                                    siteUrl = '/page-composer/default/' + siteLanguage + '/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
+                                    break;
+                                case Constants.SITE_TYPE.JCONTENT:
+                                    siteUrl = '/jcontent/' + siteNode.name + '/' + siteLanguage + '/pages/' + siteNode.homePageName;
+                                    break;
+                                default:
+                                    break;
+                            }
+
                             history.push(siteUrl);
                         }
                     };

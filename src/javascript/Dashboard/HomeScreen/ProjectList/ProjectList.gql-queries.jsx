@@ -1,13 +1,13 @@
 import gql from 'graphql-tag';
 import {PredefinedFragments} from '@jahia/data-helper';
 
-const SiteNodesQuery = gql`
+const getSiteNodesQuery = permission => (gql`
     query SiteNodes($query: String!, $displayLanguage:String!) {
         jcr {
             result:nodesByQuery(query: $query) {
                 siteNodes:nodes {
                     name
-                    hasPermission(permissionName: "jContentAccess")
+                    hasPermission(permissionName: "${permission}")
                     displayName(language: $displayLanguage)
                     site {
                         description
@@ -38,6 +38,6 @@ const SiteNodesQuery = gql`
         }
     }
     ${PredefinedFragments.nodeCacheRequiredFields.gql}
-`;
+`);
 
-export {SiteNodesQuery};
+export {getSiteNodesQuery};
