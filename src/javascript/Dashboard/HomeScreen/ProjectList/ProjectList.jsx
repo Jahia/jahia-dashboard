@@ -10,26 +10,21 @@ import {useHistory} from 'react-router-dom';
 import ArrowRightIcon from '@jahia/moonstone/dist/icons/ArrowRight';
 import AddIcon from '@jahia/moonstone/dist/icons/Add';
 import Constants from '../../Dashboard.constants';
-import {async} from "rxjs/internal/scheduler/async";
 
 const hasData = data => data && data.jcr && data.jcr.result &&
     data.jcr.result.siteNodes.filter(node => node.hasPermission && node.name !== 'systemsite').length > 0;
 
-const getQuery = async (permission) => {
-    return useQuery(getSiteNodesQuery(permission), {
-        variables: {
-            query: 'select * from [jnt:virtualsite] where ischildnode(\'/sites\')',
-            displayLanguage: locale
-        },
-        fetchPolicy: 'network-only'
-    });
-}
-
 const ProjectList = props => {
     const {t, isAdmin, locale} = props;
     const history = useHistory();
-    const {data: pageComposerData, error: pageComposerError, loading: pageComposerLoading} = getQuery('pageComposerAccess');
-    const {data: jContentData, error: jContentError, loading: jContentLoading} = getQuery('jContentAccess');
+    const variables = {
+        query: 'select * from [jnt:virtualsite] where ischildnode(\'/sites\')',
+        displayLanguage: locale
+    };
+    const fetchPolicy = 'network-only';
+    const useQueryOptions = {variables, fetchPolicy};
+    const {data: pageComposerData, error: pageComposerError, loading: pageComposerLoading} = useQuery(getSiteNodesQuery('pageComposerAccess'), useQueryOptions);
+    const {data: jContentData, error: jContentError, loading: jContentLoading} = useQuery(getSiteNodesQuery('jContentAccess'), useQueryOptions);
 
     let data = hasData(pageComposerData) ? pageComposerData : jContentData;
     let error = hasData(pageComposerData) ? pageComposerError : jContentError;
