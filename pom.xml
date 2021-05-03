@@ -53,7 +53,7 @@
     </parent>
     <artifactId>jahia-dashboard</artifactId>
     <name>jahia-dashboard</name>
-    <version>1.2.0</version>
+    <version>1.2.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description>This is the custom module (jahia-dashboard) for running on a Jahia server.</description>
 
@@ -61,13 +61,14 @@
         <connection>scm:git:https://github.com/Jahia/jahia-dashboard</connection>
         <developerConnection>scm:git:git@github.com:Jahia/jahia-dashboard.git</developerConnection>
         <url>https://github.com/Jahia/jahia-dashboard</url>
-        <tag>1_2_0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
         <jahia-depends>default,tags</jahia-depends>
         <jahia-module-type>system</jahia-module-type>
         <jahia-module-signature>MC0CFCfGNLdutsGAYcsuNb21Pio297czAhUAlMK9sqi26BUmvSiJ3DlK73MsiTg=</jahia-module-signature>
+        <jahia.nexus.staging.repository.id>1b7030912bcbea1</jahia.nexus.staging.repository.id>
         <yarn.arguments>build:production</yarn.arguments>
     </properties>
 
