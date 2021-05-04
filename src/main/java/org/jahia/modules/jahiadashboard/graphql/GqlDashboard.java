@@ -4,7 +4,6 @@ import graphql.annotations.annotationTypes.GraphQLDescription;
 import graphql.annotations.annotationTypes.GraphQLField;
 import org.jahia.data.templates.JahiaTemplatesPackage;
 import org.jahia.data.templates.ModuleState;
-import org.jahia.modules.graphql.provider.dxm.osgi.annotations.GraphQLOsgiService;
 import org.jahia.osgi.BundleUtils;
 import org.jahia.services.content.JCRSessionWrapper;
 import org.jahia.services.content.JCRTemplate;
@@ -15,7 +14,6 @@ import org.osgi.framework.Bundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,9 +22,7 @@ import java.util.Map;
 
 public class GqlDashboard {
 
-    @Inject
-    @GraphQLOsgiService
-    private JCRTemplate jcrTemplate;
+    private final JCRTemplate jcrTemplate = BundleUtils.getOsgiService(org.jahia.services.content.JCRTemplate.class, null);;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GqlDashboard.class);
 

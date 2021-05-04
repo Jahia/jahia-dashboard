@@ -53,7 +53,7 @@
     </parent>
     <artifactId>jahia-dashboard</artifactId>
     <name>jahia-dashboard</name>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>1.2.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description>This is the custom module (jahia-dashboard) for running on a Jahia server.</description>
 
@@ -67,7 +67,7 @@
     <properties>
         <jahia-depends>default,tags</jahia-depends>
         <jahia-module-type>system</jahia-module-type>
-        <jahia-module-signature>MCwCFGTvOgVs7sxN3NwKSiGAiVoRPqw+AhRlVxNQjTtfbU8niy99BHi2SIYHjA==</jahia-module-signature>
+        <jahia-module-signature>MCwCFAXJfqU4AexKLyMtxVElQ+qQS3DKAhQs8p76v76Se+U/IMDla9Xu3bscFQ==</jahia-module-signature>
         <yarn.arguments>build:production</yarn.arguments>
     </properties>
 
@@ -121,7 +121,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>graphql-dxm-provider</artifactId>
-            <version>2.2.3</version>
+            <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
 
