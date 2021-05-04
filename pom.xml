@@ -67,7 +67,7 @@
     <properties>
         <jahia-depends>default,tags</jahia-depends>
         <jahia-module-type>system</jahia-module-type>
-        <jahia-module-signature>MC0CFCfGNLdutsGAYcsuNb21Pio297czAhUAlMK9sqi26BUmvSiJ3DlK73MsiTg=</jahia-module-signature>
+        <jahia-module-signature>MCwCFGTvOgVs7sxN3NwKSiGAiVoRPqw+AhRlVxNQjTtfbU8niy99BHi2SIYHjA==</jahia-module-signature>
         <yarn.arguments>build:production</yarn.arguments>
     </properties>
 
