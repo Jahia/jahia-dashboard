@@ -67,8 +67,16 @@ jobs:
       - image: cimg/openjdk:8.0.275
     steps:
       - *attach-workspace
+      - restore_cache:
+            keys:
+              - v2-dependencies-{{ checksum "pom.xml" }}
+              # fallback to using the latest cache if no exact match is found
+              - v2-dependencies-
       - run: mvn -s .circleci/.circleci.settings.xml clean install
-      - run: mvn -s .circleci/.circleci.settings.xml dependency:copy-dependencies
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v2-dependencies-{{ checksum "pom.xml" }}
       - run:
           name: Prepare artifacts
           command: |
@@ -214,7 +222,7 @@ jobs:
               - v1-maven-dependencies-
         - add_ssh_keys:
             fingerprints:
-              - "24:b2:4c:c5:be:a9:fd:b4:28:6f:5c:9d:9e:6e:d4:10"
+              - "17:9b:4d:af:37:69:29:a0:d1:9a:bd:8a:c3:47:c7:19"
         - run:
             name: Getting latest changes from the remote branch
             command: |
