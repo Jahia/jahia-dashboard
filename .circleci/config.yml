@@ -214,7 +214,7 @@ jobs:
               - v1-maven-dependencies-
         - add_ssh_keys:
             fingerprints:
-              - "24:74:89:93:4f:a2:5f:9f:a9:85:1d:68:c2:15:5e:33"
+              - "24:b2:4c:c5:be:a9:fd:b4:28:6f:5c:9d:9e:6e:d4:10"
         - run:
             name: Getting latest changes from the remote branch
             command: |
