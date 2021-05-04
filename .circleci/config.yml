@@ -261,9 +261,6 @@ jobs:
         - run:
             name: Update github release for id << pipeline.parameters.RELEASE_ID >>
             command: |
-              yarn
-              yarn add auto
-              GH_TOKEN=${GITHUB_API_TOKEN} yarn auto changelog
               curl -X PATCH \
               -H "Accept:application/vnd.github.v3+json" \
               -d "{\"tag_name\":\"<<pipeline.parameters.RELEASE_VERSION>>\", \"prerelease\": false, \"draft\": false}" -u \
