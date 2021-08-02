@@ -67,8 +67,10 @@
     <properties>
         <jahia-depends>default,tags</jahia-depends>
         <jahia-module-type>system</jahia-module-type>
-        <jahia-module-signature>MCwCFDIDlhdhGlbJREe8hp92JLfRk7oxAhQ1/hSMnYoQ2rzBubXFX+lnCdo8Gw==</jahia-module-signature>
+        <jahia-module-signature>MCwCFBdeZla3OMdIt33DFnEA55yPL+TCAhRbtxonVkYzj/plusRjR1ZdXZsDhA==</jahia-module-signature>
+        <import-package>graphql.annotations.annotationTypes;version="[6.1,9)"</import-package>
         <yarn.arguments>build:production</yarn.arguments>
+        <jahia.plugin.version>5.17-SNAPSHOT</jahia.plugin.version>
     </properties>
 
     <repositories>
@@ -196,7 +198,6 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Import-Package>org.jahia.modules.graphql.provider.dxm;version="1.1.0",${jahia.plugin.projectPackageImport},*</Import-Package>
                         <_dsannotations>*</_dsannotations>
                     </instructions>
                 </configuration>
