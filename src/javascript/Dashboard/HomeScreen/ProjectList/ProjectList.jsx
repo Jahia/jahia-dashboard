@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'clsx';
 import {useQuery} from '@apollo/react-hooks';
 import {getSiteNodesQuery} from './ProjectList.gql-queries';
-import {ProgressOverlay} from '@jahia/react-material';
+import {Loader} from '@jahia/moonstone';
 import Card from '../Card';
 import SectionHeader from '../SectionHeader';
 import {useHistory} from 'react-router-dom';
@@ -40,7 +40,7 @@ const ProjectList = props => {
     }
 
     if (loading) {
-        return <ProgressOverlay/>;
+        return <Loader/>;
     }
 
     const siteNodes = data && data.jcr && data.jcr.result ? data.jcr.result.siteNodes
