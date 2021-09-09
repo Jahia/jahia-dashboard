@@ -69,7 +69,7 @@ const Documentation = props => {
     }
 
     if (docNodesResult.loading || nodeChecksResult.loading) {
-        return <Loader/>;
+        return <div className="flexCol_center alignCenter flexFluid"><Loader size="big"/></div>;
     }
 
     const userPermissions = {};

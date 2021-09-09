@@ -27,7 +27,7 @@ const HomeScreen = () => {
     }
 
     if (loading) {
-        return <Loader/>;
+        return <div className="flexCol_center alignCenter flexFluid"><Loader size="big"/></div>;
     }
 
     const modules = data.dashboard.modules;

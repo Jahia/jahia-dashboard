@@ -40,7 +40,7 @@ const ProjectList = props => {
     }
 
     if (loading) {
-        return <Loader/>;
+        return <div className="flexCol_center alignCenter flexFluid"><Loader size="big"/></div>;
     }
 
     const siteNodes = data && data.jcr && data.jcr.result ? data.jcr.result.siteNodes
