@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import {useQuery} from '@apollo/react-hooks';
 import {DocumentationNodesQuery} from './Documentation.gql-queries';
-import {ProgressOverlay} from '@jahia/react-material';
+import {Loader} from '@jahia/moonstone';
 import PropTypes from 'prop-types';
 import DocCard from '../DocCard';
 import classnames from 'clsx';
@@ -69,7 +69,7 @@ const Documentation = props => {
     }
 
     if (docNodesResult.loading || nodeChecksResult.loading) {
-        return <ProgressOverlay/>;
+        return <div className="flexCol_center alignCenter flexFluid"><Loader size="big"/></div>;
     }
 
     const userPermissions = {};

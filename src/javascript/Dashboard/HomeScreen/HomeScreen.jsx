@@ -8,7 +8,7 @@ import classnames from 'clsx';
 import styles from './HomeScreen.scss';
 import {useQuery} from '@apollo/react-hooks';
 import {WelcomeScreenWithPermissions} from './HomeScreen.gql-queries';
-import {ProgressOverlay} from '@jahia/react-material';
+import {Loader} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
 import Spacing from './Spacing';
@@ -27,7 +27,7 @@ const HomeScreen = () => {
     }
 
     if (loading) {
-        return <ProgressOverlay/>;
+        return <div className="flexCol_center alignCenter flexFluid"><Loader size="big"/></div>;
     }
 
     const modules = data.dashboard.modules;
