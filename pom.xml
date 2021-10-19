@@ -67,7 +67,7 @@
     <properties>
         <jahia-depends>default,tags</jahia-depends>
         <jahia-module-type>system</jahia-module-type>
-        <jahia-module-signature>MC0CFQCGCpVVh/sp0oYRgB51s/BfMnEpjAIUChi3Yggk6wVXNgL3U+ZF2AMAQjY=</jahia-module-signature>
+        <jahia-module-signature>MCwCFBdeZla3OMdIt33DFnEA55yPL+TCAhRbtxonVkYzj/plusRjR1ZdXZsDhA==</jahia-module-signature>
         <import-package>
             graphql.annotations.annotationTypes;version="[6.5,9)",
             javax.inject,
