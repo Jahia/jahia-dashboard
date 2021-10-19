@@ -49,11 +49,11 @@
     <parent>
         <artifactId>jahia-modules</artifactId>
         <groupId>org.jahia.modules</groupId>
-        <version>8.1.0.0</version>
+        <version>8.1.0.0-SNAPSHOT</version>
     </parent>
     <artifactId>jahia-dashboard</artifactId>
     <name>jahia-dashboard</name>
-    <version>1.5.0-SNAPSHOT</version>
+    <version>1.4.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description>This is the custom module (jahia-dashboard) for running on a Jahia server.</description>
 
@@ -132,7 +132,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>graphql-dxm-provider</artifactId>
-            <version>2.7.0</version>
+            <version>2.7.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
