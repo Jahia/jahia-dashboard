@@ -11,15 +11,17 @@ const getSiteNodesQuery = permission => (gql`
                     displayName(language: $displayLanguage)
                     site {
                         description
+                        homePage {
+                            path
+                            name
+                            ...NodeCacheRequiredFields
+                        }
                         ...NodeCacheRequiredFields
                     }
                     children(typesFilter: {multi: ALL, types: ["jnt:page"]}) {
                         nodes {
                             name
                             path
-                            isHomePage: property(name: "j:isHomePage") {
-                                value
-                            }
                             ...NodeCacheRequiredFields
                         }
                     }
