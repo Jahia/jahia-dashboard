@@ -65,13 +65,6 @@ const ProjectList = props => {
             }
 
             return 0;
-        }).map(siteNode => {
-            const homePageNode = siteNode.children.nodes.find(childPage => {
-                return childPage.isHomePage && childPage.isHomePage.value && childPage.isHomePage.value === 'true';
-            });
-            siteNode.homePageName = homePageNode.name;
-            siteNode.homePagePath = homePageNode.path;
-            return siteNode;
         }) : [];
 
     if (isAdmin) {
@@ -104,10 +97,10 @@ const ProjectList = props => {
                             let siteUrl = '';
                             switch (siteType) {
                                 case Constants.SITE_TYPE.PAGE_COMPOSER:
-                                    siteUrl = '/page-composer/default/' + siteLanguage + '/sites/' + siteNode.name + '/' + siteNode.homePageName + '.html';
+                                    siteUrl = '/page-composer/default/' + siteLanguage + '/sites/' + siteNode.name + '/' + siteNode.homePage.name + '.html';
                                     break;
                                 case Constants.SITE_TYPE.JCONTENT:
-                                    siteUrl = '/jcontent/' + siteNode.name + '/' + siteLanguage + '/pages/' + siteNode.homePageName;
+                                    siteUrl = '/jcontent/' + siteNode.name + '/' + siteLanguage + '/pages/' + siteNode.homePage.name;
                                     break;
                                 default:
                                     break;
