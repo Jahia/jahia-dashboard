@@ -49,6 +49,9 @@
     "redux": "^4.0.0",
     "redux-actions": "^2.6.5"
   },
+  "resolutions": {
+    "*/**/minimist": "1.2.6"
+  },
   "devDependencies": {
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",
