@@ -7,8 +7,6 @@
     }
   },
   "scripts": {
-    "test": "env-cmd --no-override jest",
-    "testcli": "jest",
     "build": "yarn lint:fix && yarn webpack",
     "build:nolint": "yarn webpack",
     "dev": "yarn webpack --watch",
@@ -47,7 +45,8 @@
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.0",
-    "redux-actions": "^2.6.5"
+    "redux-actions": "^2.6.5",
+    "sass": "^1.54.0"
   },
   "resolutions": {
     "*/**/minimist": "1.2.6"
@@ -79,21 +78,14 @@
     "eslint-plugin-react-hooks": "^2.5.0",
     "file-loader": "^6.2.0",
     "husky": "^3.0.9",
-    "jest": "^24.9.0",
     "jest-image-snapshot": "^2.11.0",
-    "jest-puppeteer": "^4.3.0",
     "jest-teamcity-reporter": "github:mhodgson/jest-teamcity-reporter",
-    "node-sass": "^6.0.1",
     "path": "^0.12.7",
-    "puppeteer": "^2.0.0",
-    "puppeteer-edge": "^0.12.4",
-    "puppeteer-firefox": "^0.5.0",
     "rimraf": "^3.0.0",
     "sass-loader": "^12.1.0",
     "style-loader": "^1.0.0",
     "stylelint": "^13.2.0",
     "webpack": "^5.52.0",
-    "webpack-bundle-analyzer": "^3.5.2",
     "webpack-cli": "^4.8.0"
   }
 }
