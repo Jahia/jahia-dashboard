@@ -7,6 +7,7 @@ import {Route, Switch} from 'react-router';
 import Work from '@jahia/moonstone/dist/icons/Work';
 import {useAdminRouteTreeStructure} from '@jahia/ui-extender';
 import PropTypes from 'prop-types';
+import {useNodeInfo} from '@jahia/data-helper';
 
 const getPageId = match => {
     let matchByRoute = registry.find({type: 'adminRoute', route: match.url});
@@ -28,9 +29,13 @@ export const DashBoard = ({match}) => {
     const itemId = 'myWorkspace';
 
     const selectedPage = getPageId(match);
-    const {tree, routes, defaultOpenedItems} = useAdminRouteTreeStructure('dashboard', selectedPage);
+    const {tree, routes, defaultOpenedItems, allPermissions} = useAdminRouteTreeStructure('dashboard', selectedPage);
+    const {node} = useNodeInfo({path: '/'}, {
+        getPermissions: allPermissions
+    });
 
     const data = tree
+        .filter(route => route.requiredPermission === undefined || (node && (node[route.requiredPermission] !== false)))
         .map(route => ({
             id: route.key,
             label: t(route.label),
