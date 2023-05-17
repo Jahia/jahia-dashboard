@@ -6,7 +6,7 @@ import Constants from './Dashboard.constants';
 import Home from '@jahia/moonstone/dist/icons/Home';
 import {useSelector} from 'react-redux';
 
-export const DashboardGroup = props => {
+export const DashboardItem = props => {
     const history = useHistory();
     const {t} = useTranslation('jahia-dashboard');
     const current = useSelector(state => ({lastVisitedPath: state.dashboard.path}));
@@ -18,7 +18,6 @@ export const DashboardGroup = props => {
     return (
         <PrimaryNavItem key={Constants.ROUTE}
                         {...props}
-                        role="dashboard-menu-item"
                         isSelected={history.location.pathname.startsWith(Constants.ROUTE)}
                         label={t('jahia-dashboard.label')}
                         icon={<Home/>}
