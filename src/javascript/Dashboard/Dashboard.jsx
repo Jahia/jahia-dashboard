@@ -9,6 +9,11 @@ import {useAdminRouteTreeStructure} from '@jahia/ui-extender';
 import PropTypes from 'prop-types';
 import {useNodeInfo} from '@jahia/data-helper';
 
+const getRegistryTarget = function (item, target) {
+    const foundTarget = item.targets.find(t => t.id === target || t.id.startsWith(target + '-'));
+    return foundTarget.id + ':' + foundTarget.priority;
+};
+
 const getPageId = match => {
     let matchByRoute = registry.find({type: 'adminRoute', route: match.url});
     if (matchByRoute.length > 0) {
@@ -43,7 +48,9 @@ export const DashBoard = ({match}) => {
             iconStart: route.icon,
             route: route.route,
             treeItemProps: {
-                'data-sel-role': route.key
+                'data-sel-role': route.key,
+                'data-registry-key': route.type + ':' + route.key,
+                'data-registry-target': getRegistryTarget(route, 'dashboard')
             }
         }))
         .getData();
