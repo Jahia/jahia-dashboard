@@ -89,7 +89,7 @@
     "style-loader": "^1.0.0",
     "stylelint": "^13.2.0",
     "sync-pom-version-to-package": "^1.6.1",
-    "webpack": "^5.52.0",
+    "webpack": "^5.88.2",
     "webpack-cli": "^4.8.0"
   }
 }
