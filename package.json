@@ -1,6 +1,6 @@
 {
   "name": "@jahia/jahia-dashboard",
-  "version": "0.0.1",
+  "version": "1.9.0-SNAPSHOT",
   "husky": {
     "hooks": {
       "pre-push": "yarn lint:fix"
@@ -17,8 +17,8 @@
     "build:production-analyze": "yarn build --mode=production --analyze",
     "clean": "rimraf *.log src/main/resources/javascript/apps",
     "clean:all": "yarn clean && rimraf node_modules node",
-    "lint": "eslint --ext js,jsx,json . && stylelint './src/**/*.scss'",
-    "lint:fix": "eslint --ext js,jsx,json --fix . && stylelint --fix './src/**/*.scss'",
+    "lint": "eslint --ext js,jsx,json . && stylelint \"./src/**/*.scss\"",
+    "lint:fix": "eslint --ext js,jsx,json --fix . && stylelint --fix \"./src/**/*.scss\"",
     "sync-pom": "sync-pom-version --use-yarn"
   },
   "main": "index.js",
@@ -63,6 +63,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/runtime": "^7.5.4",
+    "@cyclonedx/webpack-plugin": "^3.6.1",
     "@jahia/eslint-config": "^1.1.0",
     "@jahia/stylelint-config": "^0.0.3",
     "@jahia/test-framework": "^1.1.5",
@@ -88,7 +89,7 @@
     "style-loader": "^1.0.0",
     "stylelint": "^13.2.0",
     "sync-pom-version-to-package": "^1.6.1",
-    "webpack": "^5.52.0",
+    "webpack": "^5.88.2",
     "webpack-cli": "^4.8.0"
   }
 }
