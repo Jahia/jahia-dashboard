@@ -49,7 +49,7 @@
         <jahia-module-type>system</jahia-module-type>
         <jahia-module-signature>MCwCFE3jQr0byUsB1H5e5H/Gwh0xGVg6AhQKla1qHv7ZQ9d0owxW7zWpSo0GhQ==</jahia-module-signature>
         <import-package>
-            graphql.annotations.annotationTypes;version="[6.5,9)",
+            graphql.annotations.annotationTypes;version="[6.5,99)",
             javax.inject,
             javax.jcr;version="[2.0,3)",
             org.jahia.data.templates,
