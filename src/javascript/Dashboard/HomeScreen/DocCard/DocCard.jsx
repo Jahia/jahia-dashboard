@@ -39,10 +39,10 @@ const DocCard = ({
                 </Typography>
                 {estimatedReadingTime &&
                     <Typography variant="caption">
-                        <div className={classnames(styles.readingTime)}>
+                        <span className={classnames(styles.readingTime)}>
                             <ClockIcon size="small" className={classnames(styles.clockIcon)}/>
                             <span>{estimatedReadingTime}</span>
-                        </div>
+                        </span>
                     </Typography>}
                 <div>
                     {tags ? tags.map(tag => <Tag key={tag} name={tag}/>) : ''}
@@ -88,7 +88,7 @@ DocCard.defaultProps = {
 
 DocCard.propTypes = {
     headerText: PropTypes.string,
-    estimatedReadingTime: PropTypes.number,
+    estimatedReadingTime: PropTypes.string,
     tags: PropTypes.array,
     infoText: PropTypes.string,
     academyUrl: PropTypes.string,
