@@ -9,10 +9,10 @@ import {useSelector} from 'react-redux';
 export const DashboardItem = props => {
     const history = useHistory();
     const {t} = useTranslation('jahia-dashboard');
-    const current = useSelector(state => ({lastVisitedPath: state.dashboard.path}));
+    const current = useSelector(state => state.dashboard.path);
     let route = `${Constants.ROUTE}${Constants.ROUTE_DEFAULT_PATH}`;
-    if (current.lastVisitedPath !== '') {
-        route = current.lastVisitedPath;
+    if (current !== '') {
+        route = current;
     }
 
     return (
