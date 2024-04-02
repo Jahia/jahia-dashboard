@@ -2,7 +2,6 @@ import React, {Suspense} from 'react';
 import {Separator} from '@jahia/moonstone';
 import HomeIntro from './HomeIntro';
 import ProjectList from './ProjectList';
-import ModuleList from './ModuleList';
 import Documentation from './Documentation';
 import classnames from 'clsx';
 import styles from './HomeScreen.scss';
@@ -31,7 +30,6 @@ const HomeScreen = () => {
     }
 
     const modules = data.dashboard.modules;
-    const myModules = modules.filter(module => module.inDevelopment === true);
 
     const availableModules = modules.map(module => module.id);
     const operatingMode = window.contextJsParameters.config.operatingMode;
@@ -50,12 +48,6 @@ const HomeScreen = () => {
                 <ProjectList locale={locale} t={t} isAdmin={hasAdminVirtualSitesPermission}/>
                 <Spacing height="big"/>
                 <Separator spacing="medium"/>
-                { developmentMode &&
-                <>
-                    <ModuleList locale={locale} modules={myModules} t={t}/>
-                    <Spacing height="big"/>
-                    <Separator spacing="medium"/>
-                </>}
                 <Documentation locale={locale} t={t} operatingMode={operatingMode} availableModules={availableModules}/>
                 <Spacing height="big"/>
             </div>

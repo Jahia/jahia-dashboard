@@ -14,7 +14,7 @@ const Documentation = props => {
     const {t, locale, operatingMode, availableModules} = props;
     const docNodesResult = useQuery(DocumentationNodesQuery, {
         variables: {
-            query: 'select * from [jnt:dashboardDoc] where isdescendantnode(\'/modules\') or isdescendantnode(\'/sites\') order by [lastEditDate] desc',
+            query: 'select * from [jnt:dashboardDoc] where isdescendantnode(\'/modules\') or isdescendantnode(\'/sites\') order by [position] asc',
             displayLanguage: locale
         },
         fetchPolicy: 'network-only'
