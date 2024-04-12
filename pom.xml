@@ -33,7 +33,7 @@
     </parent>
     <artifactId>jahia-dashboard</artifactId>
     <name>jahia-dashboard</name>
-    <version>1.9.0-SNAPSHOT</version>
+    <version>1.9.0</version>
     <packaging>bundle</packaging>
     <description>This is the custom module (jahia-dashboard) for running on a Jahia server.</description>
 
@@ -41,7 +41,7 @@
         <connection>scm:git:https://github.com/Jahia/jahia-dashboard</connection>
         <developerConnection>scm:git:git@github.com:Jahia/jahia-dashboard.git</developerConnection>
         <url>https://github.com/Jahia/jahia-dashboard</url>
-        <tag>HEAD</tag>
+        <tag>1_9_0</tag>
     </scm>
 
     <properties>
