@@ -1,9 +1,10 @@
 import React from 'react';
 import {registry} from '@jahia/ui-extender';
+import {RouteWithTitle} from '@jahia/jahia-ui-root';
 import {useHistory} from 'react-router-dom';
 import {Accordion, AccordionItem, LayoutModule, SecondaryNav, SecondaryNavHeader, TreeView} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
-import {Route, Switch} from 'react-router';
+import {Switch} from 'react-router';
 import Work from '@jahia/moonstone/dist/icons/Work';
 import {useAdminRouteTreeStructure} from '@jahia/ui-extender';
 import PropTypes from 'prop-types';
@@ -82,7 +83,7 @@ export const DashBoard = ({match}) => {
             content={
                 <Switch>
                     {filteredRoutes.map(r =>
-                        <Route key={r.key} exact strict path={r.route || '/dashboard/' + r.key} render={props => r.render(props)}/>
+                        <RouteWithTitle key={r.key} exact strict routeTitle={`${t('jahia-dashboard.label')} - ${r.label ? t(r.label) : r.key}`} path={r.route || '/dashboard/' + r.key} render={props => r.render(props)}/>
                     )}
                 </Switch>
             }
