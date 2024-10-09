@@ -94,7 +94,7 @@ const ProjectList = props => {
                             history.push(siteUrl);
                         } else {
                             let siteLanguage = siteNode.languages.values.indexOf(locale) >= 0 ? locale : siteNode.defaultLanguage.value;
-                            let homePageName = siteNode.site.homePage.name;
+                            let homePageName = siteNode.site.homePage?.name || '';
                             let siteUrl = '';
                             switch (siteType) {
                                 case Constants.SITE_TYPE.PAGE_COMPOSER:
