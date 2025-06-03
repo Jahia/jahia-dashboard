@@ -26,7 +26,7 @@ module.exports = (env, argv) => {
         },
         resolve: {
             mainFields: ['module', 'main'],
-            extensions: ['.mjs', '.js', '.jsx', 'json']
+            extensions: ['.mjs', '.js', '.jsx', '.json']
         },
         module: {
             rules: [
