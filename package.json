@@ -11,7 +11,7 @@
     "build:nolint": "yarn webpack",
     "dev": "yarn webpack --watch",
     "watch": "yarn webpack --watch",
-    "webpack": "node --max_old_space_size=2048 ./node_modules/webpack/bin/webpack.js",
+    "webpack": "node --max_old_space_size=4096 ./node_modules/webpack/bin/webpack.js",
     "build:analyze": "yarn build --analyze",
     "build:production": "yarn build --mode=production",
     "build:production-analyze": "yarn build --mode=production --analyze",
