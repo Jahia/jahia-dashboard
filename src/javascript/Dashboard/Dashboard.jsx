@@ -1,97 +1,41 @@
 import React from 'react';
-import {registry} from '@jahia/ui-extender';
-import {RouteWithTitle} from '@jahia/jahia-ui-root';
-import {useHistory} from 'react-router-dom';
-import {Accordion, AccordionItem, LayoutModule, SecondaryNav, SecondaryNavHeader, TreeView} from '@jahia/moonstone';
-import {useTranslation} from 'react-i18next';
-import {Switch} from 'react-router';
-import Work from '@jahia/moonstone/dist/icons/Work';
-import {useAdminRouteTreeStructure} from '@jahia/ui-extender';
+import {Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {useNodeInfo} from '@jahia/data-helper';
+import HomeScreen from './HomeScreen';
+import Constants from './Dashboard.constants';
 
-const getRegistryTarget = function (item, target) {
-    const foundTarget = item.targets.find(t => t.id === target || t.id.startsWith(target + '-'));
-    return foundTarget.id + ':' + foundTarget.priority;
-};
+/**
+ * Where the entries that used to live under /dashboard went, so anyone holding an old link lands
+ * on the same page at its new address rather than on an empty screen.
+ *
+ * "files" and "pages" are absent on purpose: those pages no longer exist anywhere, so there is
+ * nothing to send them to and the home screen is the honest answer.
+ */
+const MOVED_TO_PROFILE = ['projects', 'tasks', 'personal-api-tokens'];
 
-const getPageId = match => {
-    let matchByRoute = registry.find({type: 'adminRoute', route: match.url});
-    if (matchByRoute.length > 0) {
-        return matchByRoute[0].key;
-    }
-
-    let param = match.params[0];
-
-    let item = param.substr(1);
-    if (registry.get('adminRoute', item)) {
-        return item;
-    }
-};
-
+/**
+ * The dashboard is the home screen, full width.
+ *
+ * It used to be a LayoutModule wrapping a secondary navigation whose only group was a single-item
+ * accordion labelled "My workspace" -- a fold that never had anything to hide, around a list of
+ * pages that were about the reader rather than about this screen. Those moved to the profile icon
+ * (see Dashboard.adminRoute.jsx), which leaves this screen nothing to navigate between.
+ */
 export const DashBoard = ({match}) => {
-    const history = useHistory();
-    const {t} = useTranslation('jahia-dashboard');
-    const itemId = 'myWorkspace';
+    // Whatever followed /dashboard, its leading slash included.
+    const sub = match.params[0] ? match.params[0].substr(1) : '';
 
-    const selectedPage = getPageId(match);
-    const {tree, routes, defaultOpenedItems, allPermissions} = useAdminRouteTreeStructure('dashboard', selectedPage);
-    const {node} = useNodeInfo({path: '/'}, {
-        getPermissions: allPermissions
-    });
+    if (MOVED_TO_PROFILE.includes(sub)) {
+        return <Redirect to={`/profile/${sub}`}/>;
+    }
 
-    const data = tree
-        .filter(route => route.requiredPermission === undefined || (node && (node[route.requiredPermission] !== false)))
-        .map(route => ({
-            id: route.key,
-            label: t(route.label),
-            isSelectable: route.isSelectable,
-            iconStart: route.icon,
-            route: route.route,
-            treeItemProps: {
-                'data-sel-role': route.key,
-                'data-registry-key': route.type + ':' + route.key,
-                'data-registry-target': getRegistryTarget(route, 'dashboard')
-            }
-        }))
-        .getData();
+    if (sub !== '') {
+        return <Redirect to={Constants.ROUTE}/>;
+    }
 
-    const filteredRoutes = routes && routes
-        .filter(route => route.isSelectable && route.render);
-
-    return (
-        <LayoutModule
-            navigation={
-                <SecondaryNav header={<SecondaryNavHeader>{t('jahia-dashboard.label')}</SecondaryNavHeader>}>
-                    <Accordion isReversed openedItem={itemId}>
-                        <AccordionItem id={itemId} label={t('jahia-dashboard.workspace.label')} icon={<Work/>}>
-                            <TreeView isReversed
-                                      data={data}
-                                      selectedItems={[selectedPage]}
-                                      defaultOpenedItems={defaultOpenedItems}
-                                      onClickItem={
-                                          (app, event, toggleNode) => (
-                                              app.isSelectable ?
-                                                  history.push(app.route || ('/dashboard/' + app.id)) :
-                                                  toggleNode(event)
-                                          )
-                                      }/>
-                        </AccordionItem>
-                    </Accordion>
-                </SecondaryNav>
-            }
-            content={
-                <Switch>
-                    {filteredRoutes.map(r =>
-                        <RouteWithTitle key={r.key} exact strict routeTitle={`${t('jahia-dashboard.label')} - ${r.label ? t(r.label) : r.key}`} path={r.route || '/dashboard/' + r.key} render={props => r.render(props)}/>
-                    )}
-                </Switch>
-            }
-        />
-    );
+    return <HomeScreen/>;
 };
 
 DashBoard.propTypes = {
     match: PropTypes.object.isRequired
 };
-
