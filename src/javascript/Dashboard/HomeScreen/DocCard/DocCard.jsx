@@ -15,7 +15,7 @@ const toWebUrl = value => {
     }
 
     try {
-        const url = new URL(value, window.location.href);
+        const url = new URL(value, document.baseURI);
         return url.protocol === 'http:' || url.protocol === 'https:' ? url.href : null;
     } catch {
         return null;
