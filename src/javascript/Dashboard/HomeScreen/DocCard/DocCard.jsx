@@ -9,6 +9,19 @@ import ClockIcon from '@jahia/moonstone/dist/icons/Clock';
 import BookIcon from '@jahia/moonstone/dist/icons/Book';
 import SchoolIcon from '@jahia/moonstone/dist/icons/School';
 
+const toWebUrl = value => {
+    if (!value) {
+        return null;
+    }
+
+    try {
+        const url = new URL(value, document.baseURI);
+        return url.protocol === 'http:' || url.protocol === 'https:' ? url.href : null;
+    } catch {
+        return null;
+    }
+};
+
 const DocCard = ({
     headerText,
     estimatedReadingTime,
@@ -20,8 +33,9 @@ const DocCard = ({
     trainingLabel
 }) => {
     const history = useHistory();
+    const academyWebUrl = toWebUrl(academyUrl);
     const onClickAcademy = () => {
-        window.open(academyUrl, '_blank');
+        window.open(academyWebUrl, '_blank', 'noopener,noreferrer');
     };
 
     const onClickTraining = () => {
@@ -51,7 +65,7 @@ const DocCard = ({
                     <Typography>{infoText}</Typography>
                 </div>
                 <div className={classnames(styles.buttonContainer)}>
-                    { academyUrl &&
+                    { academyWebUrl &&
                         <Button
                             className={classnames(styles.button)}
                             icon={<BookIcon/>}
